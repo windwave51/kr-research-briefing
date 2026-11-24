@@ -4,37 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>AIP02 R1 · 국내 리포트 브리핑</title>
-<meta name="description" content="국내 연구기관 리포트 브리핑의 AIP02 Round 1 보고: 문제 재정의, 이슈트리, 프로덕트 변화, 가설과 검증 설계, 관찰, 다음 결정.">
+<title>거시 현안 브리핑 · AIP02 R1</title>
+<meta name="description" content="AIP02 Round 1 거시 현안 브리핑 소개. 문제 재정의, 이슈트리, 프로덕트 변화, 추후 과제를 정리합니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&display=swap">
 <style>
 /* 레이아웃: 한 줄 읽기 폭(46rem)의 세로 보고서. 위에는 프로덕트와 같은 터미널식 상태 줄, 본문은 종이색과 세리프 제목.
-   색: 프로덕트(브리핑)와 같은 종이·청록·호박색. 상태 색(유지·철회·빈칸)은 강조색과 따로 둔다. */
+   색: 프로덕트(브리핑)와 같은 종이·청록·호박색. 철회 상태 색은 강조색과 따로 둔다. */
 :root {
   --paper: #f6f2ea; --surface: #fffdf8; --ink: #1c1b18; --muted: #5e5a52; --line: #ddd5c6;
   --accent: #1d5b54; --accent-soft: #e3ece6; --amber: #b86e00; --amber-soft: #f6ead3;
-  --stop: #9c3d2b; --stop-soft: #f3e1db; --gap: #6b5b95; --gap-soft: #ebe7f3;
+  --stop: #9c3d2b;
   --term-bg: #101315; --term-ink: #d9d6cf; --term-key: #f2a93b; --term-line: #2e3539;
   --font-display: "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
   --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --step--1: 0.8125rem; --step-0: 1rem; --step-1: 1.1875rem; --step-2: 1.5rem;
+  --step--1: 0.8125rem; --step-0: 1rem;
   --step-3: clamp(1.75rem, 1.2rem + 2.4vw, 2.6rem); --step-4: clamp(2.4rem, 1.5rem + 4.5vw, 4.25rem);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #15140f; --surface: #1d1c17; --ink: #ebe6db; --muted: #a7a194; --line: #36332b;
     --accent: #7fc4b6; --accent-soft: #1f2c28; --amber: #f2b45a; --amber-soft: #2e2617;
-    --stop: #e58a72; --stop-soft: #33211b; --gap: #b7a8e0; --gap-soft: #26213a;
+    --stop: #e58a72;
     --term-bg: #08090a; --term-line: #2a2f33; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #15140f; --surface: #1d1c17; --ink: #ebe6db; --muted: #a7a194; --line: #36332b;
   --accent: #7fc4b6; --accent-soft: #1f2c28; --amber: #f2b45a; --amber-soft: #2e2617;
-  --stop: #e58a72; --stop-soft: #33211b; --gap: #b7a8e0; --gap-soft: #26213a;
+  --stop: #e58a72;
   --term-bg: #08090a; --term-line: #2a2f33; color-scheme: dark;
 }
 :root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
@@ -52,7 +52,6 @@ a { color: var(--accent); text-underline-offset: 3px; }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
 p { margin: 0; }
-.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
 /* 상태 줄 (프로덕트와 같은 골격) */
 .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--term-bg); color: var(--term-ink); border-bottom: 1px solid var(--term-line); font-size: 0.78rem; }
@@ -78,7 +77,6 @@ section h2 { font-family: var(--font-display); font-weight: 800; font-size: var(
 .hero { padding-top: 3.5rem; padding-bottom: 2.5rem; border-bottom: 2px solid var(--ink); display: grid; gap: 1.25rem; }
 .hero .kicker { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
 .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: var(--step-4); line-height: 1.18; letter-spacing: -0.02em; }
-.hero h1 em { font-style: normal; color: var(--accent); }
 .hero p { max-width: 40rem; font-size: 1.0625rem; color: var(--muted); }
 .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .btn { display: inline-block; text-decoration: none; border: 1px solid var(--ink); border-radius: 2px; padding: 0.35rem 0.9rem; font-size: 0.9rem; color: var(--ink); }
@@ -123,8 +121,6 @@ section h2 { font-family: var(--font-display); font-weight: 800; font-size: var(
 .tag.done { background: var(--accent-soft); color: var(--accent); }
 .tag.pick { background: var(--accent); color: var(--surface); }
 .tag.part { background: var(--amber-soft); color: var(--amber); }
-.tag.stop { background: var(--stop-soft); color: var(--stop); }
-.tag.gap { background: var(--gap-soft); color: var(--gap); }
 .branch.pick { border: 2px solid var(--accent); }
 
 /* 버전 흐름 */
@@ -136,53 +132,10 @@ section h2 { font-family: var(--font-display); font-weight: 800; font-size: var(
 .timeline b { font-size: 1rem; }
 .timeline span { font-size: 0.92rem; color: var(--muted); }
 
-/* 표 */
-.table-wrap { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
-table { border-collapse: collapse; width: 100%; font-size: 0.9rem; min-width: 38rem; }
-th, td { text-align: left; vertical-align: top; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--line); }
-th { font-weight: 600; color: var(--muted); background: var(--paper); white-space: nowrap; font-size: var(--step--1); }
-tr:last-child td { border-bottom: 0; }
-
-/* 가설 */
-.hypo { font-family: var(--font-display); font-weight: 800; font-size: var(--step-2); line-height: 1.5; border-left: 4px solid var(--accent); padding-left: 1rem; }
-.criteria { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); counter-reset: c; }
-.crit { background: var(--surface); border: 1px solid var(--line); padding: 0.9rem 1rem; counter-increment: c; display: grid; gap: 0.3rem; }
-.crit::before { content: "기준 " counter(c); font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); }
-.signals { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 46rem) { .signals { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.sig { padding: 0.9rem 1rem; display: grid; gap: 0.3rem; }
-.sig.yes { background: var(--accent-soft); }
-.sig.no { background: var(--stop-soft); }
-.sig b { font-size: 0.9rem; }
-
-/* 목소리 */
-.voices { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 46rem) { .voices { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.voice { background: var(--surface); border: 1px solid var(--line); padding: 1rem 1.15rem; display: grid; gap: 0.5rem; align-content: start; }
-.voice .when { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
-.voice blockquote { margin: 0; font-size: 1.02rem; line-height: 1.65; }
-.voice blockquote::before { content: "“"; color: var(--accent); }
-.voice blockquote::after { content: "”"; color: var(--accent); }
-.voice .then { font-size: var(--step--1); color: var(--muted); border-top: 1px dashed var(--line); padding-top: 0.5rem; }
-.gapbox { border: 2px dashed var(--gap); background: var(--gap-soft); padding: 1rem 1.25rem; display: grid; gap: 0.35rem; }
-.gapbox b { color: var(--gap); }
-
-/* 예상과 관찰 */
-.eo { display: grid; gap: 0.75rem; }
-.eo-row { display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); background: var(--surface); border: 1px solid var(--line); padding: 1rem 1.15rem; }
-@media (min-width: 46rem) { .eo-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) 7.5rem; align-items: start; } }
-.eo-row .k { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; display: block; margin-bottom: 0.2rem; }
-.eo-row p { font-size: 0.93rem; }
-
-/* 할 수 있는 것 */
-.cando { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
-.cando .box ul { margin: 0; padding-left: 1.1rem; font-size: 0.92rem; display: grid; gap: 0.25rem; }
-
 /* 다음 결정 */
 .flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; counter-reset: f; }
 .flow li { counter-increment: f; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.5rem; align-items: baseline; background: var(--surface); border: 1px solid var(--line); padding: 0.65rem 0.9rem; }
 .flow li::before { content: counter(f); font-family: var(--font-mono); color: var(--accent); font-weight: 500; }
-.open-q { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.3rem; }
 .conclusion { margin-top: 4.5rem; background: var(--term-bg); color: var(--term-ink); padding: 2rem 1.5rem; display: grid; gap: 1rem; border-radius: 2px; }
 .conclusion .k { font-family: var(--font-mono); font-size: 0.75rem; color: var(--term-key); letter-spacing: 0.12em; }
 .conclusion h2 { font-family: var(--font-display); font-weight: 800; font-size: var(--step-3); line-height: 1.35; color: #f3efe6; }
@@ -209,7 +162,7 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
 
   <header class="hero">
     <p class="kicker">AIP02 Round 1 · 2026-11-21 ~ 11-24 · 문제 1 국내 연구기관 리포트</p>
-    <h1>거시 현안 브리핑 </h1>
+    <h1>거시 현안 브리핑</h1>
     <p>국내 연구기관이 발간한 최신 보고서를 핵심 위주로 폭넓게 보는 프로그램을 구성. 초안 대비 "내 기준"을 반영하는 장치를 더했지만, 정리자 한 사람의 생각 정리 도구에 머물러 있다는 고민이 추후 과제.</p>
     <div class="actions">
       <a class="btn primary" href="../">프로덕트 열기 ↗</a>
@@ -242,14 +195,14 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
       </div>
       <div class="box on">
         <span class="k">R1 · 재정의</span>
-        <h3>요약이 쌓일수록 오히려 스스로 판단하는 비중이 줄어듬. 무엇을 먼저 읽을지, 무엇을 물을지가 내 기준이 아닌, 또다시 AI의 기준이 됨.</h3>
+        <h3>요약이 쌓일수록 오히려 스스로 판단하는 비중이 줄어듦. 무엇을 먼저 읽을지, 무엇을 물을지가 내 기준이 아닌, 또다시 AI의 기준이 됨.</h3>
         <p class="note">→ 원문과 해석을 나누고, 질문을 남기고, 내 관심·질문을 순서에 반영하는 기능을 구상</p>
       </div>
     </div>
     <div class="scenes">
       <div class="scene"><b>KDI가 성장률 전망치를 상향함</b><span>왜 올렸는지, 한국은행 전망과 무엇이 다른지는 확인하지 않고 지나간다.</span></div>
       <div class="scene"><b>두 연구소가 같은 선거에 대한 각각의 보고서를 발간</b><span>세종연구소와 통일연구원의 중간선거 분석. 어디가 갈리는지 직접 견줘 보지 않는다.</span></div>
-      <div class="scene"><b>146페이지 짜리 지역인구전망</b><span>요약 한 줄만 읽고 "인구 감소"로만 피상적으로 이해. 외국인 인구가 지방재정에 주는 영향 등 추가 질문은 생기지 않는다.</span></div>
+      <div class="scene"><b>146페이지짜리 지역인구전망</b><span>요약 한 줄만 읽고 "인구 감소"로만 피상적으로 이해. 외국인 인구가 지방재정에 주는 영향 등 추가 질문은 생기지 않는다.</span></div>
     </div>
   </section>
 
@@ -296,7 +249,7 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
 
   <section id="evolution" aria-labelledby="evo-h">
     <p class="eyebrow"><span class="no">03</span>Solution evolution</p>
-    <h2 id="evo-h">문서 수정 타임스탬프 </h2>
+    <h2 id="evo-h">문서 수정 타임스탬프</h2>
     <p class="lede read">수집은 코드로 자동화, 읽기·정리·쪽수 대조는 Claude가 절차 문서대로 실행. R1 나흘 동안 공유 페이지가 버전 9에서 21까지 바뀌었다. 가장 큰 결정은 만들어 둔 전망 비교표를 상단에서 내린 것이다.</p>
     <ol class="timeline">
       <li><span class="when">AIP01 · ~11-20</span><b>수집기 + 카드 + 공유 페이지</b><span>7기관 16간행물. 수치는 원문 문장과 대조해야만 싣고, 대조에 실패하면 페이지 생성이 멈춘다.</span></li>
@@ -305,14 +258,13 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
       <li class="stop"><span class="when">11-23 · v12</span><b>전망 비교표 철회 → 섹터별 최신 이슈</b><span>"0.1%씩 다른 숫자를 매일 상단에 둘 만한가"라는 질문에서, 숫자 비교 대신 흐름 파악으로 무게를 옮겼다. 코드와 원문 대조는 고도화 때를 위해 남겼다.</span></li>
       <li><span class="when">11-23 · v13</span><b>디자인</b><span>위쪽 골격은 터미널처럼 촘촘하게, 읽는 부분은 종이색과 세리프. 카드 안을 "원문이 말한 것"과 "정리자의 질문"으로 나눴다.</span></li>
       <li><span class="when">11-24 · v14~17</span><b>관심 장부·추적 질문, 반응 버튼, 비공개 노트장</b><span>기준 6(추적 질문)과 관심 밖 칸을 더하고, 장부는 공개.</span></li>
-      <li><span class="when">11-24 · v18~21</span><b>GitHub Pages</b><span>향후 배포의 편의성과 다른 사용자에 대한 참여 용의성 측면에서 Claude.ai로 구동되던 초안에서 GitHub를 통한 배포로 전면 수정 </span></li>
+      <li><span class="when">11-24 · v18~21</span><b>GitHub Pages</b><span>향후 배포의 편의성과 다른 사용자에 대한 참여 용의성 측면에서 Claude.ai로 구동되던 초안에서 GitHub를 통한 배포로 전면 수정</span></li>
     </ol>
   </section>
 
   <section id="decision" aria-labelledby="dec-h">
     <p class="eyebrow"><span class="no">04</span>Decision &amp; next step</p>
     <h2 id="dec-h">사용자를 바꾸는 재조정을 검토.</h2>
-
     <div class="pair">
       <div class="box">
         <span class="k">지금 · 정리자용 브리핑</span>
