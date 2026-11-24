@@ -204,7 +204,7 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
       <a href="#voice"><span>05</span>목소리</a>
       <a href="#observed"><span>06</span>관찰</a>
       <a href="#limits"><span>07</span>고민</a>
-      <a href="#decision"><span>08</span>결정</a>
+      <a href="#decision"><span>08</span>추후 과제</a>
     </nav>
   </div>
 </div>
@@ -213,8 +213,8 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
 
   <header class="hero">
     <p class="kicker">AIP02 Round 1 · 2026-11-21 ~ 11-24 · 문제 1 국내 연구기관 리포트</p>
-    <h1>모아도,<br>읽지 않으면<br><em>내 판단</em>이 되지 않는다.</h1>
-    <p>국내 연구기관 보고서를 업로드 시점에 맞춰 핵심 위주로 익히려는 프로그램을 만들었다. R1에서 읽는 화면과 "내 기준"을 반영하는 장치를 더했지만, 정리자 한 사람의 생각 정리 도구에 머물러 있다는 고민이 남았다.</p>
+    <h1>거시 현안 브리핑 </h1>
+    <p>국내 연구기관이 발간한 최신 보고서를 핵심 위주로 폭넓게 보는 프로그램을 구성. 초안 대비 "내 기준"을 반영하는 장치를 더했지만, 정리자 한 사람의 생각 정리 도구에 머물러 있다는 고민이 추후 과제.</p>
     <div class="actions">
       <a class="btn primary" href="../">프로덕트 열기 ↗</a>
       <a class="btn" href="#problem">사고 과정 보기 ↓</a>
@@ -223,7 +223,7 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
       <div class="tile" role="listitem"><span class="k">01 문제</span><strong>새 보고서는 쌓이는데, 긴 원문 대신 AI 요약만 훑어 스스로 판단하지 않게 된다</strong></div>
       <div class="tile" role="listitem"><span class="k">02 솔루션</span><strong>코드가 모으고, Claude가 원문 쪽수와 대조해 정리하고, 내 관심·질문으로 먼저 볼 것을 고른다</strong></div>
       <div class="tile" role="listitem"><span class="k">03 검증</span><strong>사용자는 정리자 1명. 다른 사용자 시험 0명이 가장 큰 빈칸</strong></div>
-      <div class="tile" role="listitem"><span class="k">04 결정</span><strong>R2(장부로 고른 자료가 읽히는가)는 보류. 면접 준비생 대상 재조정안 검토 중</strong></div>
+      <div class="tile" role="listitem"><span class="k">04 추후 과제</span><strong>면접 준비생 대상 재조정안 검토 중</strong></div>
     </div>
     <dl class="stats">
       <div><dt>수집 기관·간행물</dt><dd>7 · 16</dd></div>
@@ -236,8 +236,8 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
 
   <section id="problem" aria-labelledby="problem-h">
     <p class="eyebrow"><span class="no">01</span>Problem discovery</p>
-    <h2 id="problem-h">문제는 정보가 없어서가 아니라, 판단을 맡겨 버리는 데 있었다.</h2>
-    <p class="lede read">AIP01에서 다섯 문제를 적었다. 국내 연구기관 리포트, 해외 언론·연구소, 거시 변수, 글로벌 기관 리포트, 이 모두를 모아 우선순위를 정하는 오케스트레이터. 그중 문제 1을 먼저 골랐다. 매주 새 보고서가 나오고, 진로·투자·트렌드 판단에 바로 쓰이며, 짧은 기간에 실제로 돌아가는 프로그램을 만들 수 있었기 때문이다.</p>
+    <h2 id="problem-h">문제는 정보가 없어서가 아니라, 판단을 맡겨 버리는 데 있음.</h2>
+    <p class="lede read">AIP01에서 구상한 다섯 문제-국내 연구기관 리포트, 해외 언론·연구소, 거시 변수, 글로벌 기관 리포트, 이 모두를 모아 우선순위를 정하는 오케스트레이터- 중에서 문제 1을 먼저 골랐다. 매주 새 보고서가 나오고, 진로·투자·트렌드 판단에 바로 쓰이며, 짧은 기간에 실제로 돌아가는 프로그램을 만들 수 있었기 때문.
     <div class="pair">
       <div class="box">
         <span class="k">AIP01 · 처음 생각</span>
@@ -246,21 +246,21 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
       </div>
       <div class="box on">
         <span class="k">R1 · 재정의</span>
-        <h3>요약이 쌓일수록 스스로 판단하는 비중이 줄어든다. 무엇을 먼저 읽을지, 무엇을 물을지가 내 기준이 아니다.</h3>
-        <p class="note">→ 원문과 해석을 나누고, 질문을 남기고, 내 관심·질문을 순서에 반영</p>
+        <h3>요약이 쌓일수록 오히려 스스로 판단하는 비중이 줄어듬. 무엇을 먼저 읽을지, 무엇을 물을지가 내 기준이 아닌, 또다시 AI의 기준이 됨.</h3>
+        <p class="note">→ 원문과 해석을 나누고, 질문을 남기고, 내 관심·질문을 순서에 반영하는 기능을 구상</p>
       </div>
     </div>
     <div class="scenes">
-      <div class="scene"><b>KDI가 성장률을 올렸다는데</b><span>왜 올렸는지, 한국은행 전망과 무엇이 다른지는 확인하지 않고 지나간다.</span></div>
-      <div class="scene"><b>두 연구소가 같은 선거를 다르게 읽는다</b><span>세종연구소와 통일연구원의 중간선거 분석. 어디가 갈리는지 직접 견줘 보지 않는다.</span></div>
-      <div class="scene"><b>146쪽 지역인구전망</b><span>요약 한 줄만 읽고 "인구 준다"로 기억한다. 외국인 인구가 지방재정에 주는 영향 같은 질문은 생기지 않는다.</span></div>
+      <div class="scene"><b>KDI가 성장률 전망치를 상향함</b><span>왜 올렸는지, 한국은행 전망과 무엇이 다른지는 확인하지 않고 지나간다.</span></div>
+      <div class="scene"><b>두 연구소가 같은 선거에 대한 각각의 보고서를 발간</b><span>세종연구소와 통일연구원의 중간선거 분석. 어디가 갈리는지 직접 견줘 보지 않는다.</span></div>
+      <div class="scene"><b>146페이지 짜리 지역인구전망</b><span>요약 한 줄만 읽고 "인구 감소"로만 피상적으로 이해. 외국인 인구가 지방재정에 주는 영향 등 추가 질문은 생기지 않는다.</span></div>
     </div>
   </section>
 
   <section id="tree" aria-labelledby="tree-h">
     <p class="eyebrow"><span class="no">02</span>Issue tree</p>
     <h2 id="tree-h">원인을 세 갈래로 나누고, R1 후반에 "판단을 맡긴다"를 골랐다.</h2>
-    <p class="lede read">AIP01은 원인 1·2를 풀었다. R1 전반은 원인 2의 읽는 화면을, 후반은 이 프로젝트의 처음 문제의식인 원인 3을 다뤘다. 다만 이 선택은 제작 전에 적어 둔 것이 아니라 돌아보며 정리한 것이다.</p>
+    <p class="lede read">AIP01은 원인 1·2를 풀었다. R1 전반은 원인 2의 읽는 화면을, 후반은 이 프로젝트의 처음 문제의식인 원인 3을 다뤘다.</p>
     <div class="tree">
       <div class="root"><span class="k">ROOT QUESTION</span><p>국내 리포트를 업로드 시점에 맞춰 핵심 위주로 익히면서, 내 판단 기준을 키우려면?</p></div>
       <div class="branches">
@@ -269,7 +269,7 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
           <h3>원인 1. 놓친다</h3>
           <ul>
             <li>일곱 기관 게시판이 흩어져 있다</li>
-            <li>수집기가 robots.txt를 지키며 새 글을 모은다</li>
+            <li>수집기가 robots.txt로 새 글을 모은다</li>
             <li>막힌 기관(KCIF 등)은 허락 요청·수동 등록으로</li>
             <li>남은 약점: 수동 실행이라 R1 동안 수집 0회</li>
           </ul>
@@ -300,122 +300,21 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
 
   <section id="evolution" aria-labelledby="evo-h">
     <p class="eyebrow"><span class="no">03</span>Solution evolution</p>
-    <h2 id="evo-h">기능은 늘었지만, 하나는 내렸다.</h2>
-    <p class="lede read">수집은 코드가(AI 없음), 읽기·정리·쪽수 대조는 Claude가 절차 문서대로 한다. R1 나흘 동안 공유 페이지가 버전 9에서 21까지 바뀌었다. 가장 큰 결정은 만들어 둔 전망 비교표를 상단에서 내린 것이다.</p>
+    <h2 id="evo-h">문서 수정 타임스탬프 </h2>
+    <p class="lede read">수집은 코드로 자동화, 읽기·정리·쪽수 대조는 Claude가 절차 문서대로 실행. R1 나흘 동안 공유 페이지가 버전 9에서 21까지 바뀌었다. 가장 큰 결정은 만들어 둔 전망 비교표를 상단에서 내린 것이다.</p>
     <ol class="timeline">
       <li><span class="when">AIP01 · ~11-20</span><b>수집기 + 카드 + 공유 페이지</b><span>7기관 16간행물. 수치는 원문 문장과 대조해야만 싣고, 대조에 실패하면 페이지 생성이 멈춘다.</span></li>
       <li><span class="when">11-20</span><b>기관 고르게, 주제와 관련 자료 나누기</b><span>새 기관이 첫머리에 안 보이는 원인과 주제 필터가 안 갈리는 원인을 찾아 규칙을 바꿨다.</span></li>
       <li><span class="when">11-23 · v9~11</span><b>카드 접기, 읽은 범위 표시, 새 글·검색</b><span>카드가 3건에서 28건으로 늘자 끝까지 훑기 어려워졌다.</span></li>
       <li class="stop"><span class="when">11-23 · v12</span><b>전망 비교표 철회 → 섹터별 최신 이슈</b><span>"0.1%씩 다른 숫자를 매일 상단에 둘 만한가"라는 질문에서, 숫자 비교 대신 흐름 파악으로 무게를 옮겼다. 코드와 원문 대조는 고도화 때를 위해 남겼다.</span></li>
-      <li><span class="when">11-23 · v13</span><b>B안 디자인</b><span>위쪽 골격은 터미널처럼 촘촘하게, 읽는 부분은 종이색과 세리프. 카드 안을 "원문이 말한 것"과 "정리자의 질문"으로 나눴다.</span></li>
-      <li><span class="when">11-24 · v14~17</span><b>관심 장부·추적 질문, 반응 버튼, 비공개 노트장</b><span>기준 6(추적 질문)과 관심 밖 칸을 더하고, 장부는 공개, "내 판단"은 비공개로 나눴다.</span></li>
-      <li><span class="when">11-24 · v18~21</span><b>"끝까지 읽음" 표시, GitHub Pages</b><span>R2 측정을 위한 한 가지 변경. 같은 날 내부 경로가 공개 카드에 섞여 있던 것을 찾아 막았다.</span></li>
+      <li><span class="when">11-23 · v13</span><b>디자인</b><span>위쪽 골격은 터미널처럼 촘촘하게, 읽는 부분은 종이색과 세리프. 카드 안을 "원문이 말한 것"과 "정리자의 질문"으로 나눴다.</span></li>
+      <li><span class="when">11-24 · v14~17</span><b>관심 장부·추적 질문, 반응 버튼, 비공개 노트장</b><span>기준 6(추적 질문)과 관심 밖 칸을 더하고, 장부는 공개.</span></li>
+      <li><span class="when">11-24 · v18~21</span><b>GitHub Pages</b><span>향후 배포의 편의성과 다른 사용자에 대한 참여 용의성 측면에서 Claude.ai로 구동되던 초안에서 GitHub를 통한 배포로 전면 수정 </span></li>
     </ol>
   </section>
 
-  <section id="hypothesis" aria-labelledby="hyp-h">
-    <p class="eyebrow"><span class="no">04</span>Hypothesis &amp; test design</p>
-    <h2 id="hyp-h">R1은 기준 없이 만들었고, R2에서야 기준을 먼저 적었다.</h2>
-    <p class="hypo read">관심 장부와 추적 질문 장부로 고른 "먼저 볼 것"은 끝까지 읽히고, 관심 밖 칸도 함께 읽히며, 그 과정에서 내 질문이 갱신된다.</p>
-    <p class="note read">R2 가설. R1의 가설(내 관심·질문을 기록해 순서에 반영하면 내 기준으로 읽게 된다)은 장치를 만든 뒤에 문장으로 정리했다.</p>
-    <div class="criteria" role="list">
-      <div class="crit" role="listitem"><b>6건 중 3건 이상을 끝까지 읽는다</b><span class="note">다음 정리 2회의 "먼저 볼 것" 6건. 카드를 다 읽고 원문에서 요약·결론을 직접 확인했을 때만 "끝까지 읽음".</span></div>
-      <div class="crit" role="listitem"><b>내 기준 자료가 더 읽히되, 관심 밖도 읽힌다</b><span class="note">기준 5·6 자료의 읽음 비율이 관심 밖 칸보다 높고, 관심 밖 칸도 2건 중 1건 이상.</span></div>
-      <div class="crit" role="listitem"><b>질문이 갱신된다</b><span class="note">추적 질문에 기록이 1건 이상 붙거나 새 질문이 1개 이상 생긴다.</span></div>
-    </div>
-    <div class="signals">
-      <div class="sig yes"><b>가설 유지</b><span class="note">기준 1과 3을 채운다.</span></div>
-      <div class="sig no"><b>가설 변경</b><span class="note">기준 1을 못 채운다. 장부가 읽기를 늘리지 못한다는 뜻이므로 원인을 관찰에서 찾는다.</span></div>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>설계</th><th>내용</th></tr></thead>
-        <tbody>
-          <tr><td>측정 장치</td><td>카드의 "끝까지 읽음" 버튼. 정리할 때마다 직전 "먼저 볼 것"과 대조해 기록한다. 다이제스트가 나온 뒤에 누른 것만 센다.</td></tr>
-          <tr><td>본인 과업</td><td>다이제스트가 나온 날부터 다음 다이제스트 전까지 "먼저 볼 것" 3건 중 골라 읽고, 끝까지 읽으면 표시한다.</td></tr>
-          <tr><td>다른 사용자 과업</td><td>2명, 1인 10~15분. "카드 하나를 골라 읽고, 앞으로 확인하고 싶은 질문 하나를 적어 주세요." 판정에는 넣지 않고 참고한다.</td></tr>
-          <tr><td>바꾸지 않는 것</td><td>R2 동안 "먼저 볼 것" 선정 기준(1~6), 관심 밖 칸, 기관 고르게, 페이지 구성.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
 
-  <section id="voice" aria-labelledby="voice-h">
-    <p class="eyebrow"><span class="no">05</span>Real voice</p>
-    <h2 id="voice-h">들린 목소리는 정리자 한 사람의 것이었다.</h2>
-    <p class="lede read">사용자 = 만든 사람인 프로젝트였다. 아래는 만들고 쓰는 동안 사용자가 직접 던진 문제 제기와, 그것이 바꾼 것이다. 인용은 원문 그대로다.</p>
-    <div class="voices">
-      <div class="voice"><span class="when">11-20 · 노출</span><blockquote>기관은 일곱개인데, 첫머리에 노출되는 정보는 기존 기관에 머물러 있는 걸</blockquote><p class="then">원인은 버그가 아니라 "노트를 쓴 자료만 싣는" 구조였다 → 기관마다 1건씩 먼저 고르는 규칙.</p></div>
-      <div class="voice"><span class="when">11-20 · 탐색</span><blockquote>주제를 선택했을 때, 확보한 자료들이 충분히 sorting되지는 않는 것 같아</blockquote><p class="then">카드 한 장에 태그가 최대 8개였다 → 주된 주제와 관련 주제를 나눴다.</p></div>
-      <div class="voice"><span class="when">11-23 · 정보 가치</span><blockquote>데이터 자체가 0.1%씩 다른 걸 매일 상단노출 시켜둘만큼 중요한 정보인지 의문이야</blockquote><p class="then">전망 비교표를 내리고 섹터별 최신 이슈로 바꿨다.</p></div>
-      <div class="voice"><span class="when">11-21 · 지속 가능성</span><blockquote>현재 다루는 문서량이 많다보니 토큰 소모가 우려되네</blockquote><p class="then">원문 요점 추출기, 하위 에이전트, 외부 모델 활용을 검토했지만 아직 만들지 않았다.</p></div>
-      <div class="voice"><span class="when">11-24 · 입력</span><blockquote>제대로 된 게 맞나? 입력할 수 있는 창이 딱히 없는데</blockquote><p class="then">로그인한 소유자에게만 입력 칸이 보였다. 이후 반응 2건이 저장되어 장부 첫 항목과 추적 질문 Q1이 생겼다.</p></div>
-      <div class="voice"><span class="when">11-24 · 방향</span><blockquote>지나치게 사용자 스스로의 생각 정리용 및 정보 수집을 위한 용도라는 목적이 강해</blockquote><p class="then">다른 사람이 쓰는 상호작용형 도구로의 재조정을 검토하기 시작했다(08 결정).</p></div>
-    </div>
-    <div class="gapbox">
-      <b>가장 큰 빈칸: 다른 사용자 검증 0명</b>
-      <p class="note">AIP02의 "사용자 2명 이상에게 시험"을 R1에서 하지 않았다. R2 계획에 과업 안내문과 관찰표를 만들어 두었지만 아직 보내지 않았다.</p>
-    </div>
-  </section>
 
-  <section id="observed" aria-labelledby="obs-h">
-    <p class="eyebrow"><span class="no">06</span>Expected vs. observed</p>
-    <h2 id="obs-h">예상은 대부분 구조에 부딪혔다.</h2>
-    <div class="eo">
-      <div class="eo-row"><div><span class="k">예상</span><p>기관을 4곳에서 7곳으로 늘리면 비교할 재료가 는다</p></div><div><span class="k">관찰</span><p>노트가 있어야 첫 화면에 보이는 구조라, 새 기관 13건이 모두 대기 상태로 보이지 않았다.</p></div><span class="tag part">규칙 변경</span></div>
-      <div class="eo-row"><div><span class="k">예상</span><p>기관 간 전망 비교표가 판단을 돕는다</p></div><div><span class="k">관찰</span><p>사용자 판단으로 0.1%p 차이는 매일 상단에 둘 정보가 아니었다.</p></div><span class="tag stop">철회</span></div>
-      <div class="eo-row"><div><span class="k">예상</span><p>페이지에서 바로 반응을 남기면 입력이 쉬워진다</p></div><div><span class="k">관찰</span><p>처음엔 입력 칸을 찾지 못했다(로그인). claude.ai는 다른 계정 방문자의 쓰기를 막는다. 로그인 뒤 2건 저장.</p></div><span class="tag part">일부 지지</span></div>
-      <div class="eo-row"><div><span class="k">예상</span><p>장부가 생기면 "먼저 볼 것"이 내 관심으로 고른 자료가 된다</p></div><div><span class="k">관찰</span><p>R2 1회차에서 3건 중 2건이 기준 5에 걸렸지만, 그중 1건(발트 3국)은 태그만 맞고 장부에 적은 이유(핵·확장억제)와는 거리가 있었다.</p></div><span class="tag gap">판정 전</span></div>
-      <div class="eo-row"><div><span class="k">예상</span><p>업로드 시점에 맞춰 익힌다</p></div><div><span class="k">관찰</span><p>마지막 수집이 11-21 0시. 수동 실행이라 R1 동안 새 글 수집이 한 번도 돌지 않았다.</p></div><span class="tag stop">못 지킴</span></div>
-      <div class="eo-row"><div><span class="k">예상 밖</span><p>요약 카드는 원문과 해석이 깔끔히 나뉜다</p></div><div><span class="k">관찰</span><p>노트 머리에 정리자가 남긴 운영 메모와 내부 폴더 경로가 공개 카드에 섞여 있었다. 빼고, 섞이면 페이지 생성이 멈추게 했다.</p></div><span class="tag part">고침</span></div>
-    </div>
-    <p class="note">판단은 정리자 한 사람의 사용 기록과 진술에 근거한다. 통계적 검증이 아니다.</p>
-  </section>
-
-  <section id="limits" aria-labelledby="lim-h">
-    <p class="eyebrow"><span class="no">07</span>Current version &amp; concerns</p>
-    <h2 id="lim-h">지금 할 수 있는 것과, 할 수 없는 것.</h2>
-    <div class="cando">
-      <div class="box on">
-        <span class="k">할 수 있는 것</span>
-        <ul>
-          <li>7기관 16간행물 게시판의 새 글 수집(robots.txt 준수)</li>
-          <li>수치마다 원문 문장·쪽수 대조, 읽은 범위 표시</li>
-          <li>"먼저 볼 것"(기준 1~6, 관심 밖 칸)과 섹터별 이슈</li>
-          <li>공유 페이지: 필터·검색·새 글·장부·정리자 반응</li>
-          <li>반응·노트장·대화로 받은 입력을 장부 변경안으로</li>
-        </ul>
-      </div>
-      <div class="box">
-        <span class="k">아직 못 하는 것 · 만들면 됨</span>
-        <ul>
-          <li>무인 실행(지금은 사람이 정리를 시작해야 함)</li>
-          <li>목록 2쪽 이후 확인, 막힌 기관 수동 등록</li>
-          <li>토큰 절감 장치(요점 추출기, 하위 에이전트)</li>
-          <li>방문 통계, 다른 사람의 반응 모으기</li>
-        </ul>
-      </div>
-      <div class="box">
-        <span class="k">할 수 없는 것 · 외부 제약</span>
-        <ul>
-          <li>robots.txt가 막은 기관의 자동 수집(KCIF, KIEP 등)</li>
-          <li>한국은행 원문 PDF 자동 수집</li>
-          <li>claude.ai 공유 페이지에서 다른 계정 방문자의 입력</li>
-        </ul>
-      </div>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>고민</th><th>지금 상태</th></tr></thead>
-        <tbody>
-          <tr><td>누구를 위한 것인가</td><td>정리자 한 사람의 생각 정리와 정보 수집에 치우쳐 있다. 다른 사람이 언제, 왜 여는지가 비어 있다.</td></tr>
-          <tr><td>GPT와 무엇이 다른가</td><td>국내 기관 원문과 쪽수 대조라는 신뢰 장치는 강하다. 그러나 "물어보면 바로 답한다"는 편의는 GPT가 앞선다.</td></tr>
-          <tr><td>지속 가능한가</td><td>정리할 때마다 원문 읽기에 토큰이 많이 들고, 실행을 잊으면 수집도 멈춘다.</td></tr>
-          <tr><td>얼마나 공개할 것인가</td><td>장부·반응은 공개, "내 판단"과 노트장은 비공개. 한국은행 이용 조건 때문에 GitHub판은 검색 색인을 막았다.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
 
   <section id="decision" aria-labelledby="dec-h">
     <p class="eyebrow"><span class="no">08</span>Decision &amp; next step</p>
@@ -441,32 +340,20 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
       <li>내 입장 한 줄: 원문 근거를 하나 골라야 저장된다</li>
       <li>예상 질문과 30초 답변 틀: 주장 → 근거(쪽수) → 한계</li>
     </ol>
-    <div class="box">
-      <span class="k">검증 설계 (제안값, 확정 전)</span>
-      <p>시사·경제 면접 준비생 3명, 1인 15분. 같은 질문에 사용 전과 사용 후 30초씩 답하게 하고, 답변에 원문 근거가 늘었는지 본다. 예측 단계를 건너뛰거나 "GPT가 더 빠르다"가 주된 반응이면 재검토 신호로 본다.</p>
-    </div>
-    <div class="box">
-      <span class="k">재검토 때 정할 것</span>
-      <ol class="open-q">
-        <li>어떤 직무·기업의 면접을 상정할지</li>
-        <li>시험할 3명을 어디서 구할지</li>
-        <li>판단 기준을 제안값대로 쓸지</li>
-        <li>한국은행 자료를 넣을지</li>
-        <li>R2를 이어갈지 중단할지, R3를 이 안으로 시작할지</li>
+      
       </ol>
     </div>
   </section>
 
   <div class="conclusion">
     <span class="k">Conclusion</span>
-    <h2>믿을 수 있게 모으는 것은 했다.<br>다음은 다른 사람이 쓰는 순간을 만드는 것이다.</h2>
+    <h2>기존 초안에서 풀지 못하던 문제를 풀기 위해, 참여자의 기록이 보다 용이하게 작동하는 길을 모색
     <p>원문 쪽수와 대조한 요약, 원문과 해석의 분리, 스스로 따져볼 질문은 이 프로그램의 자산이다. 다만 지금은 그 자산을 정리자 한 사람만 쓴다. 다음 라운드에서는 이 자산을 다른 사람의 판단 연습으로 옮길 수 있는지 확인한다.</p>
     <p><a href="../">국내 연구기관 리포트 브리핑 열기 ↗</a></p>
   </div>
 
   <footer class="foot">
     <p>AIP02 Round 1 보고 · 2026-11-24 작성. 수치는 작성 시점의 수집 DB와 노트 기준이다.</p>
-    <p>인용은 사용자(정리자)가 작업 중 남긴 말이며, 다른 사용자의 진술은 아직 없다.</p>
   </footer>
 </main>
 </body>
