@@ -1,0 +1,45 @@
+# 동향 갱신: 공개 페이지의 "동향 갱신" 버튼이 이 화면을 연다. 저장소 소유자가 "Run workflow"를 눌러야만 돈다.
+# 예약 실행(schedule)은 두지 않는다 (2026-11-26 사용자 결정).
+# 기관 게시판의 최신 목록만 확인하고(--meta-only), 원문 PDF·본문은 받지도 저장하지도 않는다.
+name: 동향 갱신
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 게시판 목록 확인 (원문 저장 없음)
+        run: python collector/collector.py collect --meta-only --data collector/state
+      - name: 새 자료 목록 만들기
+        run: python collector/collector.py export-new --data collector/state --noted collector/noted.json --out site/new.json
+      - name: 수집 기록 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add collector/state site/new.json
+          if ! git diff --cached --quiet; then
+            git commit -m "동향 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M')"
+            git pull --rebase
+            git push
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

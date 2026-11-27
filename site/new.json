@@ -1,0 +1,67 @@
+{
+ "updated_at": "2026-11-24T06:24:31+00:00",
+ "window_since": "2026-10-27",
+ "items": [
+  {
+   "institution": "자본시장연구원 (KCMI)",
+   "publication": "자본시장포커스",
+   "title": "한국 증권시장안정펀드(증안펀드)의 바람직한 역할",
+   "published": "2026-11-23",
+   "url": "https://www.kcmi.re.kr/publications/pub_detail_view?syear=OPIN&zcd=002001016&zno=1949&cno=6891",
+   "first_seen": "2026-11-24T06:24:36+00:00"
+  },
+  {
+   "institution": "세종연구소",
+   "publication": "세종포커스",
+   "title": "[세종포커스] 김정은 사망설의 모순과 대북 정보 검증의 과제 - 정보 접근 가능성과 의료 이송·사망 은폐 주장에 대한 비판적 검토 -",
+   "published": "2026-10-28",
+   "url": "https://www.sejong.org/web/boad/1/egoread.php?bd=1&seq=13204",
+   "first_seen": "2026-11-20T10:56:25+00:00"
+  },
+  {
+   "institution": "세종연구소",
+   "publication": "세종포커스",
+   "title": "[세종포커스] 미 육군 다영역임무부대(MDTF), 거부방어와 확장억제의 새로운 선택지",
+   "published": "2026-10-27",
+   "url": "https://www.sejong.org/web/boad/1/egoread.php?bd=1&seq=13201",
+   "first_seen": "2026-11-20T10:56:30+00:00"
+  }
+ ],
+ "institutions": [
+  {
+   "institution": "한국개발연구원 (KDI)",
+   "checked_at": "2026-11-24T06:15:00+00:00",
+   "problems": []
+  },
+  {
+   "institution": "한국은행 (BOK)",
+   "checked_at": "2026-11-24T06:15:07+00:00",
+   "problems": []
+  },
+  {
+   "institution": "세종연구소",
+   "checked_at": "2026-11-24T06:15:52+00:00",
+   "problems": []
+  },
+  {
+   "institution": "통일연구원 (KINU)",
+   "checked_at": "2026-11-24T06:15:56+00:00",
+   "problems": []
+  },
+  {
+   "institution": "국회예산정책처 (NABO)",
+   "checked_at": "2026-11-24T06:16:02+00:00",
+   "problems": []
+  },
+  {
+   "institution": "에너지경제연구원 (KEEI)",
+   "checked_at": "2026-11-24T06:16:06+00:00",
+   "problems": []
+  },
+  {
+   "institution": "자본시장연구원 (KCMI)",
+   "checked_at": "2026-11-24T06:24:31+00:00",
+   "problems": []
+  }
+ ]
+}

@@ -1,0 +1,501 @@
+{
+  "scope": "국내 연구기관 간행물 1차 수집 대상. 게시판 구조와 접근 조건은 2026-11-20 확인 기준이다.",
+  "institutions": {
+    "kdi": {
+      "name": "한국개발연구원 (KDI)",
+      "short": "KDI",
+      "domains": ["kdi.re.kr"],
+      "access": "public",
+      "note": "robots.txt 전체 허용. 원문은 /file/download?atch_no= (버튼 onclick, 응답 형식 octet-stream, 실제 PDF)",
+      "usage": {
+        "checked": "2026-11-20",
+        "policy_url": "https://www.kdi.re.kr/servicePolicy/copyright",
+        "license": "보고서 페이지 표시는 공공누리 제1유형(출처표시), 저작권정책 페이지는 제3유형(출처표시+변경금지). 엇갈리므로 제3유형 기준으로 다룬다",
+        "credit": "출처 한국개발연구원(KDI). 공공누리 출처표시 조건에 따라 요약",
+        "author_view": false,
+        "terms": "보도·비평·교육·연구 등 정당한 범위에서 허락 없이 활용 가능. 출처(KDI) 명시. 전체의 10% 이상을 그대로 쓰면 침해 소지. 오류 정정을 넘는 무단 변경과 영리 목적 복제 금지"
+      }
+    },
+    "kcif": {
+      "name": "국제금융센터 (KCIF)",
+      "domains": ["kcif.or.kr"],
+      "access": "partial",
+      "robots_override": "disallow_all",
+      "note": "robots.txt가 검색엔진을 뺀 모든 수집기에 Disallow: / 를 건다(형식 오류가 있어 표준 해석기는 허용으로 잘못 읽는다). 1차 프로그램에서 제외 (2026-11-20 사용자 결정). 2026-11-21 사용자가 KCIF에 공개 목록 자동 확인 허락을 요청하기로 함(문안: domestic_research/requests/2026-11-21_kcif_permission_request.md, 미발송). 허락 전까지 robots_override를 유지한다"
+    },
+    "bok": {
+      "name": "한국은행 (BOK)",
+      "short": "한국은행",
+      "domains": ["bok.or.kr"],
+      "access": "public",
+      "note": "robots.txt는 /portal/ 등만 허용. 원문 PDF는 /fileSrc/ 아래라 차단되므로 사용자가 받아 inbox/에 넣고 attach 명령으로 붙인다. 상세 페이지 HTML에는 목차만 있다",
+      "usage": {
+        "checked": "2026-11-20",
+        "policy_url": "https://www.bok.or.kr/portal/main/contents.do?menuNo=200228",
+        "license": "공공누리 표시 없음. 저작권보호방침 적용",
+        "credit": "출처 한국은행. 원문을 요약·재구성함",
+        "author_view": false,
+        "terms": "공공데이터법에 따라 공표한 제공대상 공공데이터만 자유 이용. 그 밖의 정보는 직접·심층 링크로 이용하고, 다른 방법은 사전 협의·승인 필요. 출처(한국은행) 명시, 수정·가공 시 그 사실을 밝힌다. 문의: 커뮤니케이션국 디지털미디어기획팀",
+        "page_rule": "공개 페이지에 카드 전체를 싣되(2026-11-20 사용자 결정), 카드마다 '출처: 한국은행. 원문을 요약·재구성함'을 표시한다"
+      }
+    },
+    "sejong": {
+      "name": "세종연구소",
+      "domains": ["sejong.org"],
+      "access": "public",
+      "note": "robots.txt 없음(404). 본문은 PDF에만 있다. 첨부 응답 형식은 file/unknown, 파일명은 CP949",
+      "usage": {
+        "checked": "2026-11-20",
+        "policy_url": null,
+        "license": "공공누리 표시와 공개된 이용 정책 없음 (민간 재단, 'All Rights Reserved')",
+        "credit": "출처 세종연구소. 저작권은 세종연구소에 있으며 이 카드는 요약임",
+        "author_view": true,
+        "terms": "저작권법의 일반 원칙(공표된 저작물의 정당한 인용)만 기댈 수 있다. 요약·짧은 인용·원문 링크로 한정. PDF에 '필자의 개인적 의견이며 세종연구소의 공식 견해가 아님' 문구가 있다. 문의: help@sejong.org"
+      }
+    },
+    "kinu": {
+      "name": "통일연구원 (KINU)",
+      "domains": ["kinu.or.kr"],
+      "access": "public",
+      "note": "robots.txt 빈 파일. 웹방화벽이 있어 jsessionid가 붙은 주소는 차단된다. 요청 간격을 둔다. 최근 글의 PDF는 정부 클라우드 저장소에 있고, /library/api/media/url이 서명된 주소를 돌려준다",
+      "file_hosts": [
+        {"host": "kr.object.gov-ncloudstorage.com", "path_prefix": "/egentouch-prod-bucket/prod/kinu/"}
+      ],
+      "usage": {
+        "checked": "2026-11-20",
+        "policy_url": "https://www.kinu.or.kr/main/html.do?nav_code=mai1674796806",
+        "license": "연구보고서 페이지 표시는 공공누리 제2유형(출처표시+상업적 이용금지). 기관 전체로는 제1·2·4유형을 저작물별로 붙인다",
+        "credit": "출처 통일연구원(KINU). 공공누리 제2유형(출처표시, 상업적 이용금지)",
+        "author_view": true,
+        "terms": "비상업적 이용만 가능, 변형(2차적 저작물) 가능. 출처는 발행연도, 기관명, 홈페이지 URL, 저작자 성명을 구체적으로 표시. 공공누리가 없는 자료는 사전 협의. 원문에 '집필진의 개인적 견해' 문구가 있다"
+      }
+    },
+    "nabo": {
+      "name": "국회예산정책처 (NABO)",
+      "short": "NABO",
+      "domains": ["nabo.go.kr"],
+      "access": "public",
+      "note": "2026-11-20 추가. robots.txt는 /WEB-INF/, /error/만 막는다. 목록에 발행일과 첨부(/board/file/bulkDown.do)가 함께 있어 상세 페이지는 읽지 않는다. 첨부가 여러 개인 글은 bulkDown이 zip을 돌려준다(동향&이슈가 그래서 대상에서 뺐다)",
+      "usage": {
+        "checked": "2026-11-20",
+        "policy_url": "https://www.nabo.go.kr/ko/content.do?key=2509260003",
+        "license": "보고서 상세 페이지에 공공누리 제1유형(출처표시) 표시",
+        "credit": "출처 국회예산정책처(NABO). 공공누리 제1유형(출처표시)",
+        "author_view": false,
+        "terms": "공공누리가 붙은 저작물은 출처를 밝히면 자유 이용(유형별 조건 준수). 공공누리가 없는 자료는 담당자와 사전 협의. 권장 출처 문구: 국회예산정책처에서 작성하여 공공누리 제1유형으로 개방한 저작물, 홈페이지(https://www.nabo.go.kr). 2026-11-21 첫 카드(NABO Focus 제179호) 확인: PDF 안에 별도 이용 고지나 개인 견해 문구 없음"
+      }
+    },
+    "keei": {
+      "name": "에너지경제연구원 (KEEI)",
+      "short": "KEEI",
+      "domains": ["keei.re.kr"],
+      "access": "public",
+      "note": "2026-11-20 추가. robots.txt는 민원·검색 경로만 막는다. 목록에 발행일이 있고, 원문은 /boardDownload.es?bid=0014&list_no=N&seq=1 (실제 PDF). 한 호에 여러 글이 실린다",
+      "usage": {
+        "checked": "2026-11-20",
+        "policy_url": null,
+        "license": "상세 페이지에 공공누리 표시 없음. 홈페이지에서 공개된 저작권 정책을 찾지 못함 ('All Rights Reserved')",
+        "credit": "출처 에너지경제연구원(KEEI). 저작권은 에너지경제연구원에 있으며 이 카드는 요약임",
+        "author_view": false,
+        "terms": "저작권법의 일반 원칙(공표된 저작물의 정당한 인용)만 기댈 수 있다. 요약·짧은 인용·원문 링크로 한정. 2026-11-21 첫 카드(인사이트 제26-21호) 확인: PDF 안에 별도 이용 고지나 개인 견해 문구 없음. 인사이트의 국제 동향 글은 해외 보도의 2차 정리다"
+      }
+    },
+    "kcmi": {
+      "name": "자본시장연구원 (KCMI)",
+      "short": "KCMI",
+      "domains": ["kcmi.re.kr"],
+      "access": "public",
+      "note": "2026-11-20 추가. robots.txt 전체 허용. 자본시장포커스 목록은 최신 호의 글만 보여 준다(이전 호는 select로 고름). 두 호 이상 수집을 건너뛰면 그 사이 글은 목록에 나오지 않는다. 발행일은 상세 페이지의 datePublished, 원문은 /common/downloadw?fid=",
+      "usage": {
+        "checked": "2026-11-20",
+        "policy_url": "https://www.kcmi.re.kr/etc/policy_copyright",
+        "license": "공공누리 표시 없음. 연구원 저작권 정책 적용",
+        "credit": "출처 자본시장연구원(KCMI). 연구결과물을 요약함",
+        "author_view": false,
+        "terms": "영리 목적이 아닌 보도·교육·연구 등 정당한 범위에서 특별한 제약 없이 활용 가능. 연구원 연구결과물임을 반드시 명시. 인용할 때 허락 없이 수정·개작 금지(짧은 인용은 원문 그대로). 2026-11-21 확인: ZOOM-IN 글에는 별도 이용 고지나 개인 견해 문구가 없고, OPINION 글에는 '필자 개인의 견해이며 연구원의 공식 견해가 아님' 각주가 있다(카드 머리말에 밝힌다)"
+      }
+    }
+  },
+  "publications": [
+    {
+      "id": "kdi_outlook",
+      "institution": "kdi",
+      "name": "KDI 경제전망",
+      "cadence": "반기 (수정전망 포함 시 분기)",
+      "months": [2, 5, 8, 11],
+      "tier": "full",
+      "compare": true,
+      "url": "https://www.kdi.re.kr/research/economy",
+      "list": {
+        "mode": "options",
+        "onchange": "dateChg",
+        "template": "https://www.kdi.re.kr/research/economy?pub_no={0}"
+      },
+      "detail": {
+        "title": "og",
+        "date_after": "<main",
+        "attachment": {"after": "<main", "pattern": "location\\.href='(/file/download\\?atch_no=[^']+)'\">\\s*원문 다운로드"}
+      },
+      "attachment_access": "direct"
+    },
+    {
+      "id": "kdi_trends",
+      "institution": "kdi",
+      "name": "KDI 경제동향",
+      "cadence": "월간",
+      "tier": "full",
+      "url": "https://www.kdi.re.kr/research/monTrends",
+      "list": {
+        "mode": "links",
+        "item": "^/research/monTrends\\?pub_no=\\d+$",
+        "keep": ["pub_no"],
+        "sort_key": "pub_no=(\\d+)"
+      },
+      "detail": {
+        "title": "og",
+        "date_after": "<main",
+        "body_class": "m_v-post",
+        "attachment": {"after": "<main", "pattern": "location\\.href='(/file/download\\?atch_no=[^']+)'\">\\s*원문 다운로드"}
+      },
+      "attachment_access": "direct"
+    },
+    {
+      "id": "kdi_focus",
+      "institution": "kdi",
+      "name": "KDI FOCUS",
+      "cadence": "수시",
+      "tier": "card",
+      "url": "https://www.kdi.re.kr/research/focusList",
+      "list": {
+        "mode": "links",
+        "item": "^/research/focusView\\?pub_no=\\d+$",
+        "keep": ["pub_no"],
+        "title_tag": "strong",
+        "sort_key": "pub_no=(\\d+)",
+        "attachment": {"pattern": "location\\.href='(/file/download\\?atch_no=[^']+)'"}
+      },
+      "detail": {"title": "list", "date_after": "<main"},
+      "attachment_access": "direct"
+    },
+    {
+      "id": "kdi_analysis",
+      "institution": "kdi",
+      "name": "KDI 현안분석",
+      "cadence": "수시",
+      "tier": "card",
+      "url": "https://www.kdi.re.kr/research/analysisList",
+      "list": {
+        "mode": "links",
+        "item": "^/research/analysisView\\?art_no=\\d+$",
+        "keep": ["art_no"],
+        "title_tag": "strong",
+        "sort_key": "art_no=(\\d+)",
+        "attachment": {"pattern": "location\\.href='(/file/download\\?atch_no=[^']+)'"}
+      },
+      "detail": false,
+      "attachment_access": "direct"
+    },
+    {
+      "id": "kcif_flash",
+      "institution": "kcif",
+      "name": "국제금융속보",
+      "cadence": "일간",
+      "status": "excluded",
+      "url": "https://www.kcif.or.kr/"
+    },
+    {
+      "id": "kcif_weekly",
+      "institution": "kcif",
+      "name": "주간 국제금융 리포트",
+      "cadence": "주간",
+      "status": "excluded",
+      "url": "https://www.kcif.or.kr/"
+    },
+    {
+      "id": "kcif_issue",
+      "institution": "kcif",
+      "name": "이슈분석 보고서",
+      "cadence": "수시",
+      "status": "excluded",
+      "url": "https://www.kcif.or.kr/"
+    },
+    {
+      "id": "bok_outlook",
+      "institution": "bok",
+      "name": "경제전망보고서",
+      "cadence": "분기",
+      "months": [2, 5, 8, 11],
+      "tier": "full",
+      "compare": true,
+      "url": "https://www.bok.or.kr/portal/singl/newsData/list.do?menuNo=200066",
+      "list_url": "https://www.bok.or.kr/portal/singl/newsData/listCont.do?menuNo=200066&depth2=200066&syncMenuChekKey=1",
+      "list": {
+        "mode": "links",
+        "item": "^/portal/bbs/\\w+/view\\.do\\?nttId=\\d+(&menuNo=\\d+)?$",
+        "keep": ["nttId", "menuNo"],
+        "date_label": "등록일",
+        "sort_key": "nttId=(\\d+)"
+      },
+      "detail": {
+        "title": "list",
+        "body_class": "dbdata",
+        "attachment": {"after": "bd-view", "pattern": "href=\"(/fileSrc/[^\"]+\\.pdf)\""}
+      },
+      "attachment_access": "inbox"
+    },
+    {
+      "id": "bok_monetary",
+      "institution": "bok",
+      "name": "통화신용정책보고서",
+      "cadence": "반기",
+      "months": [3, 9],
+      "tier": "full",
+      "url": "https://www.bok.or.kr/portal/singl/newsData/list.do?menuNo=200067",
+      "list_url": "https://www.bok.or.kr/portal/singl/newsData/listCont.do?menuNo=200067&depth2=200067&syncMenuChekKey=1",
+      "list": {
+        "mode": "links",
+        "item": "^/portal/bbs/\\w+/view\\.do\\?nttId=\\d+(&menuNo=\\d+)?$",
+        "keep": ["nttId", "menuNo"],
+        "date_label": "등록일",
+        "sort_key": "nttId=(\\d+)"
+      },
+      "detail": {
+        "title": "list",
+        "body_class": "dbdata",
+        "attachment": {"after": "bd-view", "pattern": "href=\"(/fileSrc/[^\"]+\\.pdf)\""}
+      },
+      "attachment_access": "inbox"
+    },
+    {
+      "id": "bok_stability",
+      "institution": "bok",
+      "name": "금융안정보고서",
+      "cadence": "반기",
+      "months": [6, 12],
+      "tier": "full",
+      "url": "https://www.bok.or.kr/portal/singl/newsData/list.do?menuNo=200068",
+      "list_url": "https://www.bok.or.kr/portal/singl/newsData/listCont.do?menuNo=200068&depth2=200068&syncMenuChekKey=1",
+      "list": {
+        "mode": "links",
+        "item": "^/portal/bbs/\\w+/view\\.do\\?nttId=\\d+(&menuNo=\\d+)?$",
+        "keep": ["nttId", "menuNo"],
+        "date_label": "등록일",
+        "sort_key": "nttId=(\\d+)"
+      },
+      "detail": {
+        "title": "list",
+        "body_class": "dbdata",
+        "attachment": {"after": "bd-view", "pattern": "href=\"(/fileSrc/[^\"]+\\.pdf)\""}
+      },
+      "attachment_access": "inbox"
+    },
+    {
+      "id": "bok_issue_note",
+      "institution": "bok",
+      "name": "BOK 이슈노트",
+      "cadence": "수시",
+      "tier": "card",
+      "url": "https://www.bok.or.kr/portal/singl/newsData/list.do?menuNo=200433",
+      "list_url": "https://www.bok.or.kr/portal/singl/newsData/listCont.do?menuNo=200433&depth2=200433&syncMenuChekKey=1",
+      "list": {
+        "mode": "links",
+        "item": "^/portal/bbs/\\w+/view\\.do\\?nttId=\\d+(&menuNo=\\d+)?$",
+        "keep": ["nttId", "menuNo"],
+        "date_label": "등록일",
+        "sort_key": "nttId=(\\d+)"
+      },
+      "detail": {
+        "title": "list",
+        "body_class": "dbdata",
+        "attachment": {"after": "bd-view", "pattern": "href=\"(/fileSrc/[^\"]+\\.pdf)\""}
+      },
+      "attachment_access": "inbox"
+    },
+    {
+      "id": "bok_overseas_focus",
+      "institution": "bok",
+      "name": "해외경제 포커스",
+      "status": "discontinued",
+      "note": "2026-03-03 「발간 방식 변경(폐간) 안내」 게시",
+      "url": "https://www.bok.or.kr/portal/singl/newsData/list.do?menuNo=200437"
+    },
+    {
+      "id": "sejong_brief",
+      "institution": "sejong",
+      "name": "세종정책브리프",
+      "cadence": "수시",
+      "tier": "card",
+      "url": "https://www.sejong.org/web/boad/1/egolist.php?bd=3",
+      "list": {
+        "mode": "links",
+        "item": "^/web/boad/1/egoread\\.php\\?bd=3&seq=\\d+$",
+        "keep": ["bd", "seq"],
+        "sort_key": "seq=(\\d+)"
+      },
+      "detail": {
+        "title": "list",
+        "attachment": {"pattern": "href=\"(egofiledn\\.php\\?[^\"]+)\""}
+      },
+      "attachment_access": "direct"
+    },
+    {
+      "id": "sejong_focus",
+      "institution": "sejong",
+      "name": "세종포커스",
+      "cadence": "수시",
+      "tier": "card",
+      "url": "https://www.sejong.org/web/boad/1/egolist.php?bd=1",
+      "list": {
+        "mode": "links",
+        "item": "^/web/boad/1/egoread\\.php\\?bd=1&seq=\\d+$",
+        "keep": ["bd", "seq"],
+        "sort_key": "seq=(\\d+)"
+      },
+      "detail": {
+        "title": "list",
+        "attachment": {"pattern": "href=\"(egofiledn\\.php\\?[^\"]+)\""}
+      },
+      "attachment_access": "direct"
+    },
+    {
+      "id": "sejong_situation",
+      "institution": "sejong",
+      "name": "정세와 정책",
+      "cadence": "월간",
+      "status": "not_found",
+      "note": "2026-11-20 대문의 게시판 메뉴에서 찾지 못함",
+      "url": "https://www.sejong.org/web/main/"
+    },
+    {
+      "id": "kinu_online",
+      "institution": "kinu",
+      "name": "온라인시리즈",
+      "cadence": "수시",
+      "tier": "card",
+      "url": "https://www.kinu.or.kr/main/module/report/index.do?nav_code=mai1674786581&category=53",
+      "list": {
+        "mode": "links",
+        "item": "^/main/module/report/view\\.do\\?idx=\\d+&nav_code=mai1674786581$",
+        "keep": ["idx", "nav_code"],
+        "date_label": "발행일",
+        "sort_key": "idx=(\\d+)",
+        "attachment": [
+          {"pattern": "fileDown1\\('([^']+)'\\)", "template": "https://www.kinu.or.kr/main/module/report/download.do?id={0}"},
+          {"pattern": "fileDown2\\('([^']+)'\\)", "resolve": "url_text"}
+        ]
+      },
+      "detail": false,
+      "attachment_access": "direct"
+    },
+    {
+      "id": "kinu_annual_outlook",
+      "institution": "kinu",
+      "name": "연례정세전망",
+      "cadence": "연간",
+      "months": [12],
+      "tier": "full",
+      "note": "목록의 발행일이 연도만 적혀 있다. 날짜는 원문에서 확인한다",
+      "url": "https://www.kinu.or.kr/main/module/report/index.do?nav_code=mai1674786498&category=47",
+      "list": {
+        "mode": "links",
+        "item": "^/main/module/report/view\\.do\\?idx=\\d+&nav_code=mai1674786498$",
+        "keep": ["idx", "nav_code"],
+        "date_label": "발행일",
+        "sort_key": "idx=(\\d+)",
+        "attachment": [
+          {"pattern": "fileDown1\\('([^']+)'\\)", "template": "https://www.kinu.or.kr/main/module/report/download.do?id={0}"},
+          {"pattern": "fileDown2\\('([^']+)'\\)", "resolve": "url_text"}
+        ]
+      },
+      "detail": false,
+      "attachment_access": "direct"
+    },
+    {
+      "id": "kinu_insight",
+      "institution": "kinu",
+      "name": "KINU Insight",
+      "cadence": "수시",
+      "status": "not_found",
+      "note": "2026-11-20 발간물 메뉴에서 찾지 못함. 비슷한 분류로 현안보고서(category=54)가 있다",
+      "url": "https://www.kinu.or.kr/main/html.do?nav_code=mai1674786094"
+    },
+    {
+      "id": "nabo_outlook",
+      "institution": "nabo",
+      "name": "경제전망·정책분석",
+      "cadence": "수시 (NABO 경제전망은 연 1회)",
+      "tier": "full",
+      "compare": true,
+      "compare_window_days": 90,
+      "note": "NABO 경제전망과 정책분석 보고서가 한 목록에 섞여 있다. 전망 비교표에는 forecasts를 채운 노트(경제전망)만 들어간다. NABO 경제전망은 연 1회(9월 말)라 11월 전망들과 한 표에 놓이도록 허용 일수를 90일로 넓혔다(사용자 결정 2026-11-20). 열 머리에 앞선 날수가 표시된다",
+      "url": "https://www.nabo.go.kr/ko/report/outlookAllList.do?key=2507040041",
+      "list": {
+        "mode": "links",
+        "item": "^/ko/report/outlookAllView\\.do\\?idx=\\d+&key=2507040041$",
+        "keep": ["idx", "key"],
+        "title_tag": "div",
+        "sort_key": "idx=(\\d+)",
+        "attachment": {"pattern": "(/board/file/bulkDown\\.do\\?idx=\\d+&bid=\\d+)"}
+      },
+      "detail": false,
+      "attachment_access": "direct"
+    },
+    {
+      "id": "nabo_focus",
+      "institution": "nabo",
+      "name": "NABO Focus",
+      "cadence": "수시",
+      "tier": "card",
+      "url": "https://www.nabo.go.kr/ko/periodical/focusList.do?key=2507040015",
+      "list": {
+        "mode": "links",
+        "item": "^/ko/periodical/focusView\\.do\\?idx=\\d+&key=2507040015$",
+        "keep": ["idx", "key"],
+        "title_tag": "div",
+        "sort_key": "idx=(\\d+)",
+        "attachment": {"pattern": "(/board/file/bulkDown\\.do\\?idx=\\d+&bid=\\d+)"}
+      },
+      "detail": false,
+      "attachment_access": "direct"
+    },
+    {
+      "id": "keei_insight",
+      "institution": "keei",
+      "name": "세계 에너지시장 인사이트",
+      "cadence": "수시 (호마다 여러 글)",
+      "tier": "card",
+      "url": "https://www.keei.re.kr/board.es?mid=a10103020000&bid=0014",
+      "list": {
+        "mode": "links",
+        "item": "^/board\\.es\\?mid=a10103020000&bid=0014&act=view&list_no=\\d+$",
+        "keep": ["mid", "bid", "act", "list_no"],
+        "date_label": "발행일",
+        "sort_key": "list_no=(\\d+)",
+        "attachment": {"pattern": "list_no=(\\d+)", "template": "https://www.keei.re.kr/boardDownload.es?bid=0014&list_no={0}&seq=1"}
+      },
+      "detail": false,
+      "attachment_access": "direct"
+    },
+    {
+      "id": "kcmi_focus",
+      "institution": "kcmi",
+      "name": "자본시장포커스",
+      "cadence": "수시 (호마다 여러 글)",
+      "tier": "card",
+      "url": "https://www.kcmi.re.kr/publications/publications_list",
+      "list": {
+        "mode": "links",
+        "item": "^/publications/pub_detail_view\\?syear=(?:\\d{4}|OPIN)&zcd=002001016&zno=\\d+&cno=\\d+$",
+        "keep": ["syear", "zcd", "zno", "cno"],
+        "title_tag": "strong",
+        "sort_key": "cno=(\\d+)"
+      },
+      "detail": {
+        "title": "list",
+        "date_after": "datePublished",
+        "attachment": {"pattern": "href=\"(/common/downloadw\\?fid=\\d+[^\"]*)\""}
+      },
+      "attachment_access": "direct"
+    }
+  ]
+}
