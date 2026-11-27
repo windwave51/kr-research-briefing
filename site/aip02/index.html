@@ -4,44 +4,43 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>거시 현안 브리핑 · AIP02 R1</title>
-<meta name="description" content="AIP02 Round 1 거시 현안 브리핑 소개. 문제 재정의, 이슈트리, 프로덕트 변화, 추후 과제를 정리합니다.">
+<title>거시 현안 브리핑 · AIP02 보고</title>
+<meta name="description" content="국내 연구기관 리포트 브리핑을 만든 과정. 처음 문제, 문제 설정, 초안, 세 사람의 피드백, 그 피드백으로 바꾼 것을 차례로 정리합니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
 <style>
-/* 레이아웃: 한 줄 읽기 폭(46rem)의 세로 보고서. 위에는 프로덕트와 같은 터미널식 상태 줄, 본문은 종이색과 세리프 제목.
-   색: 프로덕트(브리핑)와 같은 종이·청록·호박색. 철회 상태 색은 강조색과 따로 둔다. */
+/* AIP02 보고 페이지(2026-11-27 다시 씀). 골격은 R1 보고(r1/)와 같고, 프로덕트에 반영한 피드백에 맞춰
+   제목은 고딕, 어두운 화면은 면과 면이 구분되는 색으로 바꿨다. */
 :root {
   --paper: #f6f2ea; --surface: #fffdf8; --ink: #1c1b18; --muted: #5e5a52; --line: #ddd5c6;
   --accent: #1d5b54; --accent-soft: #e3ece6; --amber: #b86e00; --amber-soft: #f6ead3;
   --stop: #9c3d2b;
   --term-bg: #101315; --term-ink: #d9d6cf; --term-key: #f2a93b; --term-line: #2e3539;
-  --font-display: "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
+  --font-display: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --step--1: 0.8125rem; --step-0: 1rem;
-  --step-3: clamp(1.75rem, 1.2rem + 2.4vw, 2.6rem); --step-4: clamp(2.4rem, 1.5rem + 4.5vw, 4.25rem);
+  --step-3: clamp(1.6rem, 1.15rem + 2.1vw, 2.35rem); --step-4: clamp(2.2rem, 1.4rem + 4vw, 3.9rem);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #15140f; --surface: #1d1c17; --ink: #ebe6db; --muted: #a7a194; --line: #36332b;
-    --accent: #7fc4b6; --accent-soft: #1f2c28; --amber: #f2b45a; --amber-soft: #2e2617;
+    --paper: #141310; --surface: #302d26; --ink: #ebe6db; --muted: #b3ad9f; --line: #55503f;
+    --accent: #86cbbd; --accent-soft: #2c5149; --amber: #f2b45a; --amber-soft: #3a2f1c;
     --stop: #e58a72;
-    --term-bg: #08090a; --term-line: #2a2f33; color-scheme: dark;
+    --term-bg: #050606; --term-line: #4a5054; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #15140f; --surface: #1d1c17; --ink: #ebe6db; --muted: #a7a194; --line: #36332b;
-  --accent: #7fc4b6; --accent-soft: #1f2c28; --amber: #f2b45a; --amber-soft: #2e2617;
+  --paper: #141310; --surface: #302d26; --ink: #ebe6db; --muted: #b3ad9f; --line: #55503f;
+  --accent: #86cbbd; --accent-soft: #2c5149; --amber: #f2b45a; --amber-soft: #3a2f1c;
   --stop: #e58a72;
-  --term-bg: #08090a; --term-line: #2a2f33; color-scheme: dark;
+  --term-bg: #050606; --term-line: #4a5054; color-scheme: dark;
 }
 :root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
 *, *::before, *::after { box-sizing: inherit; }
 [hidden] { display: none !important; }
-html { scroll-padding-top: 4rem; }
-@media (max-width: 46rem) { html { scroll-padding-top: 7.5rem; } }
+html { scroll-padding-top: 3.75rem; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0; background: var(--paper); color: var(--ink);
@@ -52,16 +51,19 @@ a { color: var(--accent); text-underline-offset: 3px; }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
 p { margin: 0; }
+img { max-width: 100%; height: auto; display: block; }
 
-/* 상태 줄 (프로덕트와 같은 골격) */
-.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--term-bg); color: var(--term-ink); border-bottom: 1px solid var(--term-line); font-size: 0.78rem; }
+/* 상태 줄: 프로덕트와 같은 바로 가기 탭(숫자 글쇠 모양 없음, 휴대폰에서도 고정, 가로로 밀기) */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--term-bg); color: var(--term-ink); border-bottom: 1px solid var(--term-line); }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--term-bg); }
-.bar-in { max-width: 62rem; margin: 0 auto; padding: 0.45rem max(16px, env(safe-area-inset-right, 0px)) 0.45rem max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 0.5rem 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-.bar b { color: var(--term-key); font-family: var(--font-mono); font-weight: 500; }
-.bar nav { display: flex; gap: 0.3rem; flex-wrap: wrap; }
-.bar nav a { color: var(--term-ink); text-decoration: none; border: 1px solid var(--term-line); border-radius: 2px; padding: 0 0.45rem; white-space: nowrap; }
-.bar nav a span { color: var(--term-key); font-family: var(--font-mono); margin-right: 0.25rem; }
+.bar-in { max-width: 62rem; margin: 0 auto; padding: 0.4rem max(16px, env(safe-area-inset-right, 0px)) 0.4rem max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 0.75rem; align-items: center; }
+.bar .who { flex: none; font-size: 0.8125rem; white-space: nowrap; }
+.bar .who b { color: var(--term-key); font-family: var(--font-mono); font-weight: 500; }
+.bar nav { display: flex; gap: 0.4rem; overflow-x: auto; scrollbar-width: none; }
+.bar nav::-webkit-scrollbar { display: none; }
+.bar nav a { flex: none; font-size: 0.875rem; color: var(--term-ink); text-decoration: none; border: 1px solid var(--term-line); border-radius: 999px; padding: 0.15rem 0.75rem; white-space: nowrap; }
 .bar nav a:hover, .bar nav a:focus-visible { border-color: var(--term-key); outline: none; }
+@media (max-width: 40rem) { .bar .who { display: none; } }
 
 /* 본문 골격 */
 .page { max-width: 62rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 5rem; }
@@ -69,51 +71,63 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 section { padding-top: 4.5rem; display: grid; gap: 1.5rem; }
 .eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; display: flex; gap: 0.75rem; align-items: baseline; }
 .eyebrow .no { color: var(--muted); }
-section h2 { font-family: var(--font-display); font-weight: 800; font-size: var(--step-3); line-height: 1.3; letter-spacing: -0.01em; }
+section h2 { font-family: var(--font-display); font-weight: 700; font-size: var(--step-3); line-height: 1.35; letter-spacing: -0.02em; }
 .lede { color: var(--muted); font-size: 1.0625rem; max-width: 46rem; }
 .note { font-size: var(--step--1); color: var(--muted); }
+h3 { font-size: 1.05rem; line-height: 1.5; }
 
 /* 머리 */
 .hero { padding-top: 3.5rem; padding-bottom: 2.5rem; border-bottom: 2px solid var(--ink); display: grid; gap: 1.25rem; }
 .hero .kicker { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
-.hero h1 { font-family: var(--font-display); font-weight: 800; font-size: var(--step-4); line-height: 1.18; letter-spacing: -0.02em; }
-.hero p { max-width: 40rem; font-size: 1.0625rem; color: var(--muted); }
+.hero h1 { font-family: var(--font-display); font-weight: 700; font-size: var(--step-4); line-height: 1.18; letter-spacing: -0.03em; }
+.hero > p { max-width: 42rem; font-size: 1.0625rem; color: var(--muted); }
 .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .btn { display: inline-block; text-decoration: none; border: 1px solid var(--ink); border-radius: 2px; padding: 0.35rem 0.9rem; font-size: 0.9rem; color: var(--ink); }
 .btn.primary { background: var(--ink); color: var(--paper); }
 .btn:hover { border-color: var(--accent); }
-
-/* 한눈에 */
-.tiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; border: 1px solid var(--line); background: var(--surface); margin-top: 2rem; }
+.tiles { display: grid; grid-template-columns: minmax(0, 1fr); border: 1px solid var(--line); background: var(--surface); margin-top: 1.5rem; }
 @media (min-width: 36rem) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 60rem) { .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .tile { padding: 1rem 1.1rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: 0.35rem; align-content: start; }
 .tile .k { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
 .tile strong { font-size: 0.98rem; line-height: 1.55; }
-.stats { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: 1.25rem; }
+.stats { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin: 0.5rem 0 0; }
 .stats div { display: grid; }
 .stats dt { font-size: var(--step--1); color: var(--muted); }
 .stats dd { margin: 0; font-family: var(--font-mono); font-size: 1.35rem; font-weight: 500; color: var(--accent); font-variant-numeric: tabular-nums; }
+/* 날짜 흐름: 넓은 화면은 가로, 좁은 화면은 세로 */
+.days { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; gap: 0.5rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 52rem) { .days { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; } }
+.days li { display: grid; gap: 0.1rem; padding: 0.5rem 0.75rem; border-left: 3px solid var(--line); font-size: 0.875rem; line-height: 1.5; }
+.days li.on { border-left-color: var(--accent); }
+.days time { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
 
-/* 비교 상자 */
-.pair { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+/* 상자 */
+.pair, .trio { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 46rem) { .pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 52rem) { .trio { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .box { background: var(--surface); border: 1px solid var(--line); border-radius: 2px; padding: 1.1rem 1.25rem; display: grid; gap: 0.5rem; align-content: start; min-width: 0; }
-.box h3 { font-size: 1.05rem; line-height: 1.5; }
 .box .k { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
 .box.on { border-top: 3px solid var(--accent); }
 .scenes { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 .scene { border-left: 3px solid var(--amber); background: var(--amber-soft); padding: 0.75rem 1rem; display: grid; gap: 0.25rem; }
 .scene b { font-size: 0.95rem; }
 .scene span { font-size: var(--step--1); color: var(--muted); }
+/* 해상도 다섯 칸 */
+.five { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); counter-reset: five; }
+.five li { counter-increment: five; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); padding: 0.65rem 0.8rem; display: grid; gap: 0.1rem; }
+.five li::before { content: counter(five); font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+.five b { font-size: 0.98rem; }
+.five span { font-size: var(--step--1); color: var(--muted); line-height: 1.5; }
 
 /* 이슈트리 */
 .tree { display: grid; gap: 1rem; }
 .root { background: var(--term-bg); color: var(--term-ink); padding: 1rem 1.25rem; border-radius: 2px; }
 .root .k { font-family: var(--font-mono); font-size: 0.72rem; color: var(--term-key); letter-spacing: 0.1em; }
-.root p { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; line-height: 1.5; color: #f3efe6; }
+.root p { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; line-height: 1.55; color: #f3efe6; }
 .branches { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 52rem) { .branches { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 40rem) { .branches { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 60rem) { .branches { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .branch { background: var(--surface); border: 1px solid var(--line); padding: 1rem 1.1rem; display: grid; gap: 0.5rem; align-content: start; }
 .branch h3 { font-size: 1.02rem; }
 .branch ul { margin: 0; padding-left: 1.1rem; font-size: 0.92rem; display: grid; gap: 0.2rem; }
@@ -123,22 +137,71 @@ section h2 { font-family: var(--font-display); font-weight: 800; font-size: var(
 .tag.part { background: var(--amber-soft); color: var(--amber); }
 .branch.pick { border: 2px solid var(--accent); }
 
-/* 버전 흐름 */
-.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-left: 2px solid var(--line); }
-.timeline li { position: relative; padding: 0 0 1.25rem 1.25rem; display: grid; gap: 0.2rem; }
-.timeline li::before { content: ""; position: absolute; left: -7px; top: 0.55rem; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
-.timeline li.stop::before { border-color: var(--stop); }
-.timeline .when { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
-.timeline b { font-size: 1rem; }
-.timeline span { font-size: 0.92rem; color: var(--muted); }
+/* 이미지 한 장 / 전후 비교 */
+figure { margin: 0; display: grid; gap: 0.4rem; min-width: 0; }
+figure img { border: 1px solid var(--line); border-radius: 2px; }
+figure a { display: block; }
+figure a:hover img { border-color: var(--accent); }
+figcaption { font-size: var(--step--1); color: var(--muted); }
+.shot { max-width: 46rem; }
+.ba { display: grid; gap: 1.5rem; }
+.ba-row { display: grid; gap: 0.6rem; }
+.ba-row h3 { font-size: 1rem; }
+.ba-pair { display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 46rem) { .ba-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ba-pair.narrow { grid-template-columns: repeat(2, minmax(0, 15rem)); }
+.ba-pair figcaption b { color: var(--ink); }
 
-/* 다음 결정 */
-.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; counter-reset: f; }
+/* 시험 질문 */
+.asks { margin: 0; padding-left: 1.25rem; display: grid; gap: 0.35rem; }
+.callout { border-left: 3px solid var(--amber); background: var(--amber-soft); padding: 0.8rem 1rem; font-size: 0.95rem; max-width: 46rem; }
+
+/* 시험자 카드 */
+.people { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 60rem) { .people { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.person { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); padding: 1.1rem 1.2rem; display: grid; gap: 0.75rem; align-content: start; min-width: 0; }
+.person header { display: grid; gap: 0.15rem; }
+.person .id { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
+.person h3 { font-size: 1.15rem; }
+.person h3 small { font-size: 0.85rem; font-weight: 400; color: var(--muted); margin-left: 0.35rem; }
+.reach { justify-self: start; font-size: 0.78rem; font-weight: 600; border-radius: 2px; padding: 0.05rem 0.5rem; background: var(--amber-soft); color: var(--amber); }
+.reach.deep { background: var(--accent-soft); color: var(--accent); }
+.person h4 { font-size: 0.8rem; font-weight: 700; color: var(--muted); letter-spacing: 0.02em; }
+.person ul { margin: 0; padding-left: 1.1rem; font-size: 0.92rem; display: grid; gap: 0.25rem; }
+.quotes { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.quotes li { border-left: 3px solid var(--accent); padding: 0.1rem 0 0.1rem 0.75rem; display: grid; gap: 0.2rem; }
+.quotes q { font-size: 0.92rem; line-height: 1.65; quotes: "“" "”"; }
+.to { justify-self: start; font-size: 0.75rem; text-decoration: none; color: var(--accent); background: var(--accent-soft); border-radius: 2px; padding: 0 0.45rem; }
+.to.hold { color: var(--muted); background: transparent; border: 1px dashed var(--line); }
+
+/* 대조 표 */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+thead th { font-size: 0.8rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+td.m { text-align: center; font-family: var(--font-mono); color: var(--accent); white-space: nowrap; }
+tr.group th { background: var(--paper); font-size: 0.8rem; color: var(--muted); }
+tbody tr:last-child td { border-bottom: 0; }
+
+/* 바꾼 것 */
+.changes { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.changes li { background: var(--surface); border: 1px solid var(--line); padding: 0.9rem 1.1rem; display: grid; gap: 0.35rem; grid-template-columns: 2.25rem minmax(0, 1fr); column-gap: 0.75rem; scroll-margin-top: 4rem; }
+.changes .n { grid-row: span 4; font-family: var(--font-mono); font-size: 1.15rem; color: var(--accent); }
+.changes h3 { font-size: 1.02rem; }
+.changes p { font-size: 0.92rem; }
+.changes .from { font-size: var(--step--1); color: var(--muted); }
+.changes .check { font-size: 0.88rem; border-top: 1px dashed var(--line); padding-top: 0.35rem; }
+.changes .check b { color: var(--accent); font-weight: 600; margin-right: 0.35rem; }
+.layer { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--muted); margin-top: 0.5rem; }
+.skip { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.3rem; font-size: 0.92rem; max-width: 46rem; }
+
+/* 다음 */
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; counter-reset: f; max-width: 46rem; }
 .flow li { counter-increment: f; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.5rem; align-items: baseline; background: var(--surface); border: 1px solid var(--line); padding: 0.65rem 0.9rem; }
 .flow li::before { content: counter(f); font-family: var(--font-mono); color: var(--accent); font-weight: 500; }
 .conclusion { margin-top: 4.5rem; background: var(--term-bg); color: var(--term-ink); padding: 2rem 1.5rem; display: grid; gap: 1rem; border-radius: 2px; }
 .conclusion .k { font-family: var(--font-mono); font-size: 0.75rem; color: var(--term-key); letter-spacing: 0.12em; }
-.conclusion h2 { font-family: var(--font-display); font-weight: 800; font-size: var(--step-3); line-height: 1.35; color: #f3efe6; }
+.conclusion h2 { font-family: var(--font-display); font-weight: 700; font-size: var(--step-3); line-height: 1.4; letter-spacing: -0.02em; color: #f3efe6; }
 .conclusion p { color: var(--term-ink); max-width: 44rem; }
 .conclusion a { color: var(--term-key); }
 footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); display: grid; gap: 0.25rem; }
@@ -148,12 +211,14 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
 
 <div class="bar">
   <div class="bar-in">
-    <span><b>AIP02 · R1</b> 국내 리포트 브리핑</span>
+    <span class="who"><b>AIP02</b> 국내 리포트 브리핑</span>
     <nav aria-label="절 바로 가기">
-      <a href="#problem"><span>01</span>문제</a>
-      <a href="#tree"><span>02</span>이슈트리</a>
-      <a href="#evolution"><span>03</span>변화</a>
-      <a href="#decision"><span>04</span>추후 과제</a>
+      <a href="#problem">문제</a>
+      <a href="#setting">문제 설정</a>
+      <a href="#draft">초안</a>
+      <a href="#feedback">피드백</a>
+      <a href="#changes">바꾼 것</a>
+      <a href="#next">다음</a>
     </nav>
   </div>
 </div>
@@ -161,142 +226,404 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
 <main class="page">
 
   <header class="hero">
-    <p class="kicker">AIP02 Round 1 · 2026-11-21 ~ 11-24 · 문제 1 국내 연구기관 리포트</p>
+    <p class="kicker">AIP02 · 2026-11-21 ~ 11-27 · 문제 1 국내 연구기관 리포트</p>
     <h1>거시 현안 브리핑</h1>
-    <p>국내 연구기관이 발간한 최신 보고서를 핵심 위주로 폭넓게 보는 프로그램을 구성. 초안 대비 "내 기준"을 반영하는 장치를 더했지만, 정리자 한 사람의 생각 정리 도구에 머물러 있다는 고민이 추후 과제.</p>
+    <p>국내 연구기관 7곳의 새 보고서를 이슈별로 묶어, 정보가 넘치는 속에서도 내 견해를 세우도록 돕는 브리핑이다. 이 페이지는 처음 문제에서 출발해 초안을 만들고, 처음 보는 세 사람의 피드백을 받아 무엇을 왜 바꿨는지를 차례로 보여 준다.</p>
     <div class="actions">
       <a class="btn primary" href="../">프로덕트 열기 ↗</a>
-      <a class="btn" href="#problem">사고 과정 보기 ↓</a>
+      <a class="btn" href="#feedback">피드백과 바꾼 것 보기 ↓</a>
     </div>
     <div class="tiles" role="list">
-      <div class="tile" role="listitem"><span class="k">문제</span><strong>새 보고서는 쌓이는데, 긴 원문 대신 AI 요약만 훑어 스스로 판단하지 않게 된다</strong></div>
-      <div class="tile" role="listitem"><span class="k">솔루션</span><strong>코드가 모으고, Claude가 원문 쪽수와 대조해 정리하고, 내 관심·질문으로 먼저 볼 것을 고른다</strong></div>
-      <div class="tile" role="listitem"><span class="k">검증</span><strong>사용자는 정리자 1명. 다른 사용자 시험 0명이 가장 큰 빈칸</strong></div>
-      <div class="tile" role="listitem"><span class="k">추후 과제</span><strong>면접 준비생 대상 재조정안 검토 중</strong></div>
+      <div class="tile" role="listitem"><span class="k">문제</span><strong>신뢰할 수 있는 연구기관 보고서를 읽어도, 이슈마다 무엇이 쟁점이고 기관이 어디서 갈리는지 잡히지 않아 내 견해가 서지 않는다</strong></div>
+      <div class="tile" role="listitem"><span class="k">만든 것</span><strong>게시판 수집기, 원문 쪽수와 대조한 요약 카드, 여러 보고서를 한 이슈로 묶은 "이슈 한 장"</strong></div>
+      <div class="tile" role="listitem"><span class="k">시험</span><strong>처음 보는 20대 세 사람에게 초안 링크를 주고 불편한 점, 이해에 도움이 됐는지, 고칠 점을 물었다</strong></div>
+      <div class="tile" role="listitem"><span class="k">바꾼 것</span><strong>세 사람 모두 짚은 "글이 많고 무엇부터 볼지 모르겠다"를 비롯해 8가지를 고쳐 다시 배포했다</strong></div>
     </div>
     <dl class="stats">
       <div><dt>수집 기관·간행물</dt><dd>7 · 16</dd></div>
-      <div><dt>수집 기록</dt><dd>286</dd></div>
-      <div><dt>카드</dt><dd>31</dd></div>
+      <div><dt>요약 카드</dt><dd>31</dd></div>
       <div><dt>원문과 대조한 수치</dt><dd>205</dd></div>
-      <div><dt>공유 페이지 버전</dt><dd>21</dd></div>
+      <div><dt>이슈 한 장</dt><dd>2</dd></div>
+      <div><dt>시험한 사람</dt><dd>3</dd></div>
+      <div><dt>바꾼 항목</dt><dd>8</dd></div>
     </dl>
+    <ol class="days" aria-label="날짜 흐름">
+      <li><time>11-21 ~ 24</time>R1: 읽는 화면과 내 기준 장치</li>
+      <li><time>11-24 ~ 26</time>R2: "먼저 볼 것" 3건 중 0건 읽힘</li>
+      <li class="on"><time>11-26</time>문제 재정의, 이슈 한 장 2개</li>
+      <li class="on"><time>11-27</time>카드 접기, 시험 링크 전달</li>
+      <li class="on"><time>11-27</time>세 사람의 피드백</li>
+      <li class="on"><time>11-27</time>8가지 변경을 다시 배포</li>
+    </ol>
   </header>
 
+  <!-- 01 문제 -->
   <section id="problem" aria-labelledby="problem-h">
-    <p class="eyebrow"><span class="no">01</span>Problem discovery</p>
-    <h2 id="problem-h">문제는 정보가 없어서가 아니라, 판단을 맡겨 버리는 데 있음.</h2>
-    <p class="lede read">AIP01에서 구상한 다섯 문제-국내 연구기관 리포트, 해외 언론·연구소, 거시 변수, 글로벌 기관 리포트, 이 모두를 모아 우선순위를 정하는 오케스트레이터- 중에서 문제 1을 먼저 골랐다. 매주 새 보고서가 나오고, 진로·투자·트렌드 판단에 바로 쓰이며, 짧은 기간에 실제로 돌아가는 프로그램을 만들 수 있었기 때문.</p>
-    <div class="pair">
+    <p class="eyebrow"><span class="no">01</span>Problem</p>
+    <h2 id="problem-h">보고서가 모자라서가 아니라, 이슈마다 내 견해가 서지 않는 것이 문제다.</h2>
+    <p class="lede read">AIP01에서 고른 다섯 문제 가운데 첫째, 국내 연구기관 리포트에서 출발했다. 매주 새 보고서가 나오고 진로·투자·시사 판단에 바로 쓰이며, 짧은 기간에 실제로 돌아가는 프로그램을 만들 수 있었기 때문이다. 문제는 두 번 다시 좁혀졌다.</p>
+    <div class="trio">
       <div class="box">
         <span class="k">AIP01 · 처음 생각</span>
         <h3>보고서가 흩어져 있어 업로드 시점을 놓치고, 긴 PDF를 다 읽을 수 없다.</h3>
-        <p class="note">→ 게시판 수집기 + 쪽수가 붙은 요약 카드 + 공유 페이지</p>
+        <p class="note">→ 게시판 수집기, 쪽수가 붙은 요약 카드, 공유 페이지</p>
+      </div>
+      <div class="box">
+        <span class="k">R1 · 첫 재정의</span>
+        <h3>요약이 쌓일수록 무엇을 먼저 읽고 무엇을 물을지까지 AI의 기준에 맡기게 된다.</h3>
+        <p class="note">→ 원문과 해석을 나누고, 내 관심·질문을 "먼저 볼 것" 순서에 반영</p>
       </div>
       <div class="box on">
-        <span class="k">R1 · 재정의</span>
-        <h3>요약이 쌓일수록 오히려 스스로 판단하는 비중이 줄어듦. 무엇을 먼저 읽을지, 무엇을 물을지가 내 기준이 아닌, 또다시 AI의 기준이 됨.</h3>
-        <p class="note">→ 원문과 해석을 나누고, 질문을 남기고, 내 관심·질문을 순서에 반영하는 기능을 구상</p>
+        <span class="k">R3 · 두 번째 재정의 (11-26)</span>
+        <h3>정보의 홍수 속에서 중심을 잡지 못하고, 이슈에 대한 내 견해가 서지 않는다.</h3>
+        <p class="note">→ 신뢰할 수 있는 국내 연구기관 보고서로 이슈의 "해상도"를 높인다</p>
       </div>
     </div>
     <div class="scenes">
-      <div class="scene"><b>KDI가 성장률 전망치를 상향함</b><span>왜 올렸는지, 한국은행 전망과 무엇이 다른지는 확인하지 않고 지나간다.</span></div>
-      <div class="scene"><b>두 연구소가 같은 선거에 대한 각각의 보고서를 발간</b><span>세종연구소와 통일연구원의 중간선거 분석. 어디가 갈리는지 직접 견줘 보지 않는다.</span></div>
-      <div class="scene"><b>146페이지짜리 지역인구전망</b><span>요약 한 줄만 읽고 "인구 감소"로만 피상적으로 이해. 외국인 인구가 지방재정에 주는 영향 등 추가 질문은 생기지 않는다.</span></div>
+      <div class="scene"><b>KDI가 성장률 전망을 올렸다</b><span>왜 올렸는지, 한국은행 전망과 무엇이 다른지는 확인하지 않고 지나간다.</span></div>
+      <div class="scene"><b>두 연구소가 같은 선거를 분석했다</b><span>세종연구소와 통일연구원의 중간선거 분석. 어디서 갈리는지 직접 견줘 보지 않는다.</span></div>
+      <div class="scene"><b>146쪽짜리 지역인구전망</b><span>요약 한 줄만 읽고 "인구 감소"로만 이해한다. 외국인 인구가 지방재정에 주는 영향 같은 질문은 생기지 않는다.</span></div>
     </div>
-  </section>
-
-  <section id="tree" aria-labelledby="tree-h">
-    <p class="eyebrow"><span class="no">02</span>Issue tree</p>
-    <h2 id="tree-h">원인을 세 갈래로 나누고, R1 후반에 "판단을 맡긴다"를 골랐다.</h2>
-    <p class="lede read">AIP01은 원인 1·2를 풀었다. R1 전반은 원인 2의 읽는 화면을, 후반은 이 프로젝트의 처음 문제의식인 원인 3을 다뤘다.</p>
-    <div class="tree">
-      <div class="root"><span class="k">ROOT QUESTION</span><p>국내 리포트를 업로드 시점에 맞춰 핵심 위주로 익히면서, 내 판단 기준을 키우려면?</p></div>
-      <div class="branches">
-        <div class="branch">
-          <span class="tag done">AIP01에서 구현</span>
-          <h3>원인 1. 놓친다</h3>
-          <ul>
-            <li>일곱 기관 게시판이 흩어져 있다</li>
-            <li>수집기가 robots.txt로 새 글을 모은다</li>
-            <li>막힌 기관(KCIF 등)은 허락 요청·수동 등록으로</li>
-            <li>남은 약점: 수동 실행이라 R1 동안 수집 0회</li>
-          </ul>
-        </div>
-        <div class="branch">
-          <span class="tag part">AIP01 구현 · R1 전반 보완</span>
-          <h3>원인 2. 분량이 많다</h3>
-          <ul>
-            <li>원문 쪽수와 대조한 수치만 싣는다</li>
-            <li>읽은 범위를 카드 머리에 표시한다</li>
-            <li>카드 접기·검색·새 글, 섹터별 이슈</li>
-            <li>남은 약점: 노트 대기와 토큰 비용</li>
-          </ul>
-        </div>
-        <div class="branch pick">
-          <span class="tag pick">R1 후반 선택</span>
-          <h3>원인 3. 판단을 맡긴다</h3>
-          <ul>
-            <li>"먼저 볼 것"을 AI가 정한 기준으로만 고른다</li>
-            <li>관심 장부·추적 질문 장부로 내 기준을 기록</li>
-            <li>관심 밖 칸으로 관심사만 보는 것을 막는다</li>
-            <li>남은 약점: 사용자가 정리자 한 사람</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="evolution" aria-labelledby="evo-h">
-    <p class="eyebrow"><span class="no">03</span>Solution evolution</p>
-    <h2 id="evo-h">문서 수정 타임스탬프</h2>
-    <p class="lede read">수집은 코드로 자동화, 읽기·정리·쪽수 대조는 Claude가 절차 문서대로 실행. R1 나흘 동안 공유 페이지가 버전 9에서 21까지 바뀌었다. 가장 큰 결정은 만들어 둔 전망 비교표를 상단에서 내린 것이다.</p>
-    <ol class="timeline">
-      <li><span class="when">AIP01 · ~11-20</span><b>수집기 + 카드 + 공유 페이지</b><span>7기관 16간행물. 수치는 원문 문장과 대조해야만 싣고, 대조에 실패하면 페이지 생성이 멈춘다.</span></li>
-      <li><span class="when">11-20</span><b>기관 고르게, 주제와 관련 자료 나누기</b><span>새 기관이 첫머리에 안 보이는 원인과 주제 필터가 안 갈리는 원인을 찾아 규칙을 바꿨다.</span></li>
-      <li><span class="when">11-23 · v9~11</span><b>카드 접기, 읽은 범위 표시, 새 글·검색</b><span>카드가 3건에서 28건으로 늘자 끝까지 훑기 어려워졌다.</span></li>
-      <li class="stop"><span class="when">11-23 · v12</span><b>전망 비교표 철회 → 섹터별 최신 이슈</b><span>"0.1%씩 다른 숫자를 매일 상단에 둘 만한가"라는 질문에서, 숫자 비교 대신 흐름 파악으로 무게를 옮겼다. 코드와 원문 대조는 고도화 때를 위해 남겼다.</span></li>
-      <li><span class="when">11-23 · v13</span><b>디자인</b><span>위쪽 골격은 터미널처럼 촘촘하게, 읽는 부분은 종이색과 세리프. 카드 안을 "원문이 말한 것"과 "정리자의 질문"으로 나눴다.</span></li>
-      <li><span class="when">11-24 · v14~17</span><b>관심 장부·추적 질문, 반응 버튼, 비공개 노트장</b><span>기준 6(추적 질문)과 관심 밖 칸을 더하고, 장부는 공개.</span></li>
-      <li><span class="when">11-24 · v18~21</span><b>GitHub Pages</b><span>향후 배포의 편의성과 다른 사용자에 대한 참여 용의성 측면에서 Claude.ai로 구동되던 초안에서 GitHub를 통한 배포로 전면 수정</span></li>
+    <p class="read">그래서 "해상도"를 이렇게 정했다. 이슈 하나에 대해 아래 다섯 칸을 내 말로 채울 수 있는 정도다.</p>
+    <ol class="five">
+      <li><b>쟁점</b><span>무엇이 걸려 있나</span></li>
+      <li><b>핵심 수치</b><span>전망·규모와 출처</span></li>
+      <li><b>기관 간 차이</b><span>어디서 다르게 보나</span></li>
+      <li><b>바뀐 점</b><span>직전과 무엇이 달라졌나</span></li>
+      <li><b>내 입장</b><span>나는 어떻게 보고, 왜</span></li>
     </ol>
   </section>
 
-  <section id="decision" aria-labelledby="dec-h">
-    <p class="eyebrow"><span class="no">04</span>Decision &amp; next step</p>
-    <h2 id="dec-h">문서 단위 요약에서 이슈 단위 묶음으로.</h2>
-    <p class="lede read">R2에서 장부로 고른 "먼저 볼 것" 3건은 이틀 동안 한 건도 끝까지 읽히지 않았다. 문제를 다시 좁혔다. 목표는 요약을 더 쌓는 것이 아니라, 신뢰할 수 있는 국내 연구기관 보고서로 주요 이슈의 해상도를 높여 내 견해를 세우는 것이다. 해상도는 이슈 하나에 대해 쟁점·핵심 수치·기관 간 차이·바뀐 점·내 입장 다섯 칸을 내 말로 채울 수 있는 정도로 잰다.</p>
-    <div class="pair">
-      <div class="box">
-        <span class="k">R1~R2 · 문서 카드</span>
-        <h3>보고서 한 편씩 쌓인다</h3>
-        <p class="note">카드 31건, 원문과 대조한 수치 205개. 그래도 같은 이슈를 기관마다 어떻게 다르게 보는지, 직전 전망과 무엇이 바뀌었는지는 따로 보이지 않는다.</p>
-      </div>
-      <div class="box on">
-        <span class="k">R3 · 이슈 한 장</span>
-        <h3>이슈 하나에 여러 보고서를 묶는다</h3>
-        <p class="note">쟁점, 기관별 시각, 핵심 수치, 기관 간 차이, 바뀐 점, 아직 열린 질문. 숫자는 근거 노트의 원문에 있는 것만 싣고, 정리자 판단은 넣지 않는다.</p>
+  <!-- 02 문제 설정 -->
+  <section id="setting" aria-labelledby="setting-h">
+    <p class="eyebrow"><span class="no">02</span>Problem setting</p>
+    <h2 id="setting-h">읽는 흐름대로 원인을 네 갈래로 나누고, "잇기"를 먼저 풀기로 했다.</h2>
+    <p class="lede read">보고서가 나온 것을 알고(닿기), 핵심만 정확히 남기고(추리기), 여러 보고서를 한눈에 묶고(잇기), 내 견해로 남기는(세우기) 순서다. 앞의 두 갈래는 이미 풀렸다. 마지막 갈래의 기록 장치는 만들어 두었지만 쓰이지 않았다. R2에서 장부로 고른 "먼저 볼 것" 3건은 이틀 동안 한 건도 끝까지 읽히지 않았다. 묶음이 없으면 기록할 거리도 없다고 보고 "잇기"를 먼저 쳤다.</p>
+    <div class="tree">
+      <div class="root"><span class="k">ROOT QUESTION</span><p>국내 연구기관 보고서로 국내외 주요 이슈의 해상도를 높여, 정보의 홍수 속에서 내 견해를 세우려면?</p></div>
+      <div class="branches">
+        <div class="branch">
+          <span class="tag done">대체로 풀림</span>
+          <h3>1. 닿기</h3>
+          <ul>
+            <li>나온 것을 알고 원문까지 간다</li>
+            <li>7개 기관 16개 간행물 수집기</li>
+            <li>웹에서 누르는 "동향 갱신" 버튼</li>
+          </ul>
+        </div>
+        <div class="branch">
+          <span class="tag done">풀림</span>
+          <h3>2. 추리기</h3>
+          <ul>
+            <li>핵심만 정확히 남긴다</li>
+            <li>원문 쪽수와 대조한 수치 205개</li>
+            <li>요약 카드 31건</li>
+          </ul>
+        </div>
+        <div class="branch pick">
+          <span class="tag pick">이번에 풂</span>
+          <h3>3. 잇기</h3>
+          <ul>
+            <li>같은 이슈를 기관마다 어디서 다르게 보는지 안 보인다</li>
+            <li>직전과 무엇이 바뀌었는지 안 보인다</li>
+            <li>정리가 문서 단위라 이슈로 쌓이지 않는다</li>
+          </ul>
+        </div>
+        <div class="branch">
+          <span class="tag part">다음 후보</span>
+          <h3>4. 세우기</h3>
+          <ul>
+            <li>읽고 끝나서 입장을 적는 순간이 없다</li>
+            <li>장부·반응 버튼은 있으나 쓰이지 않음</li>
+          </ul>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- 03 초안 -->
+  <section id="draft" aria-labelledby="draft-h">
+    <p class="eyebrow"><span class="no">03</span>Draft</p>
+    <h2 id="draft-h">가설: 여러 기관의 보고서를 "이슈 한 장"으로 묶으면 다섯 칸이 더 채워진다.</h2>
+    <p class="lede read">같은 이슈를 다룬 보고서를 쟁점·기관별 시각·핵심 수치·기관 간 차이·바뀐 점·열린 질문으로 나눠 한 장에 묶었다. 숫자는 원문 쪽과 대조한 노트에 있는 것만 싣고, 정리자의 판단은 넣지 않는다.</p>
+    <div class="pair">
+      <div class="box">
+        <span class="k">이슈 한 장 1</span>
+        <h3>내년(2027년) 성장 전망</h3>
+        <p class="note">KDI 8월·11월 경제전망, 한국은행 8월 경제전망, 국회예산정책처 2027 경제전망. 2027년 성장률 전망이 2.7%에서 3.9%까지 갈린다.</p>
+      </div>
+      <div class="box">
+        <span class="k">이슈 한 장 2</span>
+        <h3>북미 협상의 첫 단계</h3>
+        <p class="note">세종연구소 정책브리프 두 편(10-30, 11-23)과 통일연구원 미·중·러 정상회의 분석(11-20). 첫 합의를 시험 유예에서 멈출지, 생산 중단·검증까지 다룰지.</p>
+      </div>
+    </div>
+    <p class="read">첫 화면은 문서 카드 대신 "주요 이슈" 한 줄 목록으로 바꾸고, 이슈 한 장 두 개를 맨 위에 두었다(11-26). 시험 직전에는 카드마다 펼쳐진 정보가 많다고 보고, 카드를 기본으로 접어 제목과 한 줄 요약만 보이게 했다(11-27, 자료 카드 영역 높이 6,834px → 3,919px).</p>
+    <figure class="shot">
+      <a href="img/first-before.jpg" target="_blank" rel="noopener"><img src="img/first-before.jpg" width="800" height="500" alt="시험 때의 첫 화면. 위에 숫자 달린 상단 줄, 명조체 제목과 두 줄 소개, 그 아래 주요 이슈 목록에 이슈 한 장 두 줄이 섞여 있다." loading="lazy"></a>
+      <figcaption>시험한 사람들이 처음 본 화면(11-27). 데스크톱 1280px 기준.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 04 시험 -->
+  <section id="test" aria-labelledby="test-h">
+    <p class="eyebrow"><span class="no">04</span>Test</p>
+    <h2 id="test-h">처음 보는 세 사람에게 링크 하나와 질문 세 개를 건넸다.</h2>
+    <p class="lede read">시사에 관심 있는 20대 지인 세 사람이 같은 날(11-27) 같은 페이지를 보고 답했다. 소개 글과 함께 아래 세 가지를 물었다.</p>
+    <ol class="asks read">
+      <li>사용 중 불편했던 점</li>
+      <li>이슈를 이해하는 데 도움이 되었는지(쟁점과 기관 간 차이가 잘 보였는지)</li>
+      <li>개선이 필요한 부분</li>
+    </ol>
+    <p class="callout">처음 계획은 이슈 한 장을 보기 전과 후에 3분씩 다섯 칸을 적게 해 채운 칸 수를 비교하는 것이었다. 실제로는 자유 의견으로 받기로 바꿨고, 판단 기준도 "도움이 됐는지 답하면서 쟁점이나 기관 간 차이를 기관·수치 하나 이상 들어 짚는가"로 고쳤다. 이 기준은 첫 피드백을 받은 뒤에 정했다.</p>
+  </section>
+
+  <!-- 05 피드백 -->
+  <section id="feedback" aria-labelledby="feedback-h">
+    <p class="eyebrow"><span class="no">05</span>Feedback</p>
+    <h2 id="feedback-h">세 사람은 서로 다른 곳에서 멈췄다.</h2>
+    <p class="lede read">한 사람은 이슈 한 장 안까지 읽고 내용과 화면을, 두 사람은 첫 화면에서 사이트의 정체와 사용법을 짚었다. 각 사람의 의견을 요약하고, 프로덕트를 실제로 고치게 만든 말은 받은 원문 그대로 옮겼다(개인적인 말은 "…"로 줄임). 인용 아래 번호는 <a href="#changes">바꾼 것</a>의 항목이다.</p>
+    <div class="people">
+
+      <article class="person" aria-labelledby="p-a">
+        <header>
+          <span class="id">사용자 A</span>
+          <h3 id="p-a">고OO<small>남 · 20대</small></h3>
+          <span class="reach deep">이슈 한 장 안까지 읽음</span>
+        </header>
+        <div>
+          <h4>요약</h4>
+          <ul>
+            <li>글이 많아 무엇부터 읽을지 모르겠다. 강조점이나 세 줄 요약을 바란다.</li>
+            <li>이슈 한 장의 "아직 열린 질문"이 애매하다. 그걸로 무엇을 할지 보이면 좋겠다.</li>
+            <li>제목 글꼴이 낡아 보이고, 다크 모드에서는 화면이 검게 뭉쳐 읽기 어렵다.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>원문 인용</h4>
+          <ul class="quotes">
+            <li><q>글이 너무 많으니까 뭐부터 읽어야 할지 모르겠다</q><a class="to" href="#c5">⑤ 이슈 한 장 구성</a></li>
+            <li><q>글을 살짝 줄이거나, 세줄요약을 만들거나.</q><a class="to" href="#c5">⑤ 이슈 한 장 구성</a></li>
+            <li><q>아직 열린 질문-&gt; 살짝 애매한 느낌. 그걸 토대로 뭘 한다면 오케이겠는데, 뭔가 생각해볼 수 있게 더 디벨롭.</q><a class="to" href="#c6">⑥ 생각해 볼 질문</a></li>
+            <li><q>글씨체가 너무 궁서체다(올드한 느낌이다)</q><a class="to" href="#c1">① 화면 정비</a></li>
+            <li><q>다크 테마에서는 기존에 사용자가 의도했던 색구성과 달리, 그저 시커멓게만 나열되어 가독성이 매우 떨어짐</q><a class="to" href="#c1">① 화면 정비</a></li>
+            <li><q>내용 간 간격을 좀 띄워보자</q><a class="to" href="#c1">① 화면 정비</a></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="person" aria-labelledby="p-b">
+        <header>
+          <span class="id">사용자 B</span>
+          <h3 id="p-b">민OO<small>여 · 20대</small></h3>
+          <span class="reach">첫 화면에서 멈춤</span>
+        </header>
+        <div>
+          <h4>요약</h4>
+          <ul>
+            <li>주제는 좋다. 다만 처음 들어가서 무엇을 하는 사이트인지 몰랐고, 따로 설명을 듣고서야 이해했다.</li>
+            <li>시의성이 중요한 서비스인데 기준 기간이 잘 안 보인다.</li>
+            <li>이슈 한 장이 왜 두 주제에만 있는지, 어떻게 만들고 고르는지 짧게 알려 주면 좋겠다.</li>
+            <li>이슈에 익숙하지 않은 사람에게는 AI에게 쉽게 설명해 달라는 편이 나을 수 있다.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>원문 인용</h4>
+          <ul class="quotes">
+            <li><q>시의성?? 이 중요한 프로덕트인 것 같아서 저 기준이 되는 기간...? 이 좀 더 잘 보이면 조을 것 같고</q><a class="to" href="#c3">③ 기간과 갱신 주기</a></li>
+            <li><q>딱 들어갓을 때 이게 뭐 하는 사이트지...? 이슈 한장은 왜 저 첫 두 주제에만 있는거지...? 하는 의문이 들엇슴다</q><a class="to" href="#c2">② 머리글</a> <a class="to" href="#c4">④ 이슈 한 장 묶음</a></li>
+            <li><q>먼가 이 제작 과정이나 이슈 선정 기준 같은거 간단한 문장으로 소개해주면 좋을 것 같다는 생각이 들엇슴다</q><a class="to" href="#c2">② 머리글</a> <a class="to" href="#c4">④ 이슈 한 장 묶음</a></li>
+            <li><q>전체적으로 ui의 가독성... 이 좀 좋지 않은 느낌...? 딱 봤을 때 그래서 뭘 봐야 하는건지? 를 잘 모르겠어요</q><a class="to" href="#c1">① 화면 정비</a> <a class="to" href="#c2">② 머리글</a></li>
+            <li><q>… 이런 이슈에 익숙하지 않은 저같은 사람이라면 차라리 ai한테 다 찾아서 쉽게 설명해달라고 하는 게 더 이해에는 쉬울 것 가튼 느낌</q><a class="to" href="#c7">⑦ 이 사이트만의 쓸모</a></li>
+            <li><q>주제는 조은데 ui를 좀 더 개선하면 조을 것 같다</q></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="person" aria-labelledby="p-c">
+        <header>
+          <span class="id">사용자 C</span>
+          <h3 id="p-c">김OO<small>남 · 20대</small></h3>
+          <span class="reach">첫 화면과 목록을 봄</span>
+        </header>
+        <div>
+          <h4>요약</h4>
+          <ul>
+            <li>접하기 어려운 연구기관 자료를 주요 이슈로 받아 보니 유익하다.</li>
+            <li>상단 바로 가기가 누르면 이동하는 버튼인 줄 몰랐다.</li>
+            <li>주요 이슈가 언제 바뀌는지, 이슈 한 장이 다른 이슈와 무엇이 다른지 모르겠다.</li>
+            <li>"먼저 볼 것"에서 제목·내용·질문이 구분되지 않는다. 주요 이슈만 보려는 사람은 위쪽만 볼 것이다.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>원문 인용</h4>
+          <ul class="quotes">
+            <li><q>기사가 아닌 연구기관의 자료들은 접하기 쉽지 않은데, 주요 이슈로만 정리해서 보고 받으면 평소에서 유익할 것 같습니당.</q></li>
+            <li><q>위 상단 "1. 주요 이슈, 2. 먼저 볼것.." 이 부분이 처음에는 누르면 그 부분으로 자동 스크롤되는지 몰랐어용. 살짝만 더 크게? 눈에 띄게? 만들어도 좋을듯</q><a class="to" href="#c9">⑨ 바로 가기</a></li>
+            <li><q>주요 이슈는 매일 새로 추가되는 건가용?</q><a class="to" href="#c3">③ 기간과 갱신 주기</a></li>
+            <li><q>주요 이슈 부분에 초록색으로 나오는 "이슈 한장"의 정확한 차이는 뭔가용?</q><a class="to" href="#c4">④ 이슈 한 장 묶음</a></li>
+            <li><q>예를 들어, "먼저 볼것" 항목에서 제목/내용/질문을 좀 더 구분시키는 건 어떤지요.</q><a class="to" href="#c1">① 화면 정비</a></li>
+            <li><q>진짜 주요 이슈만 알고 싶은 사람들은 위 몇 항목 제외하고 다른 건 잘 안 볼 수도 있을 것 같아용</q><a class="to" href="#c2">② 머리글</a></li>
+            <li><q>소제목별로 나누는 기능도 추가하면 어떨까용?</q><span class="to hold">보류: 섹터 거르기</span></li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 06 대조 -->
+  <section id="compare" aria-labelledby="compare-h">
+    <p class="eyebrow"><span class="no">06</span>Synthesis</p>
+    <h2 id="compare-h">세 사람 모두 "글이 많고 무엇부터 볼지 모르겠다"고 했다.</h2>
+    <p class="lede read">지적을 사람별로 견줘 공통점과 차이를 나눴다. 주제와 쓸모는 두 사람이 좋다고 했다. 이해 방식에서는 의견이 갈렸다. 한 사람은 AI 설명이 더 쉬울 수 있다고 했고, 다른 한 사람은 연구기관 자료를 주요 이슈로 받아 보는 것이 유익하다고 했다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">지적</th><th scope="col">고OO</th><th scope="col">민OO</th><th scope="col">김OO</th><th scope="col">반영</th></tr></thead>
+        <tbody>
+          <tr class="group"><th colspan="5" scope="colgroup">세 사람 공통</th></tr>
+          <tr><td>글이 많아 무엇부터 볼지 모르겠다</td><td class="m">●</td><td class="m">●</td><td class="m">●</td><td><a href="#c2">②</a> <a href="#c5">⑤</a></td></tr>
+          <tr><td>화면 가독성(글꼴·간격·다크 모드·구분)</td><td class="m">●</td><td class="m">●</td><td class="m">●</td><td><a href="#c1">①</a></td></tr>
+          <tr class="group"><th colspan="5" scope="colgroup">두 사람 공통</th></tr>
+          <tr><td>무엇을 하는 사이트인지, 어떻게 쓰는지 안 보인다</td><td class="m"></td><td class="m">●</td><td class="m">●</td><td><a href="#c2">②</a> <a href="#c9">⑨</a></td></tr>
+          <tr><td>"이슈 한 장"의 뜻과 선정 기준을 모르겠다</td><td class="m"></td><td class="m">●</td><td class="m">●</td><td><a href="#c4">④</a></td></tr>
+          <tr><td>기준 기간과 갱신 시점이 안 보인다</td><td class="m"></td><td class="m">●</td><td class="m">●</td><td><a href="#c3">③</a></td></tr>
+          <tr class="group"><th colspan="5" scope="colgroup">한 사람만</th></tr>
+          <tr><td>열린 질문이 할 일로 이어지지 않는다</td><td class="m">●</td><td class="m"></td><td class="m"></td><td><a href="#c6">⑥</a></td></tr>
+          <tr><td>AI 설명과 무엇이 다른가</td><td class="m"></td><td class="m">●</td><td class="m"></td><td><a href="#c7">⑦</a></td></tr>
+          <tr><td>섹터별로 거르는 기능</td><td class="m"></td><td class="m"></td><td class="m">●</td><td>보류</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 07 판정 -->
+  <section id="decision" aria-labelledby="decision-h">
+    <p class="eyebrow"><span class="no">07</span>Decision</p>
+    <h2 id="decision-h">기준은 채우지 못했다. 다만 이슈 한 장에 닿기 전에 막혔다.</h2>
+    <div class="pair">
+      <div class="box">
+        <span class="k">결과</span>
+        <h3>세 사람 중 0명이 쟁점이나 기관 간 차이를 구체적으로 짚었다</h3>
+        <p class="note">미리 정한 규칙대로 읽으면 "묶음만으로는 해상도가 오르지 않는다". 원인 후보(묶음 구성, 분량, 수치 부족) 가운데 분량이 지적됐고, 수치 부족은 지적되지 않았다.</p>
+      </div>
+      <div class="box on">
+        <span class="k">해석과 결정</span>
+        <h3>두 사람은 첫 화면에서 먼저 멈췄다. 진입 장벽부터 치우고, 이슈 한 장도 함께 다듬는다</h3>
+        <p class="note">계획에 없던 원인(첫 화면 진입과 가독성)이 드러났다. 그래서 첫 화면·가독성과 이슈 한 장, 두 층을 함께 고쳤다. 한 번에 한 가지만 바꾸는 원칙에서는 벗어난다. 진입 장벽이 내용 평가를 가렸고 남은 일정이 짧았기 때문이다.</p>
+      </div>
+    </div>
+    <p class="note read">시험한 사람은 세 명이고 모두 지인이며, 답은 자유 의견이다. 강한 결론으로 읽지 않는다.</p>
+  </section>
+
+  <!-- 08 바꾼 것 -->
+  <section id="changes" aria-labelledby="changes-h">
+    <p class="eyebrow"><span class="no">08</span>Changes</p>
+    <h2 id="changes-h">피드백 한 줄이 변경 하나가 되도록 고쳤다.</h2>
+    <p class="lede read">11-27에 세 단계(화면 정비 → 첫 화면 → 이슈 한 장)로 고쳐 다시 배포했다. 항목마다 근거가 된 피드백과, 고친 뒤 확인한 것을 적었다. 아래 전후 화면은 누르면 원래 크기로 열린다.</p>
+
+    <p class="layer">층 1 · 첫 화면과 가독성</p>
+    <ol class="changes">
+      <li id="c1"><span class="n">①</span><h3>화면 정비</h3>
+        <p>제목 글꼴을 명조에서 본문과 같은 고딕으로 바꿨다. 이슈 한 장의 절 사이와 항목 사이를 넓히고 한 줄 길이를 줄였다. "먼저 볼 것"은 제목·출처·요약·질문 칸을 나눴다. 다크 모드 색을 다시 짰다.</p>
+        <p class="from">근거: 고OO(글꼴·다크·간격), 민OO(가독성), 김OO(먼저 볼 것 구분)</p>
+        <p class="check"><b>확인</b>다크 모드에서 카드와 바탕의 명암 대비 1.08 → 1.35, 구분선 1.46 → 2.2. 데스크톱·휴대폰 × 라이트·다크 네 화면 확인</p></li>
+      <li id="c2"><span class="n">②</span><h3>머리글: 무엇을 하는 사이트인지, 어떻게 읽는지</h3>
+        <p>"국내 연구기관 7곳의 새 보고서를 이슈별로 묶어, 기관마다 어디서 다르게 보는지와 직전보다 무엇이 바뀌었는지 보여 줍니다"라는 소개와 "이슈 한 장 → 먼저 볼 것 → 자료 카드" 읽는 순서를 넣었다. 만드는 방법은 접힌 칸에 두 문장으로 두었다. "먼저 볼 것" 아래에는 "여기부터는 자료를 찾아볼 때" 구분선을 그었다.</p>
+        <p class="from">근거: 민OO(무엇을 하는 사이트인지, 제작 과정), 김OO(위쪽만 볼 사람)</p>
+        <p class="check"><b>확인</b>데스크톱 1280×800과 휴대폰 375×812 첫 화면에 소개·기간·이슈 한 장 줄이 함께 보인다</p></li>
+      <li id="c3"><span class="n">③</span><h3>기간과 갱신 주기</h3>
+        <p>상단 작은 글씨에 있던 기간을 머리글 본문으로 옮겼다. "수록 기간 · 발간 보고서 31건 · 마지막 정리일 · 정리 전 새 자료 N건"과 "주요 이슈는 매일이 아니라 새 보고서를 정리할 때 바뀝니다"를 적었다.</p>
+        <p class="from">근거: 민OO(기준 기간), 김OO(매일 추가되나)</p>
+        <p class="check"><b>확인</b>정리 전 새 자료 건수는 수집 기록에서 자동으로 채워진다(배포 후 7건 표시)</p></li>
+      <li id="c4"><span class="n">④</span><h3>이슈 한 장 묶음과 선정 기준</h3>
+        <p>주요 이슈를 "이슈 한 장"과 "그 밖의 이슈"로 나누고, 묶음 머리에 "같은 이슈를 두 기관 이상이 다룬 경우, 쟁점·기관별 시각·원문 대조 수치·바뀐 점으로 나눠 한 장으로 묶습니다. 지금 2개입니다"라고 적었다.</p>
+        <p class="from">근거: 민OO(왜 두 주제에만), 김OO(다른 이슈와 차이)</p>
+        <p class="check"><b>확인</b>적어 둔 선정 기준이 거짓이 되지 않도록, 기관이 하나뿐인 이슈 한 장은 페이지 생성 단계에서 멈추게 했다</p></li>
+      <li id="c7"><span class="n">⑦</span><h3>이 사이트만의 쓸모 한 줄</h3>
+        <p>소개 문장에 "수치마다 원문 위치(쪽수 등)를 달고 원문과 대조했습니다"를 붙였다. 일반 AI 요약과 다른 점(원문 대조, 같은 이슈의 기관 비교, 직전과 바뀐 점)을 첫 화면에서 말한다.</p>
+        <p class="from">근거: 민OO(AI 설명과의 차이)</p>
+        <p class="check"><b>확인</b>초심자를 위한 배경 설명은 넣지 않았다. 분량이 다시 늘어 "글이 많다"는 공통 지적과 부딪치기 때문이다</p></li>
+      <li id="c9"><span class="n">⑨</span><h3>바로 가기 탭</h3>
+        <p>"1 주요 이슈"처럼 키보드 단축키로 보이던 숫자를 빼고 둥근 탭으로 바꿨다. 글자를 키우고, 휴대폰에서도 상단에 고정하고, 지금 보고 있는 절의 탭을 표시한다.</p>
+        <p class="from">근거: 김OO(누르면 이동하는 줄 몰랐음)</p>
+        <p class="check"><b>확인</b>예전 숫자는 실제로 단축키가 아니었다. 휴대폰에서 상단 줄이 네 줄에서 한 줄로 줄었다</p></li>
+    </ol>
+
+    <p class="layer">층 2 · 이슈 한 장</p>
+    <ol class="changes">
+      <li id="c5"><span class="n">⑤</span><h3>이슈 한 장 구성: 요약 먼저, 근거는 접기</h3>
+        <p>맨 위에 "세 줄 요약" 상자를 두고, "어디서 갈리나", "무엇이 바뀌었나", "생각해 볼 질문"만 먼저 보이게 했다. 기관별 시각과 핵심 수치 표는 "근거 보기"로 접었다. 굵은 강조는 절마다 하나 이하로 둔다. 순서는 뉴스 브리핑 형식(Axios의 "Why it matters / What's next", Semafor의 "Room for Disagreement")을 참고했다.</p>
+        <p class="from">근거: 고OO(뭐부터 읽을지, 세 줄 요약, 강조)</p>
+        <p class="check"><b>확인</b>처음 보이는 글 약 1,680자 → 886자(성장 전망), 900자(북미 협상). 900자를 넘으면 페이지 생성이 멈춘다</p></li>
+      <li id="c6"><span class="n">⑥</span><h3>생각해 볼 질문</h3>
+        <p>"아직 열린 질문"을 이슈마다 두 개로 줄이고 틀을 붙였다. 질문마다 갈리는 지점(원문 쪽), 확인할 단서(발표 일정·지표 같은 사실만), 읽는 사람이 채울 "내 생각은? 나는 ___ 라고 본다. 근거 하나: ___" 빈칸이 붙는다.</p>
+        <p class="from">근거: 고OO(그걸 토대로 뭘 한다면 오케이)</p>
+        <p class="check"><b>확인</b>예: "한국은행 11월 전망은 KDI(3.9%)와 국회예산정책처(2.7%) 중 어느 쪽에 가까울까?" → 확인할 단서는 이미 게시된 한국은행 11월 경제전망보고서</p></li>
+    </ol>
+
+    <div class="ba" aria-label="고치기 전과 후 화면">
+      <div class="ba-row">
+        <h3>첫 화면 (데스크톱, 라이트)</h3>
+        <div class="ba-pair">
+          <figure><a href="img/first-before.jpg" target="_blank" rel="noopener"><img src="img/first-before.jpg" width="800" height="500" alt="고치기 전 첫 화면: 숫자 달린 상단 줄, 명조체 제목, 두 줄 소개, 이슈 한 장이 섞인 목록" loading="lazy"></a><figcaption><b>전</b> · 시험 때</figcaption></figure>
+          <figure><a href="img/first-after.jpg" target="_blank" rel="noopener"><img src="img/first-after.jpg" width="800" height="500" alt="고친 뒤 첫 화면: 바로 가기 탭, 고딕 제목, 소개와 기간·읽는 순서, 이슈 한 장 묶음" loading="lazy"></a><figcaption><b>후</b> · ②③④⑦⑨</figcaption></figure>
+        </div>
+      </div>
+      <div class="ba-row">
+        <h3>이슈 한 장: 내년(2027년) 성장 전망</h3>
+        <div class="ba-pair">
+          <figure><a href="img/sheet-before.jpg" target="_blank" rel="noopener"><img src="img/sheet-before.jpg" width="800" height="563" alt="고치기 전 이슈 한 장: 쟁점, 기관별 시각, 핵심 수치 표가 모두 펼쳐져 있다" loading="lazy"></a><figcaption><b>전</b> · 모든 절이 펼쳐짐</figcaption></figure>
+          <figure><a href="img/sheet-after.jpg" target="_blank" rel="noopener"><img src="img/sheet-after.jpg" width="800" height="563" alt="고친 뒤 이슈 한 장: 세 줄 요약 상자, 어디서 갈리나, 무엇이 바뀌었나, 생각해 볼 질문" loading="lazy"></a><figcaption><b>후</b> · ①⑤⑥</figcaption></figure>
+        </div>
+      </div>
+      <div class="ba-row">
+        <h3>먼저 볼 것 (데스크톱, 다크)</h3>
+        <div class="ba-pair">
+          <figure><a href="img/priority-dark-before.jpg" target="_blank" rel="noopener"><img src="img/priority-dark-before.jpg" width="800" height="563" alt="고치기 전 다크 모드: 카드와 바탕이 거의 같은 검은색" loading="lazy"></a><figcaption><b>전</b> · 면이 한 장으로 붙어 보임</figcaption></figure>
+          <figure><a href="img/priority-dark-after.jpg" target="_blank" rel="noopener"><img src="img/priority-dark-after.jpg" width="800" height="563" alt="고친 뒤 다크 모드: 카드가 바탕보다 밝고, 질문이 청록 칸에 들어 있다" loading="lazy"></a><figcaption><b>후</b> · ①②</figcaption></figure>
+        </div>
+      </div>
+      <div class="ba-row">
+        <h3>첫 화면 (휴대폰 375×812)</h3>
+        <div class="ba-pair narrow">
+          <figure><a href="img/mobile-before.jpg" target="_blank" rel="noopener"><img src="img/mobile-before.jpg" width="375" height="812" alt="고치기 전 휴대폰 첫 화면: 상단 줄이 세 줄로 접혀 있다" loading="lazy"></a><figcaption><b>전</b></figcaption></figure>
+          <figure><a href="img/mobile-after.jpg" target="_blank" rel="noopener"><img src="img/mobile-after.jpg" width="375" height="812" alt="고친 뒤 휴대폰 첫 화면: 한 줄 바로 가기와 소개·기간, 이슈 한 장 묶음" loading="lazy"></a><figcaption><b>후</b> · ②③⑨</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="read" style="display:grid;gap:0.5rem;">
+      <h3>하지 않은 것</h3>
+      <ul class="skip">
+        <li>레퍼런스를 바탕으로 한 전면 재설계: 한 번에 바뀌는 것이 너무 많아, 무엇이 효과를 냈는지 알 수 없게 된다.</li>
+        <li>섹터별 거르기(김OO 제안): 지금 주요 이슈는 15줄이라 보류했다. 20줄을 넘거나 이슈 한 장이 5개를 넘으면 만든다.</li>
+        <li>초심자용 배경 설명, 밝게·어둡게 전환 버튼</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 09 다음 -->
+  <section id="next" aria-labelledby="next-h">
+    <p class="eyebrow"><span class="no">09</span>Next</p>
+    <h2 id="next-h">다음에 확인할 것</h2>
     <ol class="flow">
-      <li>이슈트리 다시 나누기: 닿기 → 추리기 → 잇기 → 세우기. 닿기와 추리기는 풀렸고, 세우기 장치는 쓰이지 않아 잇기를 먼저 친다</li>
-      <li>첫 화면을 카드 대신 주요 이슈 한 줄 목록으로 바꿨다(11-26)</li>
-      <li>이슈 한 장 2개: 내년 성장 전망(KDI 8월·11월, 한국은행 8월, 국회예산정책처 9월), 북미 협상의 첫 단계(세종연구소 2편, 통일연구원)</li>
-      <li>시험: 이슈 한 장을 보기 전과 후에 각각 3분 동안 다섯 칸을 적고 채운 칸 수를 비교한다. 정리자 외 2명</li>
-      <li>판정: 절반 이상이 2칸 이상 늘면 R4에서 이슈 한 장을 정기 절차에 넣고, 그렇지 않으면 빈칸을 보고 묶음 구성을 고친다</li>
-      <li>함께 준비할 것: 하루 한 번 자동 수집. 수동 실행이라 생기던 수집 공백(갈래 1)을 GitHub에서 메운다</li>
+      <li>바뀐 화면으로 처음 보는 사람이 "이 사이트는 무엇을 하는 곳인가"를 한 문장으로 말하고, 이슈 한 장을 읽은 뒤 기관이 어디서 갈리는지 짚는지 본다.</li>
+      <li>정리 전 자료 7건(한국은행 2026년 11월 경제전망 포함)을 정리한다. "내년 성장 전망"의 첫 질문에 답할 재료가 생긴다.</li>
+      <li>갈래 4(세우기): "내 생각은?" 빈칸이 실제 기록으로 남게 한다.</li>
     </ol>
   </section>
 
   <div class="conclusion">
     <span class="k">Conclusion</span>
-    <h2>요약을 더 쌓기보다, 여러 기관의 시각을 이슈 단위로 이어 내 견해의 해상도를 높인다</h2>
-    <p>원문 쪽수와 대조한 요약, 원문과 해석의 분리, 스스로 따져볼 질문은 그대로 이 프로그램의 바탕이다. R3에서는 그 위에 이슈 한 장을 얹어, 묶어 보는 것만으로 다섯 칸이 더 채워지는지 확인한다. 이슈 한 장은 첫 화면 "주요 이슈"에서 열린다.</p>
+    <h2>요약을 더 쌓기보다, 이슈를 이어 읽게 하고 처음 보는 사람도 길을 잃지 않게</h2>
+    <p>원문 쪽수와 대조한 요약, 원문과 해석의 분리, 스스로 따져볼 질문은 그대로 이 프로그램의 바탕이다. 세 사람의 피드백은 그 위에 얹은 "이슈 한 장"보다 먼저 입구를 가리켰다. 그래서 첫 화면이 무엇을 하는 곳인지 말하게 하고, 이슈 한 장은 세 줄 요약과 갈리는 지점부터 보이게 고쳤다.</p>
     <p><a href="../">국내 연구기관 리포트 브리핑 열기 ↗</a></p>
   </div>
 
   <footer class="foot">
-    <p>AIP02 Round 1 보고 · 2026-11-24 작성, 04절과 결론은 2026-11-26 R3 기준으로 고침. 수치는 작성 시점의 수집 DB와 노트 기준이다.</p>
+    <p>AIP02 보고 · 2026-11-27 작성. 수치는 작성 시점의 수집 기록과 노트 기준이다. 시험한 사람의 이름은 가렸고, 인용은 받은 피드백 원문 그대로다(개인적인 말은 "…"로 줄임).</p>
+    <p>R1 보고 원본(2026-11-24): <a href="r1/">r1/</a></p>
   </footer>
 </main>
 </body>
