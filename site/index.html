@@ -17,9 +17,10 @@ img{max-width:100%}
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
 <style>
-/* 디자인(2026-11-23, B안): 위쪽 골격(상태 줄·탭·목록 보기)은 터미널처럼 촘촘하게, 읽는 부분은 종이색 바탕과 세리프 제목.
+/* 디자인(2026-11-23, B안): 위쪽 골격(상태 줄·탭·목록 보기)은 터미널처럼 촘촘하게, 읽는 부분은 종이색 바탕.
+   제목은 처음에 명조(세리프)였으나 2026-11-27 피드백("궁서체 같다, 올드하다")으로 본문과 같은 고딕으로 바꿨다.
    색은 두 층으로 둔다. 기본 색(--p-*)은 값만, 용도 색(--paper, --ink …)은 화면 어디에 쓰는지. 어두운 화면은 용도 색만 바꾼다. */
 :root {
   --p-paper: #f6f2ea;
@@ -47,7 +48,7 @@ img{max-width:100%}
   --term-ink: var(--p-fog);
   --term-key: var(--p-amber);
   --term-line: #2e3539;
-  --font-display: "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
+  --font-display: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --step--1: 0.8125rem;
@@ -56,17 +57,20 @@ img{max-width:100%}
   --step-2: 1.375rem;
   --step-3: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
 }
+/* 어두운 화면(2026-11-27 다시 짬, 피드백 "시커멓게만 나열"): 예전 값은 카드 대 바탕 대비 1.08, 구분선 1.46이라
+   면이 한 장으로 붙어 보였다. 카드 대 바탕 1.35, 구분선 2.2, 상단 줄 경계 2.3, 질문 칸(청록 면) 대 카드 1.56.
+   글자 대비: 본문 11.0(카드 위), 흐린 글자 6.1, 청록 10.0(바탕 위)·4.7(청록 면 위) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #15140f; --surface: #1d1c17; --ink: #ebe6db; --muted: #a7a194; --line: #36332b;
-    --accent: #7fc4b6; --accent-soft: #1f2c28; --ref-bg: #2a2821;
-    --term-bg: #08090a; --term-bg-2: #15181a; --term-line: #2a2f33; color-scheme: dark;
+    --paper: #141310; --surface: #302d26; --ink: #ebe6db; --muted: #b3ad9f; --line: #55503f;
+    --accent: #86cbbd; --accent-soft: #2c5149; --ref-bg: #3d392f;
+    --term-bg: #050606; --term-bg-2: #15181a; --term-line: #4a5054; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #15140f; --surface: #1d1c17; --ink: #ebe6db; --muted: #a7a194; --line: #36332b;
-  --accent: #7fc4b6; --accent-soft: #1f2c28; --ref-bg: #2a2821;
-  --term-bg: #08090a; --term-bg-2: #15181a; --term-line: #2a2f33; color-scheme: dark;
+  --paper: #141310; --surface: #302d26; --ink: #ebe6db; --muted: #b3ad9f; --line: #55503f;
+  --accent: #86cbbd; --accent-soft: #2c5149; --ref-bg: #3d392f;
+  --term-bg: #050606; --term-bg-2: #15181a; --term-line: #4a5054; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body {
@@ -90,8 +94,24 @@ h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
 .masthead { display: grid; gap: 0.75rem; border-bottom: 2px solid var(--ink); padding-bottom: 1.25rem; }
 .masthead .kicker { font-size: var(--step--1); color: var(--muted); letter-spacing: 0.04em; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
 .badge { font-family: var(--font-mono); font-size: 0.75rem; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; padding: 0 0.4rem; }
-.masthead h1 { font-family: var(--font-display); font-weight: 800; font-size: var(--step-3); line-height: 1.25; letter-spacing: -0.01em; }
+.masthead h1 { font-family: var(--font-display); font-weight: 700; font-size: var(--step-3); line-height: 1.25; letter-spacing: -0.02em; }
 .masthead p { margin: 0; color: var(--muted); max-width: 38rem; }
+.masthead .lede { color: var(--ink); font-size: 1.0625rem; line-height: 1.7; max-width: 40rem; }
+.masthead .period { color: var(--ink); font-size: 0.9375rem; line-height: 1.7; }
+.masthead .period b { font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+.masthead .period a { font-weight: 600; white-space: nowrap; }
+.masthead .cadence { display: block; color: var(--muted); font-size: var(--step--1); }
+.masthead .route { color: var(--ink); font-size: 0.9375rem; }
+.masthead .route a { font-weight: 600; }
+.masthead .how summary { cursor: pointer; width: fit-content; color: var(--accent); font-size: var(--step--1); font-weight: 600; }
+.masthead .how p { margin-top: 0.4rem; font-size: 0.9375rem; line-height: 1.7; }
+/* 휴대폰에서는 기관 이름 줄을 숨긴다(소개 문장에 기관 수가 있고, 첫 화면에 이슈가 보이게) */
+@media (max-width: 40rem) {
+  .masthead .kicker .orgs { display: none; }
+  /* 375×812 첫 화면에 소개·기간·첫 이슈 한 장 줄까지 들어오게 위 여백과 절 사이를 줄인다 */
+  .page { padding-block: 1.25rem 3rem; gap: 2.25rem; }
+  .masthead .lede { font-size: 1rem; }
+}
 .facts { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; margin: 0; font-size: var(--step--1); }
 .facts div { display: flex; gap: 0.5rem; }
 .facts dt { color: var(--muted); }
@@ -103,13 +123,15 @@ section > h2 small { font-size: var(--step--1); font-weight: 400; color: var(--m
 /* 먼저 볼 것: 순위가 정보이므로 번호를 쓴다 */
 .priority { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; counter-reset: rank; }
 .priority li { counter-increment: rank; display: grid; grid-template-columns: 2.25rem 1fr; gap: 0 0.75rem; }
-.priority li::before { content: counter(rank); font-family: var(--font-display); font-weight: 800; font-size: 1.75rem; line-height: 1.2; color: var(--accent); }
-.priority .body { min-width: 0; display: grid; gap: 0.25rem; }
-.priority .body a.title { font-weight: 600; color: var(--ink); text-decoration-color: var(--line); }
+.priority li::before { content: counter(rank); font-family: var(--font-display); font-weight: 700; font-size: 1.75rem; line-height: 1.2; color: var(--accent); }
+/* 항목 안 위계(2026-11-27 피드백 "제목·내용·질문을 더 구분"): 제목 → 출처·기준 한 줄 → 요약 → 질문 칸 */
+.priority .body { min-width: 0; display: grid; gap: 0.6rem; align-content: start; }
+.priority .body a.title { font-size: 1.0625rem; line-height: 1.45; font-weight: 700; color: var(--ink); text-decoration-color: var(--line); }
 .priority .body a.title:hover { text-decoration-color: var(--accent); }
-.priority .src { font-size: var(--step--1); color: var(--muted); }
-.priority .ask { font-size: 0.9375rem; color: var(--muted); }
-.priority .ask b { color: var(--accent); font-weight: 600; }
+.priority .src { font-size: var(--step--1); color: var(--muted); line-height: 1.6; margin-top: -0.3rem; }
+.priority .sum { font-size: 0.9375rem; line-height: 1.7; color: var(--ink); }
+.priority .ask { font-size: 0.9375rem; line-height: 1.65; color: var(--ink); background: var(--accent-soft); border-radius: 4px; padding: 0.6rem 0.8rem; }
+.priority .ask b { display: block; font-size: var(--step--1); color: var(--accent); font-weight: 700; margin-bottom: 0.15rem; }
 .criteria { display: inline-flex; flex-wrap: wrap; gap: 0.25rem; margin-left: 0.25rem; }
 .crit { font-size: 0.75rem; background: var(--accent-soft); color: var(--accent); border-radius: 3px; padding: 0 0.4rem; white-space: nowrap; }
 .crit.outside { background: transparent; color: var(--muted); border: 1px dashed currentColor; }
@@ -154,35 +176,60 @@ section > h2 small { font-size: var(--step--1); font-weight: 400; color: var(--m
 .masthead, .method, .notice, .upcoming { max-width: 46rem; width: 100%; justify-self: center; }
 /* 섹터별 최신 이슈: 넓은 화면에서 두 칸씩 두 줄 */
 .issue-lines { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.issue-lines li { border-bottom: 1px solid var(--line); }
-.issue-lines summary { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) auto; gap: 0.75rem; align-items: baseline; padding: 0.6rem 0.25rem; cursor: pointer; list-style: none; }
-.issue-lines summary::-webkit-details-marker { display: none; }
-.issue-lines summary:hover .t { color: var(--accent); }
+.issue-lines > li { border-bottom: 1px solid var(--line); }
+.issue-lines > li > details > summary { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) auto; gap: 0.75rem; align-items: baseline; padding: 0.6rem 0.25rem; cursor: pointer; list-style: none; }
+.issue-lines > li > details > summary::-webkit-details-marker { display: none; }
+.issue-lines > li > details > summary:hover .t { color: var(--accent); }
 .issue-lines .sec { font-size: var(--step--1); color: var(--muted); white-space: nowrap; }
 .issue-lines .t { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .issue-lines .n { font-size: var(--step--1); color: var(--muted); white-space: nowrap; }
 .issue-lines details[open] .t { white-space: normal; }
-.issue-lines details p { margin: 0 0 0.75rem; padding: 0 0.25rem 0 7.5rem; font-size: 0.9375rem; line-height: 1.65; }
-.issue-lines details p a { color: var(--accent); }
+.issue-lines > li > details > p { margin: 0 0 0.75rem; padding: 0 0.25rem 0 7.5rem; font-size: 0.9375rem; line-height: 1.65; }
+.issue-lines > li > details > p a { color: var(--accent); }
 @media (max-width: 40rem) {
-  .issue-lines summary { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0.1rem; }
+  .issue-lines > li > details > summary { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0.1rem; }
   .issue-lines .sec { grid-column: 1 / -1; }
-  .issue-lines details p { padding-left: 0.25rem; }
+  .issue-lines > li > details > p { padding-left: 0.25rem; }
 }
-.issue-lines .tag { font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 3px; padding: 0.05rem 0.35rem; margin-right: 0.35rem; }
 .issue-lines .has-sheet .t { color: var(--ink); }
-.sheet { padding: 0 0.25rem 1rem 7.5rem; display: grid; gap: 0.9rem; font-size: 0.9375rem; line-height: 1.7; }
-.sheet > section { min-width: 0; }
+.browse-divider { display: flex; align-items: center; gap: 0.75rem; margin: 0; font-size: var(--step--1); color: var(--muted); }
+.browse-divider::before, .browse-divider::after { content: ""; flex: 1; border-top: 1px dashed var(--line); }
+.browse-divider span { flex: none; max-width: 80%; text-align: center; }
+/* 주요 이슈 두 묶음(2026-11-27): 이슈 한 장 / 그 밖의 이슈. 묶음 머리에 무엇이 다른지 적는다 */
+.issue-group + .issue-group { margin-top: 2rem; }
+.group-head { margin: 0 0 0.6rem; max-width: 42rem; font-size: 0.9375rem; line-height: 1.65; color: var(--muted); }
+.group-head b { display: block; margin-bottom: 0.15rem; color: var(--ink); font-size: var(--step-1); font-weight: 700; }
+/* 이슈 한 장 간격(2026-11-27 피드백 "내용 간 간격을 띄우자"): 절 사이 1.75rem(구분선 위아래 0.875rem씩),
+   항목 사이 0.75rem, 본문 한 줄은 42rem(한글 40자 안팎)까지 */
+.sheet { padding: 0.25rem 0.25rem 1.25rem 7.5rem; display: grid; gap: 0.875rem; font-size: 0.9375rem; line-height: 1.75; }
+.sheet > section { min-width: 0; max-width: 42rem; }
+.sheet > section + section { border-top: 1px solid var(--line); padding-top: 0.875rem; }
 .issue-lines details { min-width: 0; }
-.sheet h4 { font-size: var(--step--1); font-weight: 700; color: var(--accent); letter-spacing: 0.02em; margin-bottom: 0.25rem; }
-.sheet ul, .sheet ol { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.4rem; }
+.sheet h4 { font-size: var(--step-0); font-weight: 700; color: var(--accent); letter-spacing: -0.005em; margin-bottom: 0.5rem; }
+.sheet ul, .sheet ol { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.75rem; }
 .issue-lines .sheet p { margin: 0; padding: 0; }
 .sheet a { color: var(--accent); }
 .sheet .table-wrap { overflow-x: auto; }
 .sheet table { border-collapse: collapse; font-size: var(--step--1); min-width: 100%; }
 .sheet th, .sheet td { border-bottom: 1px solid var(--line); padding: 0.3rem 0.6rem 0.3rem 0; text-align: left; white-space: nowrap; }
 .sheet td:not(:first-child), .sheet th:not(:first-child) { text-align: right; }
-.sheet .sheet-foot { font-size: var(--step--1); color: var(--muted); }
+.sheet .sheet-foot { font-size: var(--step--1); color: var(--muted); max-width: 42rem; }
+/* 이슈 한 장 구성(2026-11-27): 세 줄 요약은 강조 상자, 생각해 볼 질문은 질문마다 틀(갈리는 지점·확인할 단서·내 생각은?),
+   기관별 시각·핵심 수치는 "근거 보기"로 접는다 */
+.sheet > .tldr { background: var(--accent-soft); border-radius: 4px; padding: 0.85rem 1.1rem; }
+.sheet > .tldr + section { border-top: 0; padding-top: 0.25rem; }
+.sheet .tldr ol { gap: 0.45rem; font-size: 1rem; color: var(--ink); }
+.sheet .think .q + .q { margin-top: 1.25rem; }
+.issue-lines .sheet .q-title { margin: 0 0 0.4rem; font-weight: 700; color: var(--ink); }
+.sheet .think ul { list-style: none; padding-left: 0; gap: 0.4rem; }
+.sheet .think li b { display: inline-block; min-width: 5.5rem; margin-right: 0.4rem; font-size: var(--step--1); color: var(--accent); }
+.issue-lines .sheet .my-take { margin-top: 0.6rem; padding: 0.45rem 0.75rem; border: 1px dashed var(--line); border-radius: 4px; color: var(--muted); }
+.sheet .my-take b { margin-right: 0.5rem; color: var(--ink); }
+.sheet > details.evidence { max-width: 42rem; border-top: 1px solid var(--line); padding-top: 0.875rem; }
+.sheet details.evidence > summary { cursor: pointer; width: fit-content; font-weight: 700; color: var(--accent); }
+.sheet details.evidence > summary small { margin-left: 0.5rem; font-weight: 400; font-size: var(--step--1); color: var(--muted); }
+.sheet details.evidence[open] > summary { margin-bottom: 0.875rem; }
+.sheet details.evidence > section + section { margin-top: 1.25rem; }
 @media (max-width: 40rem) { .sheet { padding-left: 0.25rem; } }
 .issues { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
 @media (min-width: 52rem) { .issues { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -318,27 +365,26 @@ section[aria-labelledby="compare"] .caption { margin-top: 0.5rem; }
 
 /* ---- B안: 터미널식 골격 ---- */
 body { margin: 0; }
-.termbar { background: var(--term-bg); color: var(--term-ink); font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5; border-bottom: 1px solid var(--term-line); }
-@media (min-width: 44rem) { .termbar { position: sticky; top: 0; z-index: 10; } }
-.termbar-inner { max-width: 76rem; margin: 0 auto; padding: 0.45rem max(16px, env(safe-area-inset-right, 0px)) 0.45rem max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; align-items: center; justify-content: space-between; }
-.stats { display: flex; flex-wrap: wrap; gap: 0.15rem 1rem; margin: 0; }
-.stats div { display: flex; gap: 0.4rem; }
-.stats dt { color: #8e8a80; }
-.stats dd { margin: 0; color: var(--term-key); font-variant-numeric: tabular-nums; }
-.keys { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-.keys a { color: var(--term-ink); text-decoration: none; border: 1px solid var(--term-line); background: var(--term-bg-2); border-radius: 2px; padding: 0 0.45rem; white-space: nowrap; }
-.keys a b { color: var(--term-key); font-weight: 500; margin-right: 0.3rem; font-family: var(--font-mono); }
+/* 상단 바로 가기(2026-11-27): 탭 모양, 0.875rem, 휴대폰에서도 상단에 고정하고 한 줄로 가로로 민다.
+   지금 보고 있는 절의 탭은 호박색으로 표시한다(아래 스크립트가 aria-current를 단다) */
+.termbar { position: sticky; top: 0; z-index: 10; background: var(--term-bg); color: var(--term-ink); font-family: var(--font-body); line-height: 1.5; border-bottom: 1px solid var(--term-line); }
+.termbar-inner { max-width: 76rem; margin: 0 auto; padding: 0.4rem max(16px, env(safe-area-inset-right, 0px)) 0.4rem max(16px, env(safe-area-inset-left, 0px)); }
+.keys { position: relative; display: flex; flex-wrap: nowrap; gap: 0.4rem; align-items: center; overflow-x: auto; scrollbar-width: none; }
+.keys::-webkit-scrollbar { display: none; }
+.keys-label { flex: none; margin-right: 0.2rem; font-size: 0.8125rem; color: #8e8a80; white-space: nowrap; }
+.keys a { flex: none; font-size: 0.875rem; color: var(--term-ink); text-decoration: none; border: 1px solid var(--term-line); background: var(--term-bg-2); border-radius: 999px; padding: 0.2rem 0.8rem; white-space: nowrap; }
+.keys a[aria-current="true"] { border-color: var(--term-key); color: var(--term-key); }
 /* 고정폭 글꼴에는 한글이 없어 자간이 벌어지므로, 한글 이름표는 본문 글꼴로 */
-.stats dt, .keys a, .filter-row > span, .search-row label { font-family: var(--font-body); letter-spacing: 0; }
+.keys a, .filter-row > span, .search-row label { font-family: var(--font-body); letter-spacing: 0; }
 .keys a:hover, .keys a:focus-visible { border-color: var(--term-key); outline: none; }
 kbd { font-family: var(--font-mono); font-size: 0.72rem; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 3px; padding: 0 0.3rem; color: var(--muted); background: var(--surface); }
 section[aria-labelledby], .card { scroll-margin-top: 3.25rem; }
 /* 바로 가기는 h2로 이동한다. 상태 줄이 두 줄로 접혀도 제목이 가리지 않게 */
 h2[id], .questions > li { scroll-margin-top: 5.5rem; }
 
-/* 종이 쪽: 세리프 제목 */
-section > h2 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em; padding-bottom: 0.5rem; border-bottom: 1px solid var(--ink); }
-.issue-box h3, .card h3, .priority .body a.title { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.005em; }
+/* 종이 쪽: 제목(2026-11-27부터 고딕) */
+section > h2 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.015em; padding-bottom: 0.5rem; border-bottom: 1px solid var(--ink); }
+.issue-box h3, .card h3, .priority .body a.title { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
 .issue-box { border-top: 3px solid var(--accent); border-radius: 2px; }
 .priority li, .card { border-radius: 2px; }
 .priority li::before { font-family: var(--font-mono); font-weight: 500; font-size: 1.25rem; line-height: 1.5; }
@@ -378,33 +424,40 @@ section > h2 { font-family: var(--font-display); font-weight: 800; letter-spacin
 }
 </style>
 
+<!-- 상단 줄(2026-11-27): 바로 가기 탭만 둔다. 갱신일·수록 건수·발간 기간은 머리글로 옮겼다 -->
 <div class="termbar">
   <div class="termbar-inner">
-    <dl class="stats">
-      <div><dt>갱신</dt><dd>2026-11-24</dd></div>
-      <div><dt>새 글</dt><dd>3</dd></div>
-      <div><dt>수록</dt><dd>31</dd></div>
-      <div><dt>기관</dt><dd>7</dd></div>
-      <div><dt>발간</dt><dd>2026-10-26 ~ 2026-11-24</dd></div>
-    </dl>
     <nav class="keys" aria-label="바로 가기">
-      <a href="#issues"><b>1</b>주요 이슈</a><a href="#first"><b>2</b>먼저 볼 것</a><a href="#ledger"><b>3</b>따라가는 것</a><a href="#all"><b>4</b>자료</a><a href="#method"><b>5</b>방법</a>
+      <span class="keys-label" aria-hidden="true">바로 가기</span><a href="#issues">주요 이슈</a><a href="#first">먼저 볼 것</a><a href="#ledger">따라가는 것</a><a href="#all">자료 카드</a><a href="#method">만드는 방법</a>
     </nav>
   </div>
 </div>
 
 <main class="page">
+  <!-- 머리글(2026-11-27 피드백: 무엇을 하는 사이트인지, 기준 기간, 제작 과정이 안 보인다) -->
   <header class="masthead">
-    <div class="kicker"><span>한국개발연구원 · 한국은행 · 세종연구소 · 통일연구원 · 국회예산정책처 · 에너지경제연구원 · 자본시장연구원</span><span class="badge">초안</span></div>
+    <div class="kicker"><span class="orgs">한국개발연구원 · 한국은행 · 세종연구소 · 통일연구원 · 국회예산정책처 · 에너지경제연구원 · 자본시장연구원</span><span class="badge">초안</span></div>
     <h1>국내 연구기관 리포트 브리핑</h1>
-    <p>국내 연구기관이 새로 낸 보고서를 원문 쪽수와 함께 짧게 정리합니다. 결론을 대신 내리기보다, 먼저 읽을 자료와 따져볼 질문을 고릅니다.</p>
+    <p class="lede">KDI·한국은행 등 국내 연구기관 7곳의 새 보고서를 이슈별로 묶어, 기관마다 어디서 다르게 보는지와 직전보다 무엇이 바뀌었는지 보여 줍니다. 수치마다 원문 위치(쪽수 등)를 달고 원문과 대조했습니다.</p>
+    <p class="period">수록 <b>2026-10-26 ~ 2026-11-24</b> 발간 보고서 31건 · 마지막 정리 <b>2026-11-24</b><span id="fresh-count" hidden></span>
+      <span class="cadence">주요 이슈는 매일이 아니라 새 보고서를 정리할 때 바뀝니다.</span></p>
+    <p class="route">처음이라면 <a href="#issues">이슈 한 장</a> → <a href="#first">먼저 볼 것</a> → <a href="#all">자료 카드</a> 순서로 보세요.</p>
+    <details class="how">
+      <summary>어떻게 만드나요?</summary>
+      <p>프로그램이 각 기관 게시판의 새 글을 모으면, 정리자가 AI(Claude)의 도움을 받아 원문을 읽고 카드로 요약합니다. 카드의 수치는 원문 해당 쪽과 하나씩 대조하고, 같은 이슈를 두 기관 이상이 다루면 ‘이슈 한 장’으로 묶습니다. <a href="#method">자세한 방법</a></p>
+    </details>
   </header>
 
   <section aria-labelledby="issues">
     <h2 id="issues">주요 이슈<small>한 줄을 누르면 설명과 근거 자료가 펼쳐집니다 · 2026-11-24 정리</small></h2>
-    <ul class="issue-lines"><li class="has-sheet"><details><summary><span class="sec">경제·금융</span><span class="t">내년(2027년) 성장 전망</span><span class="n"><b class="tag">이슈 한 장</b> 자료 4 · 기관 3</span></summary>
-  <div class="sheet"><section><h4>쟁점</h4><p>반도체 호황이 2027년에도 높은 성장으로 이어지는가, 그리고 그 성장이 가계 소비로 번지는가. 세 기관 모두 반도체·AI 투자를 성장의 주된 동력으로 보지만, 2027년 성장률은 2.7%에서 3.9%까지 갈린다.</p></section><section><h4>기관별 시각</h4><ul><li><strong>KDI (11-18)</strong>: 2026년 3.8%, 2027년 3.9%. 반도체·AI 인프라 수출과 설비투자가 이끌고, 민간소비는 2026년 1.8%에 그쳤다가 2027년 2.4%로 나아진다. 반도체 비중이 커져 성장률이 위아래로 흔들리는 폭도 커졌다고 보며, 가중치 변화만으로 성장률이 약 0.9%p 높아지는 예시 계산을 싣는다. (<a href="#2026-11-18-kdi-economic-outlook-2026-2h">KDI 경제전망</a>, p. 24–27)</li><li><strong>한국은행 (08-27)</strong>: 2026년 3.3%, 2027년 2.9%. 2027년에는 반도체 효과가 다른 부문으로 본격적으로 번진다고 본다. 2026년 상향분 가운데 반도체 경기 호조의 몫을 +0.35%p로 따로 밝힌다. (<a href="https://www.bok.or.kr/portal/bbs/P0002359/view.do?nttId=11064210&amp;menuNo=200066" target="_blank" rel="noopener">경제전망보고서 8월 ↗</a>, PDF p. 10)</li><li><strong>국회예산정책처 (09-30)</strong>: 2026년 3.5%, 2027년 2.7%, 2028~2030년 2.4~2.5%. 잠재성장률은 2.3%로 둔다. 경기 개선이 수출과 일부 산업에 쏠려 부문 간 격차가 커질 수 있다고 짚는다. (<a href="https://www.nabo.go.kr/ko/report/outlookAllView.do?idx=9456&amp;key=2507040041" target="_blank" rel="noopener">NABO 경제전망 ↗</a>, PDF p. 7–12)</li></ul></section><section><h4>핵심 수치</h4><p>발간 순서로 놓았다. 단위는 %(경상수지는 억 달러).</p><div class="table-wrap"><table><thead><tr><th>지표</th><th>KDI 8월</th><th>한국은행 8월</th><th>NABO 9월</th><th>KDI 11월</th></tr></thead><tbody><tr><td>성장률 2026</td><td>3.2</td><td>3.3</td><td>3.5</td><td>3.8</td></tr><tr><td>성장률 2027</td><td>2.2</td><td>2.9</td><td>2.7</td><td>3.9</td></tr><tr><td>민간소비 2026</td><td>2.3</td><td>2.1</td><td>2.3</td><td>1.8</td></tr><tr><td>민간소비 2027</td><td>2.0</td><td>2.3</td><td>2.0</td><td>2.4</td></tr><tr><td>설비투자 2027</td><td>7.0</td><td>4.7</td><td>6.4</td><td>8.1</td></tr><tr><td>소비자물가 2027</td><td>2.2</td><td>2.3</td><td>2.4</td><td>2.4</td></tr><tr><td>경상수지 2027</td><td>3,562</td><td>4,300</td><td>4,400</td><td>6,013</td></tr><tr><td>원문 쪽</td><td>p. 15 (PDF 20)</td><td>PDF p. 10–11</td><td>PDF p. 9</td><td>p. 27 (PDF 28)</td></tr></tbody></table></div><p>수출과 유가는 기관마다 정의가 달라(총수출 물량·재화수출, 두바이유·브렌트유·세 유종 평균) 표에 넣지 않았다.</p></section><section><h4>기관 간 차이</h4><ul><li><strong>2027년 성장률</strong>: KDI 11월(3.9%)이 국회예산정책처(2.7%)보다 1.2%p 높다. 다만 발간 시점이 약 두 달 차이 나고, KDI 11월 전망은 반도체 가중치 효과를 따로 다룬다.</li><li><strong>2026년 소비</strong>: 네 전망 가운데 KDI 11월만 2.0% 아래(1.8%)로 본다. KDI는 낮은 실질임금 상승, 개별소비세 인하 종료, 주가 조정을 이유로 든다. <span class="ref">p. 6–7</span></li><li><strong>2027년 물가</strong>: 소비자물가 전망은 2.2~2.4%로 차이가 작다.</li></ul></section><section><h4>바뀐 점</h4><ul><li><strong>KDI 8월 → 11월</strong>: 2027년 성장률을 2.2%에서 3.9%로 1.7%p 올렸다. 같은 기간 2026년 민간소비는 2.3%에서 1.8%로 0.5%p 내렸다. 성장은 올리고 소비는 내린 셈이다.</li><li><strong>봄 → 여름</strong>: 한국은행은 5월 전망(2026년 2.6%, 2027년 2.1%)을 8월에 3.3%, 2.9%로, KDI는 5월 전망을 8월에 2026년 +0.7%p, 2027년 +0.5%p 올렸다.</li><li>한국은행 11월 전망은 아직 정리하지 않았다.</li></ul></section><section><h4>아직 열린 질문</h4><ul><li>반도체 가중치 효과를 걷어내면 2027년 3.9% 성장은 소비·고용 같은 체감 지표와 얼마나 다를까?</li><li>한국은행 11월 전망은 KDI(3.9%)와 국회예산정책처(2.7%) 중 어느 쪽에 가까울까?</li><li>반도체 호황이 꺾이면 성장률은 어디로 돌아가는가? 국회예산정책처의 2028~2030년 전망(2.4~2.5%)과 잠재성장률(2.3%)이 하나의 기준이 될 수 있다.</li></ul></section><p class="sheet-foot">보고서 4건 · 정리 2026-11-26 · 원문이 말한 내용만 묶었으며 정리자의 판단은 넣지 않았습니다. 쪽 표시는 원문 쪽입니다.</p></div></details></li><li class="has-sheet"><details><summary><span class="sec">국제·안보</span><span class="t">북미 협상의 첫 단계</span><span class="n"><b class="tag">이슈 한 장</b> 자료 3 · 기관 2</span></summary>
-  <div class="sheet"><section><h4>쟁점</h4><p>북미 대화가 다시 열리면 첫 합의를 어디까지로 잡아야 하는가. 핵·미사일 시험 유예에서 멈추는가, 핵물질 생산 중단과 검증까지 다루는가. 그리고 그 과정에서 한국의 안보 의제는 어떻게 반영되는가.</p></section><section><h4>기관별 시각</h4><ul><li><strong>세종연구소 2026-28 (10-30, 이성윤)</strong>: 초기 목표로는 접촉 재개와 제한적 시험 유예가 현실적이라고 본다. 시험 중단과 핵물질 생산 동결은 서로 다른 성과이니 각각 대가를 따로 두고, 초기에 핵시설 전체 목록 제출을 기대하기는 어렵다고 한다. 한국은 미국 본토 위협을 줄이는 대가로 연합방위 핵심 기능을 약화하거나, 검증되지 않은 약속에 큰 보상을 먼저 주는 거래를 막아야 한다고 권한다. (<a href="#2026-10-30-sejong-next-nk-us-summit">세종 2026-28</a>, PDF p. 2–3, 22)</li><li><strong>통일연구원 (11-20, 김민성)</strong>: 11-19 미·중·러 정상회의 공동선언에 북핵 합의는 없었고, 핵 의제도 이행 목표 없는 원칙 수준이었다. 강대국 핵 군비통제 논의에서 "비핵화"라는 말이 섞여 쓰이면 북한이 군비통제 당사국을 자처할 여지가 생기고, 한미 확장억제가 협상 대상으로 오를 수 있다고 경고한다. (<a href="#2026-11-20-kinu-us-china-russia-summit">통일연구원 CO 26-83</a>, PDF p. 5, 9–11)</li><li><strong>세종연구소 2026-30 (11-23, 최은주)</strong>: 시험 제한 중심 합의만으로는 핵물질 생산과 핵능력 확대를 막기 어렵다며, 초기 협상에서 핵물질 생산 중단과 검증을 어떻게 다룰지 대화 재개 전에 미국과 협의하라고 한다. 북중·북러 협력이 북한에게 미국과의 관계 개선을 서두르지 않을 여건을 주지만, 제재 완화와 안전보장에서 미국을 대체하지는 못한다고 본다. (<a href="#2026-11-23-sejong-nk-foreign-policy-realignment">세종 2026-30</a>, PDF p. 25–26, 30–31)</li></ul></section><section><h4>핵심 수치</h4><div class="table-wrap"><table><thead><tr><th>지표</th><th>값</th><th>출처</th></tr></thead><tbody><tr><td>중국 핵탄두 보유량 (2026년)</td><td>620기, 2016년 대비 +138.5%</td><td>통일연구원, PDF p. 3 (SIPRI 기반 저자 작성)</td></tr><tr><td>미국·러시아 핵탄두 보유량 (2026년)</td><td>5,042기 · 5,420기</td><td>통일연구원, PDF p. 3</td></tr><tr><td>New START 제한 (2026-02 만료)</td><td>배치 전략 핵탄두 1,550기, 운반수단 700기</td><td>통일연구원, PDF p. 2</td></tr><tr><td>북한군 군사분계선 침범 (2026년 8~9월)</td><td>50여 회 (한국군 집계)</td><td>세종 2026-30, PDF p. 22</td></tr></tbody></table></div></section><section><h4>기관 간 차이</h4><ul><li><strong>같은 점</strong>: 두 세종 글 모두 시험 중단과 생산 동결을 구분한다. 세종 2026-30과 통일연구원은 미·중·러 공동선언에 북핵 합의가 빠졌다는 점을 같이 짚는다.</li><li><strong>다른 점 1 (첫 합의의 범위)</strong>: 세종 2026-28은 초기 목표를 시험 유예 수준으로 현실적으로 잡고 대가를 조절하는 데 무게를 둔다. 세종 2026-30은 시험 제한만으로는 부족하니 생산 중단과 검증을 처음부터 협의하라고 한다.</li><li><strong>다른 점 2 (바라보는 틀)</strong>: 세종 두 글은 북미 양자 협상과 한미 조율을 다룬다. 통일연구원은 강대국 핵 군비통제라는 더 큰 틀 속에서 북핵이 희석될 위험을 본다.</li></ul></section><section><h4>바뀐 점</h4><ul><li>10-30(세종 2026-28) → 11-19 미·중·러 정상회의 → 11-23(세종 2026-30) 사이에, 첫 합의를 다루는 무게가 "현실적인 시험 유예"에서 "생산 중단과 검증의 사전 협의"로 옮겨 갔다. 두 세종 글은 필자가 다르므로 연구소 입장의 변화로 읽지 않는다.</li></ul></section><section><h4>아직 열린 질문</h4><ul><li>북미대화가 재개된다면 첫 합의 범위가 시험 유예에 그칠까, 핵물질 생산 중단과 검증까지 들어갈까? (추적 질문 <a href="#q2">Q2</a>)</li><li>12월 G20에서 미·중·러 정상이 다시 만난다면, 핵 대화가 실무 협상 일정으로 이어질까?</li><li>시험 유예만으로 회담이 성사된다면, 미국이 내놓는 대가가 한미 연합훈련과 연결될까?</li></ul></section><p class="sheet-foot">보고서 3건 · 정리 2026-11-26 · 원문이 말한 내용만 묶었으며 정리자의 판단은 넣지 않았습니다. 쪽 표시는 원문 쪽입니다.</p></div></details></li><li><details><summary><span class="sec">경제·금융</span><span class="t">물가와 통화정책</span><span class="n">자료 2 · 기관 2</span></summary>
+    <div class="issue-group">
+    <p class="group-head"><b>이슈 한 장</b>같은 이슈를 두 기관 이상이 다룬 경우, 쟁점·기관별 시각·원문 대조 수치·바뀐 점으로 나눠 한 장으로 묶습니다. 지금 2개입니다.</p>
+    <ul class="issue-lines"><li class="has-sheet"><details><summary><span class="sec">경제·금융</span><span class="t">내년(2027년) 성장 전망</span><span class="n">자료 4 · 기관 3</span></summary>
+  <div class="sheet"><section class="tldr"><h4>세 줄 요약</h4><ol><li>반도체·AI 투자 호황이 2027년에도 높은 성장으로 이어지고, 가계 소비로 번지는가.</li><li>2027년 성장률 전망이 <strong>국회예산정책처 2.7%에서 KDI 3.9%까지</strong> 1.2%p 갈린다.</li><li>KDI는 석 달 만에 2027년 성장률을 1.7%p 올렸지만, 2026년 소비 전망은 내렸다.</li></ol></section><section><h4>어디서 갈리나</h4><ul><li><strong>2027년 성장률</strong>: KDI는 반도체 가중치 변화만으로 성장률이 약 0.9%p 높아지는 예시를 싣고<span class="ref">p. 24–27</span>, 국회예산정책처는 잠재성장률을 2.3%로 둔다<span class="ref">PDF p. 7–12</span>. 두 전망은 두 달 차이로 나왔다.</li><li>2026년 소비: 네 전망 가운데 KDI 11월만 2.0% 아래(1.8%)로 본다. 실질임금, 개별소비세 인하 종료, 주가 조정을 이유로 든다<span class="ref">p. 6–7</span>.</li></ul></section><section><h4>무엇이 바뀌었나</h4><ul><li>KDI 8월 → 11월: 2027년 성장률은 <strong>+1.7%p</strong>(2.2% → 3.9%), 2026년 민간소비는 -0.5%p(2.3% → 1.8%).</li><li>한국은행 5월 → 8월: 2026년 2.6% → 3.3%, 2027년 2.1% → 2.9%로 올렸다.</li></ul></section><section class="think"><h4>생각해 볼 질문</h4><div class="q"><p class="q-title">한국은행 11월 전망은 KDI(3.9%)와 국회예산정책처(2.7%) 중 어느 쪽에 가까울까?</p><ul><li><b>갈리는 지점</b>KDI는 반도체·AI 수출과 설비투자가 성장을 이끈다고 보고<span class="ref">p. 24–27</span>, 국회예산정책처는 개선이 수출과 일부 산업에 쏠린다고 본다<span class="ref">PDF p. 7–12</span>.</li><li><b>확인할 단서</b>한국은행 경제전망보고서 2026년 11월(11-26 게시)의 2027년 성장률</li></ul><p class="my-take"><b>내 생각은?</b>나는 ______ 라고 본다. 근거 하나: ______</p></div><div class="q"><p class="q-title">반도체 호황이 꺾이면 성장률은 어디로 돌아갈까?</p><ul><li><b>갈리는 지점</b>국회예산정책처는 2028~2030년 성장률을 2.4~2.5%로 두고<span class="ref">PDF p. 7–12</span>, KDI는 반도체 비중이 커져 성장률이 흔들리는 폭도 커졌다고 본다<span class="ref">p. 24–27</span>.</li><li><b>확인할 단서</b>반도체 수출·설비투자 지표, 다음 전망 보고서의 2028년 이후 전망</li></ul><p class="my-take"><b>내 생각은?</b>나는 ______ 라고 본다. 근거 하나: ______</p></div></section><details class="evidence"><summary>근거 보기<small>기관별 시각 · 핵심 수치 · 원문 쪽 포함</small></summary><section><h4>기관별 시각</h4><ul><li><strong>KDI (11-18)</strong>: 2026년 3.8%, 2027년 3.9%. 반도체·AI 인프라 수출과 설비투자가 이끌고, 민간소비는 2026년 1.8%에 그쳤다가 2027년 2.4%로 나아진다. 반도체 비중이 커져 성장률이 위아래로 흔들리는 폭도 커졌다고 보며, 가중치 변화만으로 성장률이 약 0.9%p 높아지는 예시 계산을 싣는다. (<a href="#2026-11-18-kdi-economic-outlook-2026-2h">KDI 경제전망</a>, p. 24–27)</li><li><strong>한국은행 (08-27)</strong>: 2026년 3.3%, 2027년 2.9%. 2027년에는 반도체 효과가 다른 부문으로 본격적으로 번진다고 본다. 2026년 상향분 가운데 반도체 경기 호조의 몫을 +0.35%p로 따로 밝힌다. (<a href="https://www.bok.or.kr/portal/bbs/P0002359/view.do?nttId=11064210&amp;menuNo=200066" target="_blank" rel="noopener">경제전망보고서 8월 ↗</a>, PDF p. 10)</li><li><strong>국회예산정책처 (09-30)</strong>: 2026년 3.5%, 2027년 2.7%, 2028~2030년 2.4~2.5%. 잠재성장률은 2.3%로 둔다. 경기 개선이 수출과 일부 산업에 쏠려 부문 간 격차가 커질 수 있다고 짚는다. (<a href="https://www.nabo.go.kr/ko/report/outlookAllView.do?idx=9456&amp;key=2507040041" target="_blank" rel="noopener">NABO 경제전망 ↗</a>, PDF p. 7–12)</li></ul></section><section><h4>핵심 수치</h4><p>발간 순서로 놓았다. 단위는 %(경상수지는 억 달러).</p><div class="table-wrap"><table><thead><tr><th>지표</th><th>KDI 8월</th><th>한국은행 8월</th><th>NABO 9월</th><th>KDI 11월</th></tr></thead><tbody><tr><td>성장률 2026</td><td>3.2</td><td>3.3</td><td>3.5</td><td>3.8</td></tr><tr><td>성장률 2027</td><td>2.2</td><td>2.9</td><td>2.7</td><td>3.9</td></tr><tr><td>민간소비 2026</td><td>2.3</td><td>2.1</td><td>2.3</td><td>1.8</td></tr><tr><td>민간소비 2027</td><td>2.0</td><td>2.3</td><td>2.0</td><td>2.4</td></tr><tr><td>설비투자 2027</td><td>7.0</td><td>4.7</td><td>6.4</td><td>8.1</td></tr><tr><td>소비자물가 2027</td><td>2.2</td><td>2.3</td><td>2.4</td><td>2.4</td></tr><tr><td>경상수지 2027</td><td>3,562</td><td>4,300</td><td>4,400</td><td>6,013</td></tr><tr><td>원문 쪽</td><td>p. 15 (PDF 20)</td><td>PDF p. 10–11</td><td>PDF p. 9</td><td>p. 27 (PDF 28)</td></tr></tbody></table></div><p>수출과 유가는 기관마다 정의가 달라(총수출 물량·재화수출, 두바이유·브렌트유·세 유종 평균) 표에 넣지 않았다.</p></section></details><p class="sheet-foot">보고서 4건 · 정리 2026-11-27 · 원문이 말한 내용만 묶었으며 정리자의 판단은 넣지 않았습니다. 쪽 표시는 원문 쪽입니다.</p></div></details></li><li class="has-sheet"><details><summary><span class="sec">국제·안보</span><span class="t">북미 협상의 첫 단계</span><span class="n">자료 3 · 기관 2</span></summary>
+  <div class="sheet"><section class="tldr"><h4>세 줄 요약</h4><ol><li>북미 대화가 다시 열리면 첫 합의가 핵·미사일 시험 유예에 그칠지, 핵물질 생산 중단·검증까지 갈지가 걸려 있다.</li><li>세종연구소 2026-28은 시험 유예를 현실적인 첫 목표로 보고, 2026-30은 <strong>생산 중단·검증을 대화 전에 미국과 협의하라</strong>고 한다.</li><li>통일연구원은 11-19 미·중·러 공동선언에 북핵이 빠진 것을 두고, 강대국 군비통제 속에 북핵이 희석될 위험을 본다.</li></ol></section><section><h4>어디서 갈리나</h4><ul><li><strong>첫 합의의 범위</strong>: 세종 2026-28은 시험 중단과 생산 동결에 대가를 따로 두자고 하고<span class="ref">PDF p. 3</span>, 세종 2026-30은 시험 제한만으로는 핵능력 확대를 막기 어렵다고 본다<span class="ref">PDF p. 30–31</span>.</li><li>바라보는 틀: 세종 두 글은 북미 협상과 한미 조율을, 통일연구원은 강대국 핵 군비통제를 본다<span class="ref">PDF p. 9–11</span>.</li></ul></section><section><h4>무엇이 바뀌었나</h4><ul><li>10-30(세종 2026-28)에서 11-23(세종 2026-30) 사이, 무게가 "현실적인 시험 유예"에서 "생산 중단·검증의 사전 협의"로 옮겨 갔다. 필자가 달라 연구소 입장 변화로 읽지 않는다.</li></ul></section><section class="think"><h4>생각해 볼 질문</h4><div class="q"><p class="q-title">첫 합의는 시험 유예에 그칠까, 핵물질 생산 중단과 검증까지 들어갈까? (추적 질문 <a href="#q2">Q2</a>)</p><ul><li><b>갈리는 지점</b>세종 2026-28은 시험 유예와 생산 제한을 서로 다른 성과로 보고<span class="ref">PDF p. 2, 22</span>, 2026-30은 생산 중단·검증을 초기에 다루라고 한다<span class="ref">PDF p. 30–31</span>.</li><li><b>확인할 단서</b>북미 첫 회담 의제에 생산 동결이나 검증이 들어가는지</li></ul><p class="my-take"><b>내 생각은?</b>나는 ______ 라고 본다. 근거 하나: ______</p></div><div class="q"><p class="q-title">시험 유예만으로 회담이 열리면, 미국이 내놓는 대가가 한미 연합방위에 닿을까?</p><ul><li><b>갈리는 지점</b>세종 2026-28은 연합방위 핵심 기능을 약화하는 거래를 막으라 하고<span class="ref">PDF p. 22</span>, 통일연구원은 확장억제가 협상 대상에 오를 가능성에 대비하라고 한다<span class="ref">PDF p. 9–11</span>.</li><li><b>확인할 단서</b>북미 회담 의제나 결과 문서에 연합훈련 조정·확장억제가 들어가는지</li></ul><p class="my-take"><b>내 생각은?</b>나는 ______ 라고 본다. 근거 하나: ______</p></div></section><details class="evidence"><summary>근거 보기<small>기관별 시각 · 핵심 수치 · 원문 쪽 포함</small></summary><section><h4>기관별 시각</h4><ul><li><strong>세종연구소 2026-28 (10-30, 이성윤)</strong>: 초기 목표로는 접촉 재개와 제한적 시험 유예가 현실적이라고 본다. 시험 중단과 핵물질 생산 동결은 서로 다른 성과이니 각각 대가를 따로 두고, 초기에 핵시설 전체 목록 제출을 기대하기는 어렵다고 한다. 한국은 미국 본토 위협을 줄이는 대가로 연합방위 핵심 기능을 약화하거나, 검증되지 않은 약속에 큰 보상을 먼저 주는 거래를 막아야 한다고 권한다. (<a href="#2026-10-30-sejong-next-nk-us-summit">세종 2026-28</a>, PDF p. 2–3, 22)</li><li><strong>통일연구원 (11-20, 김민성)</strong>: 11-19 미·중·러 정상회의 공동선언에 북핵 합의는 없었고, 핵 의제도 이행 목표 없는 원칙 수준이었다. 강대국 핵 군비통제 논의에서 "비핵화"라는 말이 섞여 쓰이면 북한이 군비통제 당사국을 자처할 여지가 생기고, 한미 확장억제가 협상 대상으로 오를 수 있다고 경고한다. (<a href="#2026-11-20-kinu-us-china-russia-summit">통일연구원 CO 26-83</a>, PDF p. 5, 9–11)</li><li><strong>세종연구소 2026-30 (11-23, 최은주)</strong>: 시험 제한 중심 합의만으로는 핵물질 생산과 핵능력 확대를 막기 어렵다며, 초기 협상에서 핵물질 생산 중단과 검증을 어떻게 다룰지 대화 재개 전에 미국과 협의하라고 한다. 북중·북러 협력이 북한에게 미국과의 관계 개선을 서두르지 않을 여건을 주지만, 제재 완화와 안전보장에서 미국을 대체하지는 못한다고 본다. (<a href="#2026-11-23-sejong-nk-foreign-policy-realignment">세종 2026-30</a>, PDF p. 25–26, 30–31)</li></ul></section><section><h4>핵심 수치</h4><div class="table-wrap"><table><thead><tr><th>지표</th><th>값</th><th>출처</th></tr></thead><tbody><tr><td>중국 핵탄두 보유량 (2026년)</td><td>620기, 2016년 대비 +138.5%</td><td>통일연구원, PDF p. 3 (SIPRI 기반 저자 작성)</td></tr><tr><td>미국·러시아 핵탄두 보유량 (2026년)</td><td>5,042기 · 5,420기</td><td>통일연구원, PDF p. 3</td></tr><tr><td>New START 제한 (2026-02 만료)</td><td>배치 전략 핵탄두 1,550기, 운반수단 700기</td><td>통일연구원, PDF p. 2</td></tr><tr><td>북한군 군사분계선 침범 (2026년 8~9월)</td><td>50여 회 (한국군 집계)</td><td>세종 2026-30, PDF p. 22</td></tr></tbody></table></div></section></details><p class="sheet-foot">보고서 3건 · 정리 2026-11-27 · 원문이 말한 내용만 묶었으며 정리자의 판단은 넣지 않았습니다. 쪽 표시는 원문 쪽입니다.</p></div></details></li></ul>
+    </div>
+    <div class="issue-group">
+    <p class="group-head"><b>그 밖의 이슈</b>최근 정리에서 나온 이슈입니다. 누르면 한 문단 설명과 관련 자료가 펼쳐집니다.</p><ul class="issue-lines"><li><details><summary><span class="sec">경제·금융</span><span class="t">물가와 통화정책</span><span class="n">자료 2 · 기관 2</span></summary>
   <p>KDI는 근원물가가 2%대 중반에 머물러 긴축 유지를 권하고, 한국은행 이슈노트는 원화절상이 수입물가를 거쳐 물가 하방압력이 될 수 있다고 본다(<a href="#2026-11-18-kdi-economic-outlook-2026-2h">KDI 경제전망</a>, <a href="#2026-11-19-bok-won-appreciation-effects">원화절상</a>).</p></details></li><li><details><summary><span class="sec">경제·금융</span><span class="t">금융시장의 차별화</span><span class="n">자료 2 · 기관 1</span></summary>
   <p>미국은 긴축 재개 속에 저신용 기업의 조달 여건이 더 나빠지고 AI 투자 차입 위험이 커진다(<a href="#2026-11-16-kcmi-us-corporate-funding">미국 기업 자금조달</a>). 국내 코스닥은 한계기업 비중이 29.4%(2025년)까지 올라 우량기업이 제값을 받지 못한다는 분석이 나왔다(<a href="#2026-11-16-kcmi-kosdaq-distress">코스닥 부실</a>).</p></details></li><li><details><summary><span class="sec">경제·금융</span><span class="t">한 세원에 묶인 재정</span><span class="n">자료 3 · 기관 1</span></summary>
   <p>국회예산정책처는 소방공무원 인건비의 지방 부담 비중이 91.6%로 오른 문제(<a href="#2026-11-19-nabo-fire-service-finance">소방재정</a>), 한시적인 유보통합 재원(<a href="#2026-10-27-nabo-early-childhood-integration">유보통합</a>)에 이어, 극장 입장권 부과금에 기대는 영화발전기금이 OTT 확산을 반영하지 못해 부과금 수납액이 2019년 54,582백만원에서 2025년 22,450백만원으로 줄었다고 짚었다(<a href="#2026-11-24-nabo-film-industry-finance">영화산업</a>).</p></details></li><li><details><summary><span class="sec">산업·에너지·기후</span><span class="t">유가와 중동</span><span class="n">자료 1 · 기관 1</span></summary>
@@ -418,7 +471,8 @@ section > h2 { font-family: var(--font-display); font-weight: 800; letter-spacin
   <p>전국 인구는 2045년 4,884만명으로 줄고, 지역 인구변동의 주된 요인이 이동에서 자연감소로 바뀐다는 전망(<a href="#2026-11-18-nabo-regional-population-outlook">지역인구전망</a>).</p></details></li><li><details><summary><span class="sec">인구·노동</span><span class="t">청년과 임금</span><span class="n">자료 2 · 기관 2</span></summary>
   <p>청년고용은 실업률보다 질에서 악화되고(<a href="#2026-10-26-bok-youth-employment">청년고용</a>), 실질임금은 2026년 상반기 0.3% 상승에 그쳤다(<a href="#2026-11-16-kdi-real-wage-productivity">실질임금</a>).</p></details></li><li><details><summary><span class="sec">인구·노동</span><span class="t">돌봄 인력의 질</span><span class="n">자료 1 · 기관 1</span></summary>
   <p>요양시설의 숙련 간호인력을 늘리면 건강보험 진료비가 준다는 분석(<a href="#2026-11-03-kdi-nursing-home-skilled-nurses">요양 간호인력</a>).</p></details></li></ul>
-    <p class="caption">보고서들이 말한 내용을 정리자가 이슈별로 묶은 것이며, 기관의 공식 의견이나 정리자의 판단이 아닙니다. ‘이슈 한 장’은 같은 이슈를 다룬 여러 기관의 보고서를 쟁점·기관별 시각·수치·바뀐 점으로 나눠 묶은 것입니다.</p>
+    </div>
+    <p class="caption">보고서들이 말한 내용을 정리자가 이슈별로 묶은 것이며, 기관의 공식 의견이나 정리자의 판단이 아닙니다.</p>
   </section>
 
   <section aria-labelledby="first">
@@ -426,20 +480,23 @@ section > h2 { font-family: var(--font-display); font-weight: 800; letter-spacin
     <ol class="priority"><li><div class="body">
   <a class="title" href="#2026-11-23-sejong-nk-foreign-policy-realignment">[세종정책브리프 2026-30] 북한 대외정책의 재편과 주요국 관계의 변화: 북중·북러·북미관계와 대남정책을 중심으로</a>
   <span class="src">세종연구소 · 세종정책브리프 · <time>2026-11-23</time><span class="criteria"><span class="crit">3 한국 영향</span><span class="crit">5 관심 주제 · 안보·국방, 국제질서</span></span></span>
-  <span>북한은 중국·러시아와의 협력으로 선택 범위를 넓히고 한국과는 "적대적인 두 국가관계"를 제도화했지만, 협상력과 자율성이 실제로 커졌는지는 관계마다 다르다는 분석이다. 한국에는 군사분계선 위험관리와 북미대화 대비를 우선하라고 권한다.</span>
+  <span class="sum">북한은 중국·러시아와의 협력으로 선택 범위를 넓히고 한국과는 "적대적인 두 국가관계"를 제도화했지만, 협상력과 자율성이 실제로 커졌는지는 관계마다 다르다는 분석이다. 한국에는 군사분계선 위험관리와 북미대화 대비를 우선하라고 권한다.</span>
   <span class="ask"><b>질문</b> 북미대화가 재개된다면, 첫 합의 범위가 "시험 유예"에 그치는지 "핵물질 생산 중단과 검증"까지 들어가는지가 세종의 두 브리프(2026-28, 2026-30)가 강조한 차이를 가르게 될까?</span>
 </div></li><li><div class="body">
   <a class="title" href="#2026-11-24-sejong-baltic-threat-perception">[세종정책브리프 2026-31] 발트 3국의 위협 인식은 어떻게 형성되고 강화되는가?</a>
   <span class="src">세종연구소 · 세종정책브리프 · <time>2026-11-24</time><span class="criteria"><span class="crit">3 한국 영향</span><span class="crit">5 관심 주제 · 안보·국방, 국제질서</span></span></span>
-  <span>발트 3국은 GDP 대비 5% 안팎을 국방비로 쓰지만 3국 합계가 독일의 약 7%에 그쳐 NATO 증원 의존이 바뀌지 않으며, 그 취약성이 위협 인식을 키운다는 분석이다. 한국에는 방산 수요를 넘는 맞춤형·장기 협력을 권한다.</span>
+  <span class="sum">발트 3국은 GDP 대비 5% 안팎을 국방비로 쓰지만 3국 합계가 독일의 약 7%에 그쳐 NATO 증원 의존이 바뀌지 않으며, 그 취약성이 위협 인식을 키운다는 분석이다. 한국에는 방산 수요를 넘는 맞춤형·장기 협력을 권한다.</span>
   <span class="ask"><b>질문</b> 러·우 휴전 논의가 진전될 때 발트 3국의 2027년 국방예산이 GDP 대비 5% 안팎을 유지하는지가, "종전 뒤에도 방위투자가 이어진다"는 이 글의 전망을 확인하는 첫 지표가 될까?</span>
 </div></li><li><div class="body">
   <a class="title" href="#2026-11-24-nabo-film-industry-finance">[NABO Focus 제181호] 한국 영화산업에 대한 효과적인 재정지원 방향은?</a>
   <span class="src">국회예산정책처 (NABO) · NABO Focus · <time>2026-11-24</time><span class="criteria"><span class="crit">3 한국 영향</span><span class="crit outside" title="관심 장부 밖에서 고른 칸">관심 밖</span></span></span>
-  <span>관람이 극장에서 OTT로 옮겨 가 극장 입장권 부과금에 기대는 영화발전기금 재원이 줄었으므로, OTT까지 넓힌 재원 조달과 비계열 극장·중소 영화·비수도권 중심 지원으로 바꿔야 한다는 분석이다.</span>
+  <span class="sum">관람이 극장에서 OTT로 옮겨 가 극장 입장권 부과금에 기대는 영화발전기금 재원이 줄었으므로, OTT까지 넓힌 재원 조달과 비계열 극장·중소 영화·비수도권 중심 지원으로 바꿔야 한다는 분석이다.</span>
   <span class="ask"><b>질문</b> 국회에 발의된 영화비디오법 개정안(영화 정의 확대)을 심사할 때, OTT 매출 부담금이 실제 논의 대상에 오르는가?</span>
 </div></li></ol>
   </section>
+
+  <!-- 2026-11-27 피드백("주요 이슈만 알고 싶은 사람은 위쪽 몇 항목만 볼 것"): 핵심은 위에서 끝나고, 아래는 찾아볼 때 -->
+  <p class="browse-divider"><span>여기부터는 자료를 찾아볼 때 보면 됩니다</span></p>
 
   <section aria-labelledby="ledger">
     <h2 id="ledger">정리자가 따라가는 것<small>2026-11-24 갱신</small></h2>
@@ -1076,6 +1133,13 @@ section > h2 { font-family: var(--font-display); font-weight: 800; letter-spacin
           li.append(t, a, who); list.append(li);
         });
         if (!(d.items || []).length) meta.textContent += " · 정리 전 자료가 없습니다.";
+        // 머리글 기간 줄에도 정리 전 건수를 붙이고 이 절로 잇는다(2026-11-27, 아티팩트판에는 이 자리가 비어 있다)
+        var head = document.getElementById("fresh-count");
+        if (head && (d.items || []).length) {
+          var link = document.createElement("a");
+          link.href = "#fresh"; link.textContent = "정리 전 새 자료 " + d.items.length + "건";
+          head.replaceChildren(" · ", link); head.hidden = false;
+        }
       }).catch(function () { meta.textContent = "수집 기록을 불러오지 못했습니다."; });
     })();
     </script>
@@ -1241,6 +1305,30 @@ section > h2 { font-family: var(--font-display); font-weight: 800; letter-spacin
     var link = event.target.closest && event.target.closest('a[href^="#"]');
     if (link) openCard(decodeURIComponent(link.getAttribute("href").slice(1)));
   });
+  // 바로 가기(2026-11-27): 지금 보고 있는 절의 탭에 aria-current를 달고, 휴대폰에서 그 탭이 줄 안에 보이게 민다
+  var keyBar = document.querySelector(".keys");
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.keys a[href^="#"]'));
+  var heads = tabs.map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+  var ticking = false;
+  function markCurrent() {
+    ticking = false;
+    var line = (document.querySelector(".termbar") || {}).offsetHeight || 0;
+    var current = -1;
+    heads.forEach(function (h, i) { if (h && h.getBoundingClientRect().top <= line + 80) current = i; });
+    tabs.forEach(function (a, i) {
+      if (i === current) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+    });
+    var tab = tabs[current];
+    if (tab && keyBar && keyBar.scrollWidth > keyBar.clientWidth) {
+      if (tab.offsetLeft < keyBar.scrollLeft) keyBar.scrollLeft = tab.offsetLeft - 8;
+      else if (tab.offsetLeft + tab.offsetWidth > keyBar.scrollLeft + keyBar.clientWidth)
+        keyBar.scrollLeft = tab.offsetLeft + tab.offsetWidth - keyBar.clientWidth + 8;
+    }
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(markCurrent); }
+  }, { passive: true });
+  markCurrent();
   setView();
   openFromHash();
 })();
