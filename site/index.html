@@ -1438,7 +1438,7 @@ section > h2 { font-family: var(--font-display); font-weight: 700; letter-spacin
   }
 
   // status: 반응(kind)이나 메모가 바뀌면 "new"(다음 정리 때 장부 변경안으로 검토). "끝까지 읽음"만 바꾸면 이전 status를 둔다.
-  // 읽음만 있는 문서는 status "none"이고 장부 검토 대상이 아니다(R2 측정용, rounds/R2-plan.md).
+  // 읽음만 있는 문서는 status "none"이고 장부 검토 대상이 아니다(R1 추가 검증 측정용, rounds/R1-followup-plan.md).
   function save(card, clear) {
     var p = panels[card.id];
     var kind = clear ? null : p.kind, memo = clear ? "" : p.memo.value.trim().slice(0, 300), read = clear ? false : p.read;
