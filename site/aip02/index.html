@@ -136,6 +136,21 @@ h3 { font-size: 1.05rem; line-height: 1.5; }
 .tag.pick { background: var(--accent); color: var(--surface); }
 .tag.part { background: var(--amber-soft); color: var(--amber); }
 .branch.pick { border: 2px solid var(--accent); }
+.scq { display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 46rem) { .scq { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.scq .box p, .pair .box p { font-size: 0.95rem; }
+@media (min-width: 60rem) { .branches.three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.branch .sub { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); margin-top: -0.35rem; }
+.leaves { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.leaves li { border-top: 1px solid var(--line); padding-top: 0.6rem; display: grid; gap: 0.15rem; }
+.leaves b { font-size: 0.95rem; }
+.leaves span { font-size: 0.88rem; }
+.leaves .metric { font-size: var(--step--1); color: var(--muted); }
+.st { justify-self: start; display: inline-block; font-size: 0.75rem; font-weight: 600; border-radius: 2px; padding: 0.05rem 0.45rem; }
+.st a { margin-left: 0.25rem; text-decoration: none; }
+.st.ok { background: var(--accent-soft); color: var(--accent); }
+.st.fix { background: var(--amber-soft); color: var(--amber); }
+.st.open { background: transparent; color: var(--stop); border: 1px solid var(--stop); }
 
 /* 이미지 한 장 / 전후 비교 */
 figure { margin: 0; display: grid; gap: 0.4rem; min-width: 0; }
@@ -294,49 +309,55 @@ footer.foot { margin-top: 2rem; font-size: var(--step--1); color: var(--muted); 
     </ol>
   </section>
 
-  <!-- 02 문제 설정 -->
+  <!-- 02 문제 설정: 클래식 이슈트리(2026-11-27). 핵심 질문 → 겹치지 않는 세 갈래 → 끝가지마다 가설·지표·상태 -->
   <section id="setting" aria-labelledby="setting-h">
     <p class="eyebrow"><span class="no">02</span>Problem setting</p>
-    <h2 id="setting-h">읽는 흐름대로 원인을 네 갈래로 나누고, "잇기"를 먼저 풀기로 했다.</h2>
-    <p class="lede read">보고서가 나온 것을 알고(닿기), 핵심만 정확히 남기고(추리기), 여러 보고서를 한눈에 묶고(잇기), 내 견해로 남기는(세우기) 순서다. 앞의 두 갈래는 이미 풀렸다. 마지막 갈래의 기록 장치는 만들어 두었지만 쓰이지 않았다. R2에서 장부로 고른 "먼저 볼 것" 3건은 이틀 동안 한 건도 끝까지 읽히지 않았다. 묶음이 없으면 기록할 거리도 없다고 보고 "잇기"를 먼저 쳤다.</p>
+    <h2 id="setting-h">결과가 나오려면 재료가 있고, 읽히고, 견해가 되어야 한다. 세 갈래로 나눠 어디가 막혔는지 본다.</h2>
+    <p class="lede read">핵심 질문 하나를 겹치지 않고 빠짐없는 세 갈래로 나누고, 갈래마다 하위 질문 세 개를 두었다. 끝가지에는 그 갈래가 갖춰졌다고 말하려면 무엇이 참이어야 하는지 한 문장으로 적었다.</p>
     <div class="tree">
-      <div class="root"><span class="k">ROOT QUESTION</span><p>국내 연구기관 보고서로 국내외 주요 이슈의 해상도를 높여, 정보의 홍수 속에서 내 견해를 세우려면?</p></div>
-      <div class="branches">
+      <div class="scq">
+        <div class="box"><span class="k">상황</span><p>7개 기관 보고서를 원문과 대조한 카드 31건과, 여러 보고서를 묶은 이슈 한 장 2개가 있다.</p></div>
+        <div class="box"><span class="k">문제</span><p>처음 보는 세 사람 가운데 기관 간 차이를 구체적으로 짚은 사람은 0명이었다(11-27).</p></div>
+      </div>
+      <div class="root"><span class="k">KEY QUESTION</span><p>보고서를 읽는 사람이 이슈 하나의 다섯 칸을 자기 말로 채우게 하려면, 무엇을 바꿔야 하는가?</p></div>
+      <div class="branches three">
         <div class="branch">
-          <span class="tag done">대체로 풀림</span>
-          <h3>1. 닿기</h3>
-          <ul>
-            <li>나온 것을 알고 원문까지 간다</li>
-            <li>7개 기관 16개 간행물 수집기</li>
-            <li>웹에서 누르는 "동향 갱신" 버튼</li>
-          </ul>
-        </div>
-        <div class="branch">
-          <span class="tag done">풀림</span>
-          <h3>2. 추리기</h3>
-          <ul>
-            <li>핵심만 정확히 남긴다</li>
-            <li>원문 쪽수와 대조한 수치 205개</li>
-            <li>요약 카드 31건</li>
-          </ul>
-        </div>
-        <div class="branch pick">
-          <span class="tag pick">이번에 풂</span>
-          <h3>3. 잇기</h3>
-          <ul>
-            <li>같은 이슈를 기관마다 어디서 다르게 보는지 안 보인다</li>
-            <li>직전과 무엇이 바뀌었는지 안 보인다</li>
-            <li>정리가 문서 단위라 이슈로 쌓이지 않는다</li>
+          <h3>1. 재료가 있는가</h3>
+          <p class="sub">콘텐츠</p>
+          <ul class="leaves">
+            <li><b>1-1 범위·적시성</b><span>주요 이슈를 다룬 보고서가 제때 들어온다</span></li>
+            <li><b>1-2 정확성</b><span>수치와 주장이 원문과 맞는다</span></li>
+            <li><b>1-3 연결</b><span>같은 이슈의 기관 차이와 시간 변화가 한곳에 묶인다</span></li>
           </ul>
         </div>
         <div class="branch">
-          <span class="tag part">다음 후보</span>
-          <h3>4. 세우기</h3>
-          <ul>
-            <li>읽고 끝나서 입장을 적는 순간이 없다</li>
-            <li>장부·반응 버튼은 있으나 쓰이지 않음</li>
+          <h3>2. 읽히는가</h3>
+          <p class="sub">전달</p>
+          <ul class="leaves">
+            <li><b>2-1 진입·쓸모</b><span>첫 화면에서 무엇을 하는 곳이고 왜 볼 만한지, 어디부터 볼지 안다</span></li>
+            <li><b>2-2 가독성</b><span>글꼴·간격·색·위계가 읽기를 막지 않는다</span></li>
+            <li><b>2-3 분량</b><span>한 이슈를 짧은 시간에 읽을 수 있다</span></li>
           </ul>
         </div>
+        <div class="branch">
+          <h3>3. 견해가 되는가</h3>
+          <p class="sub">활용</p>
+          <ul class="leaves">
+            <li><b>3-1 질문</b><span>무엇을 확인하면 답이 나오는지 보인다</span></li>
+            <li><b>3-2 기록</b><span>내 입장을 적는 순간과 자리가 있다</span></li>
+            <li><b>3-3 돌아보기</b><span>새 보고서가 나오면 내 생각이 맞았는지 다시 본다</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="box">
+        <span class="k">이전 트리(11-26)와 견주면</span>
+        <p>읽는 흐름대로 나눈 이전 트리(닿기·추리기·잇기·세우기)는 각각 1-1, 1-2, 1-3, 3-2~3-3에 들어맞는다. "2. 읽히는가"에 해당하는 갈래는 없었다. 세 사람의 피드백이 드러낸 문제는 대부분 이 빈 갈래에 있었다.</p>
+      </div>
+      <div class="box on">
+        <span class="k">읽는 법</span>
+        <p>실패한 숫자(0/3)는 결과 쪽인 3-1에서 나왔지만, 원인은 앞 단계인 2에서 드러났다. 그래서 2를 먼저 고쳤다.</p>
       </div>
     </div>
   </section>
