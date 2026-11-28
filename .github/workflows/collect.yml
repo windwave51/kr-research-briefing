@@ -17,10 +17,10 @@ jobs:
     timeout-minutes: 20
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy_retry.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: 게시판 목록 확인 (원문 저장 없음)
@@ -37,9 +37,22 @@ jobs:
             git pull --rebase
             git push
           fi
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      # 배포 API가 일시 오류를 내는 일이 있어(2026-11-27·28 두 번) 실패하면 30초 뒤 한 번 더 시도한다.
+      - id: configure
+        uses: actions/configure-pages@v5
+        continue-on-error: true
+      - if: steps.configure.outcome == 'failure'
+        run: sleep 30
+      - if: steps.configure.outcome == 'failure'
+        uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: site
       - id: deploy
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - if: steps.deploy.outcome == 'failure'
+        run: sleep 30
+      - id: deploy_retry
+        if: steps.deploy.outcome == 'failure'
         uses: actions/deploy-pages@v4
