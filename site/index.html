@@ -105,6 +105,11 @@ h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
 .masthead .route a { font-weight: 600; }
 .masthead .how summary { cursor: pointer; width: fit-content; color: var(--accent); font-size: var(--step--1); font-weight: 600; }
 .masthead .how p { margin-top: 0.4rem; font-size: 0.9375rem; line-height: 1.7; }
+/* 왜 만들었나요?(2026-11-28 사용자 결정 C안): 첫 화면 분량을 늘리지 않도록 접어 둔다 */
+.masthead .how + .how { margin-top: 0.35rem; }
+.masthead .why-steps { margin: 0.5rem 0 0; padding-left: 1.4rem; max-width: 40rem; font-size: 0.9375rem; line-height: 1.7; }
+.masthead .why-steps li + li { margin-top: 0.35rem; }
+.masthead .why-steps b { font-weight: 600; margin-right: 0.35rem; }
 /* 휴대폰에서는 기관 이름 줄을 숨긴다(소개 문장에 기관 수가 있고, 첫 화면에 이슈가 보이게) */
 @media (max-width: 40rem) {
   .masthead .kicker .orgs { display: none; }
@@ -456,6 +461,15 @@ section > h2 { font-family: var(--font-display); font-weight: 700; letter-spacin
     <p class="period">수록 <b>2026-10-26 ~ 2026-11-27</b> 발간 보고서 39건 · 마지막 정리 <b>2026-11-28</b><span id="fresh-count" hidden></span>
       <span class="cadence">주요 이슈는 매일이 아니라 새 보고서를 정리할 때 바뀝니다.</span></p>
     <p class="route">처음이라면 <a href="#issues">이슈 한 장</a> → <a href="#first">먼저 볼 것</a> → <a href="#all">자료 카드</a> 순서로 보세요.</p>
+    <details class="how">
+      <summary>왜 만들었나요?</summary>
+      <ol class="why-steps">
+        <li><b>관점이 갈린다.</b>같은 사안도 신문마다 관점이 크게 다릅니다. 기사는 편집 방향과 의도에 맞는 자료를 골라 쓰는 경우가 많다고 생각했습니다.</li>
+        <li><b>원자료로 간다.</b>그 속에서 나만의 시각을 가지려면, 기사가 기대는 원자료를 직접 봐야 합니다.</li>
+        <li><b>읽기만으로는 부족하다.</b>그런데 양질의 보고서는 많아도, 읽기만 해서는 내 견해가 생기지 않았습니다.</li>
+        <li><b>내 기준을 세운다.</b>그래서 보고서를 <a href="#issues">이슈별로 묶어</a> 기관마다 어디서 갈리는지 보여 주고, 생각해 볼 질문으로 스스로 따져 보게 했습니다. 사안마다 합리적인 기준을 갖고 마주해야, 경제적 이해관계나 정치적 의도가 담긴 주장에 흔들리지 않는다고 봅니다.</li>
+      </ol>
+    </details>
     <details class="how">
       <summary>어떻게 만드나요?</summary>
       <p>프로그램이 각 기관 게시판의 새 글을 모으면, 정리자가 AI(Claude)의 도움을 받아 원문을 읽고 카드로 요약합니다. 카드의 수치는 원문 해당 쪽과 하나씩 대조하고, 같은 이슈를 두 기관 이상이 다루면 ‘이슈 한 장’으로 묶습니다. <a href="#method">자세한 방법</a></p>
