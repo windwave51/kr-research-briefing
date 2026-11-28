@@ -107,9 +107,19 @@ h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
 .masthead .how p { margin-top: 0.4rem; font-size: 0.9375rem; line-height: 1.7; }
 /* 왜 만들었나요?(2026-11-28 사용자 결정 C안): 첫 화면 분량을 늘리지 않도록 접어 둔다 */
 .masthead .how + .how { margin-top: 0.35rem; }
-.masthead .why-steps { margin: 0.5rem 0 0; padding-left: 1.4rem; max-width: 40rem; font-size: 0.9375rem; line-height: 1.7; }
-.masthead .why-steps li + li { margin-top: 0.35rem; }
-.masthead .why-steps b { font-weight: 600; margin-right: 0.35rem; }
+.masthead .why-flow { list-style: none; margin: 0.75rem 0 0.25rem; padding: 0; max-width: 40rem; }
+/* 왼쪽 번호를 세로선으로 잇는 단계도: 1~3은 문제의식, 4는 이 사이트의 답 */
+.masthead .why-flow li { position: relative; padding: 0 0 1rem 2.4rem; font-size: 0.9rem; line-height: 1.65; }
+.masthead .why-flow li::before { content: ""; position: absolute; left: 0.74rem; top: 1.7rem; bottom: 0.1rem; width: 2px; background: var(--line); }
+.masthead .why-flow li:last-child { padding-bottom: 0; }
+.masthead .why-flow li:last-child::before { display: none; }
+.masthead .why-flow .n { position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface); color: var(--accent); font-size: 0.8rem; font-weight: 700; }
+.masthead .why-flow .stage { margin-left: 0.4rem; color: var(--muted); font-size: var(--step--1); font-weight: 600; }
+.masthead .why-flow b { font-weight: 700; }
+.masthead .why-flow p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.65; }
+.masthead .why-flow li.goal .n { background: var(--accent); color: var(--surface); }
+.masthead .why-flow li.goal .box { margin-top: 0.15rem; padding: 0.6rem 0.8rem; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent-soft); }
+.masthead .why-flow li.goal .box p { margin-top: 0.2rem; }
 /* 휴대폰에서는 기관 이름 줄을 숨긴다(소개 문장에 기관 수가 있고, 첫 화면에 이슈가 보이게) */
 @media (max-width: 40rem) {
   .masthead .kicker .orgs { display: none; }
@@ -463,11 +473,11 @@ section > h2 { font-family: var(--font-display); font-weight: 700; letter-spacin
     <p class="route">처음이라면 <a href="#issues">이슈 한 장</a> → <a href="#first">먼저 볼 것</a> → <a href="#all">자료 카드</a> 순서로 보세요.</p>
     <details class="how">
       <summary>왜 만들었나요?</summary>
-      <ol class="why-steps">
-        <li><b>관점이 갈린다.</b>같은 사안도 신문마다 관점이 크게 다릅니다. 기사는 편집 방향과 의도에 맞는 자료를 골라 쓰는 경우가 많다고 생각했습니다.</li>
-        <li><b>원자료로 간다.</b>그 속에서 나만의 시각을 가지려면, 기사가 기대는 원자료를 직접 봐야 합니다.</li>
-        <li><b>읽기만으로는 부족하다.</b>그런데 양질의 보고서는 많아도, 읽기만 해서는 내 견해가 생기지 않았습니다.</li>
-        <li><b>내 기준을 세운다.</b>그래서 보고서를 <a href="#issues">이슈별로 묶어</a> 기관마다 어디서 갈리는지 보여 주고, 생각해 볼 질문으로 스스로 따져 보게 했습니다. 사안마다 합리적인 기준을 갖고 마주해야, 경제적 이해관계나 정치적 의도가 담긴 주장에 흔들리지 않는다고 봅니다.</li>
+      <ol class="why-flow" aria-label="이 사이트를 만든 생각의 흐름">
+        <li><span class="n">1</span><b>관점이 갈린다</b><span class="stage">문제의식</span><p>같은 사안도 신문마다 관점이 크게 다릅니다. 기사는 편집 방향과 의도에 맞는 자료를 골라 쓰는 경우가 많다고 생각했습니다.</p></li>
+        <li><span class="n">2</span><b>원자료로 간다</b><span class="stage">문제의식</span><p>그 속에서 나만의 시각을 가지려면, 기사가 기대는 원자료를 직접 봐야 합니다.</p></li>
+        <li><span class="n">3</span><b>읽기만으로는 부족하다</b><span class="stage">한계</span><p>그런데 양질의 보고서는 많아도, 읽기만 해서는 내 견해가 생기지 않았습니다.</p></li>
+        <li class="goal"><span class="n">4</span><div class="box"><b>내 기준을 세운다</b><span class="stage">그래서 이 사이트</span><p>보고서를 <a href="#issues">이슈별로 묶어</a> 기관마다 어디서 갈리는지 보여 주고, 생각해 볼 질문으로 스스로 따져 보게 했습니다. 사안마다 합리적인 기준을 갖고 마주해야, 경제적 이해관계나 정치적 의도가 담긴 주장에 흔들리지 않는다고 봅니다.</p></div></li>
       </ol>
     </details>
     <details class="how">
