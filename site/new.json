@@ -1,31 +1,7 @@
 {
- "updated_at": "2026-11-28T01:17:12+00:00",
+ "updated_at": "2026-11-28T01:46:42+00:00",
  "window_since": "2026-10-29",
  "items": [
-  {
-   "institution": "통일연구원 (KINU)",
-   "publication": "온라인시리즈",
-   "title": "북한 국기 변경의 상징정치적 함의: 새별거리 준공식에서 시작된 국기의 재편",
-   "published": "2026-11-27",
-   "url": "https://www.kinu.or.kr/main/module/report/view.do?idx=132936&nav_code=mai1674786581",
-   "first_seen": "2026-11-27T05:53:44+00:00"
-  },
-  {
-   "institution": "세종연구소",
-   "publication": "세종정책브리프",
-   "title": "[세종정책브리프 2026-33] 「또 럼」체제의 베트남: 국가 쇄신과 한국의 대응",
-   "published": "2026-11-27",
-   "url": "https://www.sejong.org/web/boad/1/egoread.php?bd=3&seq=13294",
-   "first_seen": "2026-11-27T05:53:36+00:00"
-  },
-  {
-   "institution": "통일연구원 (KINU)",
-   "publication": "온라인시리즈",
-   "title": "김정은 국무위원장의10개국 대사 신임장 접수의 함의",
-   "published": "2026-11-26",
-   "url": "https://www.kinu.or.kr/main/module/report/view.do?idx=132935&nav_code=mai1674786581",
-   "first_seen": "2026-11-27T05:53:44+00:00"
-  },
   {
    "institution": "한국은행 (BOK)",
    "publication": "경제전망보고서",
@@ -33,58 +9,42 @@
    "published": "2026-11-26",
    "url": "https://www.bok.or.kr/portal/bbs/P0002359/view.do?nttId=11067100&menuNo=200066",
    "first_seen": "2026-11-27T05:53:26+00:00"
-  },
-  {
-   "institution": "세종연구소",
-   "publication": "세종정책브리프",
-   "title": "[세종정책브리프 2026-32] 다카이치 정권의 정치적 안정성 평가와 한일관계 전망",
-   "published": "2026-11-24",
-   "url": "https://www.sejong.org/web/boad/1/egoread.php?bd=3&seq=13288",
-   "first_seen": "2026-11-27T05:53:38+00:00"
-  },
-  {
-   "institution": "자본시장연구원 (KCMI)",
-   "publication": "자본시장포커스",
-   "title": "한국 증권시장안정펀드(증안펀드)의 바람직한 역할",
-   "published": "2026-11-23",
-   "url": "https://www.kcmi.re.kr/publications/pub_detail_view?syear=OPIN&zcd=002001016&zno=1949&cno=6891",
-   "first_seen": "2026-11-24T06:24:36+00:00"
   }
  ],
  "institutions": [
   {
    "institution": "한국개발연구원 (KDI)",
-   "checked_at": "2026-11-28T01:16:31+00:00",
+   "checked_at": "2026-11-28T01:45:56+00:00",
    "problems": []
   },
   {
    "institution": "한국은행 (BOK)",
-   "checked_at": "2026-11-28T01:16:42+00:00",
+   "checked_at": "2026-11-28T01:46:07+00:00",
    "problems": []
   },
   {
    "institution": "세종연구소",
-   "checked_at": "2026-11-28T01:16:47+00:00",
+   "checked_at": "2026-11-28T01:46:12+00:00",
    "problems": []
   },
   {
    "institution": "통일연구원 (KINU)",
-   "checked_at": "2026-11-28T01:16:55+00:00",
+   "checked_at": "2026-11-28T01:46:20+00:00",
    "problems": []
   },
   {
    "institution": "국회예산정책처 (NABO)",
-   "checked_at": "2026-11-28T01:17:03+00:00",
+   "checked_at": "2026-11-28T01:46:35+00:00",
    "problems": []
   },
   {
    "institution": "에너지경제연구원 (KEEI)",
-   "checked_at": "2026-11-28T01:17:08+00:00",
+   "checked_at": "2026-11-28T01:46:38+00:00",
    "problems": []
   },
   {
    "institution": "자본시장연구원 (KCMI)",
-   "checked_at": "2026-11-28T01:17:12+00:00",
+   "checked_at": "2026-11-28T01:46:42+00:00",
    "problems": []
   }
  ]
